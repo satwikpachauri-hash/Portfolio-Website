@@ -1,0 +1,352 @@
+.experience-section {
+  padding: var(--section-spacing) 24px;
+  position: relative;
+  z-index: 10;
+  background-color: var(--bg);
+  width: 100%;
+}
+
+.experience-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.experience-heading {
+  font-size: var(--heading-scale);
+  letter-spacing: var(--heading-letter-spacing);
+  font-weight: var(--heading-weight);
+  text-transform: var(--heading-case);
+  margin: 0 0 var(--section-gap) 0;
+  color: var(--text-primary);
+}
+
+@media (max-width: 1023px) {
+  .experience-heading {
+    text-align: center;
+  }
+  .career-rail {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.career-rail {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-left: 32px; /* Space for the rail on mobile */
+}
+
+.rail-line {
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--border);
+}
+
+.rail-line-fill {
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 2px;
+  background-color: var(--text-primary);
+  transform-origin: top;
+  z-index: 1;
+}
+
+.chapter-node {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 72px;
+}
+
+.chapter-node:last-child {
+  padding-bottom: 0;
+}
+
+.chapter-marker-area {
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.chapter-year {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color 0.4s ease;
+  letter-spacing: 0.05em;
+}
+
+.chapter-marker-area.is-active .chapter-year {
+  color: var(--text-primary);
+}
+
+.chapter-marker {
+  position: absolute;
+  left: -36px; /* -32px padding - 4px half width */
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--border);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.5s ease, box-shadow 0.5s ease;
+  z-index: 2;
+}
+
+.chapter-marker-area.is-active .chapter-marker {
+  transform: scale(1.5);
+  background-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(45, 120, 134, 0.1);
+}
+
+[data-theme="dark"] .chapter-marker-area.is-active .chapter-marker {
+  box-shadow: 0 0 0 4px rgba(184, 168, 255, 0.15);
+}
+
+.chapter-content-area {
+  transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  /* Mobile inactive state */
+  opacity: 0.35;
+  transform: translateY(8px);
+}
+
+.chapter-content-area.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.chapter-content-area.is-past {
+  opacity: 0.35;
+  transform: translateY(-8px);
+}
+
+/* --- JOB CONTENT TYPOGRAPHY --- */
+.job-chapter {
+  transition: transform 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .job-chapter:hover {
+    transform: translateX(8px);
+  }
+}
+
+.role-title {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+}
+
+.company-name {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.job-meta {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.meta-sep {
+  opacity: 0.5;
+}
+
+.job-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0;
+}
+
+.job-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.metric-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metric-value {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+/* --- TRANSITION CHAPTER --- */
+.transition-chapter {
+  padding: 16px 0;
+}
+
+.transition-title {
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.transition-subtitle {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.transition-divider {
+  margin-top: 32px;
+  height: 1px;
+  width: 48px;
+  background-color: var(--border);
+}
+
+.chapter-context-area {
+  display: none; /* Mobile hidden */
+}
+
+/* --- DESKTOP/LAPTOP --- */
+@media (min-width: 1024px) {
+  .career-rail {
+    display: grid;
+    grid-template-columns: 160px 1fr 280px;
+    padding-left: 0;
+    gap: 80px;
+  }
+  
+  .rail-line {
+    left: 200px; /* 160px col + 40px half gap */
+  }
+
+  .chapter-node {
+    display: contents; /* Unboxes children into grid */
+  }
+
+  .chapter-marker-area {
+    grid-column: 1;
+    height: 50vh; /* Scroll spacing per chapter */
+    text-align: right;
+    margin-bottom: 0;
+  }
+  
+  /* Give the last marker more scroll height so the final content stays pinned longer */
+  .chapter-node:last-child .chapter-marker-area {
+    height: 65vh;
+  }
+
+  .chapter-marker {
+    left: auto;
+    right: -44px; /* 40px half gap + 4px half marker */
+  }
+
+  .chapter-content-area, .chapter-context-area {
+    position: sticky;
+    top: 35vh; /* Keep in the upper-middle of viewport */
+    height: fit-content;
+    /* Cross-fade hiding */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(24px);
+    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .chapter-content-area {
+    grid-column: 2;
+  }
+
+  .chapter-context-area {
+    display: block;
+    grid-column: 3;
+  }
+
+  .chapter-content-area.is-active, .chapter-context-area.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    z-index: 2;
+  }
+  
+  .chapter-content-area.is-past, .chapter-context-area.is-past {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+
+  .context-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 16px;
+    text-align: right;
+    opacity: 0.27; /* increased by 15% per request */
+    user-select: none;
+  }
+
+  .context-location {
+    font-size: 3.5rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--text-primary);
+  }
+
+  .context-line {
+    width: 80px;
+    height: 2px;
+    background-color: var(--text-primary);
+  }
+
+  .context-company {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.1;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .chapter-marker-area {
+      cursor: default;
+    }
+    .chapter-marker-area:hover .chapter-year {
+      color: var(--text-primary);
+    }
+    .chapter-marker-area:hover .chapter-marker {
+      transform: scale(1.2);
+    }
+    .chapter-marker-area.is-active:hover .chapter-marker {
+      transform: scale(1.5);
+    }
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .chapter-marker,
+  .chapter-content-area,
+  .chapter-context-area {
+    transition: opacity 0.3s ease !important;
+    transform: none !important;
+  }
+}

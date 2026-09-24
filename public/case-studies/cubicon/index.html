@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cubicon — Case Study</title>
+  
+  <!-- FIX: Added Fontshare link with safely URL-encoded brackets so Netlify's minifier doesn't crash -->
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=clash-display@200,300,400,500,600,700&f%5B%5D=satoshi@300,400,500,700,900&display=swap">
+  
+  <!-- Icon Library -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    /* Brief Interactive Animation */
+    .reveal.brief-interactive {
+      transform: perspective(1200px) rotateY(-20deg) translateX(-40px) scale(0.9);
+      opacity: 0;
+      transform-style: preserve-3d;
+    }
+    .reveal.brief-interactive.active {
+      transform: perspective(1200px) rotateY(0deg) translateX(0) scale(1);
+      opacity: 1;
+    }
+    .reveal.brief-interactive:hover {
+      transform: translateY(-15px) scale(1.03);
+      box-shadow: 0 30px 60px rgba(226, 232, 240, 0.15), inset 0 1px 0 rgba(255,255,255,0.2);
+      border-color: rgba(226, 232, 240, 0.4);
+      z-index: 10;
+    }
+    .brief-interactive .card-icon {
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .brief-interactive:hover .card-icon {
+      transform: scale(1.3) translateY(-4px);
+      color: #fff;
+    }
+
+    /* Icon Styles */
+    .icon-inline { display: inline-flex; align-items: center; vertical-align: middle; }
+    .icon-mr { margin-right: 8px; }
+    .icon-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .icon-header i { color: var(--accent); }
+    .icon-badge { display: inline-flex; align-items: center; gap: 6px; }
+    .card-icon { color: var(--accent); margin-bottom: 16px; width: 32px; height: 32px; }
+    
+    /* CSS Overrides for Hero Overlay */
+    .hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .hero-image-wrapper {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+    }
+    .hero-image-wrapper::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; width: 100%; height: 50%;
+      background: linear-gradient(to bottom, transparent, var(--bg-primary, #0e0e10));
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-image-wrapper img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      max-width: none;
+      image-rendering: high-quality;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      will-change: transform;
+    }
+    .hero-overlay { display: none; } /* Removing original dark overlay */
+    
+    .hero-content-overlay {
+      position: relative;
+      z-index: 10;
+      margin-left: 10%;
+      max-width: 500px;
+      background: rgba(15, 15, 17, 0.5);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+      text-align: left;
+    }
+    
+    .hero-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 32px;
+    }
+    
+    .hero-meta-grid p.section-number {
+      margin-bottom: 4px;
+    }
+    
+    /* Responsive overrides moved to styles.css */
+
+
+    /* Staggered Item Animation for Lists */
+    .stagger-item {
+      opacity: 0;
+      transform: translateX(-15px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+    .reveal.active .stagger-item {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal.active .stagger-item:nth-child(1) { transition-delay: 0.1s; }
+    .reveal.active .stagger-item:nth-child(2) { transition-delay: 0.25s; }
+    .reveal.active .stagger-item:nth-child(3) { transition-delay: 0.4s; }
+    .reveal.active .stagger-item:nth-child(4) { transition-delay: 0.55s; }
+
+    /* Premium Icon & Illustration Interactions */
+    .lucide, .card-icon {
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform-style: preserve-3d;
+    }
+    
+    /* Unique pop-and-twist glow for bullet icons */
+    .stagger-item:hover .lucide,
+    .issue-list li:hover .lucide,
+    .problem-solution:hover .ps-badge .lucide,
+    .ps-content:hover .icon-badge .lucide,
+    .glass-card:not(.brief-interactive):hover > .card-icon,
+    .glass-card:not(.brief-interactive):hover .lucide {
+      transform: perspective(400px) translateZ(20px) rotate(-5deg) scale(1.15);
+    }
+    
+    /* Reverted mockups to original crisp animation from styles.css */
+
+    /* NASA TLX Animation */
+    .tlx-bar-container {
+      width: 100%;
+      height: 8px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 100px;
+      margin-top: 8px;
+      overflow: hidden;
+    }
+    .tlx-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--accent), #cbd5e1);
+      border-radius: 100px;
+      transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tlx-score {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .tlx-item { margin-bottom: 24px; }
+    
+    .number-count {
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+<!-- PREMIUM READING PROGRESS ISLAND -->
+<div class="reading-progress-island hidden">
+  <svg class="progress-ring" width="24" height="24" viewBox="0 0 24 24">
+    <circle class="ring-bg" cx="12" cy="12" r="10"></circle>
+    <circle class="ring-fill" cx="12" cy="12" r="10" id="readingRing"></circle>
+  </svg>
+  <span class="reading-percentage" id="readingPercentage">0%</span>
+  <span class="reading-text">Completed</span>
+</div>
+
+<div class="ambient-mesh">
+  <div class="mesh-orb mesh-orb-1"></div>
+  <div class="mesh-orb mesh-orb-2"></div>
+  <div class="mesh-orb mesh-orb-3"></div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-image-wrapper">
+    <img src="./assets/hero/Hero%20Section.png" alt="Cubicon Hero" id="heroImg">
+  </div>
+  
+  <div class="hero-content-overlay reveal">
+    <div class="logo-container" style="width:clamp(60px, 10vw, 80px); height:clamp(60px, 10vw, 80px); margin-bottom: 24px; border-radius: 20px;">
+      <img src="./assets/logo/cubicon-logo.png" alt="Cubicon Logo" style="filter: none; width:60%;">
+    </div>
+    <h1 class="hero-title">Cubicon</h1>
+    <p class="lead hero-lead">A niche e-commerce app designed exclusively for Rubik's cube enthusiasts, built using Google's Material Design 3.</p>
+    
+    <div class="hero-meta-grid">
+      <div><p class="section-number">Designer</p><h4>Satwik Pachauri</h4></div>
+      <div><p class="section-number">Design System</p><h4>Material 3</h4></div>
+      <div><p class="section-number">Category</p><h4>E-Commerce</h4></div>
+      <div><p class="section-number">Platform</p><h4>iOS / Android</h4></div>
+      <div><p class="section-number">Tool</p><h4>Figma</h4></div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 01 THE BRIEF -->
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:60px;">
+      <span class="section-label">01 — The Brief</span>
+      <h2>The Brief</h2>
+      <p class="lead" style="margin:0 auto 24px auto;">Explore design systems and build an application from scratch by applying one completely.</p>
+      <ul class="issue-list" style="max-width: 600px; margin: 0 auto; text-align: left;">
+        <li class="stagger-item" style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 8px;">
+          <span class="issue-icon pass" style="flex-shrink: 0; margin-top: 2px;"><i data-lucide="target" style="width:18px;"></i></span> 
+          <span><strong>Align with Domain:</strong> The system must make sense for the core function, not just look good.</span>
+        </li>
+        <li class="stagger-item" style="display: flex; align-items: flex-start; gap: 8px;">
+          <span class="issue-icon pass" style="flex-shrink: 0; margin-top: 2px;"><i data-lucide="puzzle" style="width:18px;"></i></span> 
+          <span><strong>Natural Fit:</strong> E.g., Carbon Design System wouldn't fit a creative, Pinterest-like app. It must complement the experience.</span>
+        </li>
+      </ul>
+    </div>
+    <div class="grid-3">
+      <div class="glass-card reveal brief-interactive delay-1">
+        <i data-lucide="book-open" class="card-icon" style="width: 24px; height: 24px; margin-bottom: 12px;"></i>
+        <h3 style="min-height: 70px;">Understanding Systems</h3>
+        <ul class="issue-list" style="margin-top:12px;">
+          <li class="stagger-item" style="margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;">
+            <i data-lucide="arrow-right" style="width:14px; color:var(--accent); margin-top:4px; flex-shrink:0;"></i> 
+            <span>Learned purpose & structure</span>
+          </li>
+          <li class="stagger-item" style="margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;">
+            <i data-lucide="arrow-right" style="width:14px; color:var(--accent); margin-top:4px; flex-shrink:0;"></i> 
+            <span>Studied brand consistency</span>
+          </li>
+          <li class="stagger-item" style="display: flex; align-items: flex-start; gap: 8px;">
+            <i data-lucide="arrow-right" style="width:14px; color:var(--accent); margin-top:4px; flex-shrink:0;"></i> 
+            <span>Read official guidelines</span>
+          </li>
+        </ul>
+      </div>
+      <div class="glass-card reveal brief-interactive delay-2">
+        <i data-lucide="layers" class="card-icon" style="width: 24px; height: 24px; margin-bottom: 12px;"></i>
+        <h3 style="min-height: 70px;">Systems Explored</h3>
+        <ul class="issue-list" style="margin-top:12px;">
+          <li class="stagger-item" style="margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;">
+            <i data-lucide="check-circle" style="width:16px; color:var(--success); margin-top:3px; flex-shrink:0;"></i> 
+            <span><strong>Material Design</strong></span>
+          </li>
+          <li class="stagger-item" style="margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;">
+            <i data-lucide="circle" style="width:16px; color:var(--text-muted); margin-top:3px; flex-shrink:0;"></i> 
+            <span><strong>Polaris (Shopify)</strong></span>
+          </li>
+          <li class="stagger-item" style="display: flex; align-items: flex-start; gap: 8px;">
+            <i data-lucide="circle" style="width:16px; color:var(--text-muted); margin-top:3px; flex-shrink:0;"></i> 
+            <span><strong>Apple HIG</strong></span>
+          </li>
+        </ul>
+      </div>
+      <div class="glass-card reveal brief-interactive delay-3">
+        <i data-lucide="box" class="card-icon" style="width: 24px; height: 24px; margin-bottom: 12px;"></i>
+        <h3 style="min-height: 70px;">Why Material 3?</h3>
+        <ul class="issue-list" style="margin-top:12px;">
+          <li class="stagger-item" style="margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;">
+            <i data-lucide="check" style="width:14px; color:var(--accent); margin-top:4px; flex-shrink:0;"></i> 
+            <span>Systematic elevation</span>
+          </li>
+          <li class="stagger-item" style="margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;">
+            <i data-lucide="check" style="width:14px; color:var(--accent); margin-top:4px; flex-shrink:0;"></i> 
+            <span>Structured components</span>
+          </li>
+          <li class="stagger-item" style="display: flex; align-items: flex-start; gap: 8px;">
+            <i data-lucide="check" style="width:14px; color:var(--accent); margin-top:4px; flex-shrink:0;"></i> 
+            <span>Perfect for e-commerce</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 02 MATERIAL EXPLORATION -->
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:60px;">
+      <span class="section-label">02 — Material Exploration</span>
+      <h2>Learning from the Source</h2>
+      <p class="lead" style="margin: 0 auto;">I studied Material Design through Google's official Material 3 website and their Figma kit — learning about component anatomy, spacing rules, and interaction patterns. While researching, I found case studies that helped me understand how Google applies their own system.</p>
+    </div>
+
+    <!-- Shrine -->
+    <div class="glass-card reveal" style="margin-bottom:32px;">
+      <h3>Shrine — Retail App</h3>
+      <p>A retail app using Material Design to express branding for fashion and lifestyle items. Shrine's minimalist aesthetic lets content take the forefront, using angled cuts as a visual theme and overlapping sheets for navigation.</p>
+      <div class="cs-image-grid cols-2" style="margin-top:24px;">
+        <div class="cs-image-card"><img src="./assets/material/shrine/shrine1.png" alt="Shrine"></div>
+        <div class="cs-image-card"><img src="./assets/material/shrine/shrine3.png" alt="Shrine"></div>
+      </div>
+    </div>
+
+    <!-- Crane -->
+    <div class="glass-card reveal" style="margin-bottom:32px;">
+      <h3>Crane — Travel App</h3>
+      <p>A travel app for booking flights, hotels, and restaurants. Crane uses a backdrop component where changes to filters immediately update content — demonstrating how Material Design handles complex, task-based flows with a refined aesthetic.</p>
+      <div class="cs-image-grid cols-3" style="margin-top:24px;">
+        <div class="cs-image-card"><img src="./assets/material/crane/crane1.png" alt="Crane"></div>
+        <div class="cs-image-card"><img src="./assets/material/crane/crane2.png" alt="Crane"></div>
+        <div class="cs-image-card"><img src="./assets/material/crane/crane3.png" alt="Crane"></div>
+      </div>
+    </div>
+
+    <!-- Owl -->
+    <div class="glass-card reveal">
+      <h3>Owl — Educational App</h3>
+      <p>An educational app that uses bold color, shape, and typography to express energy and exploration. Owl is divided into three color-themed sections — Personalize, Browse, and Learn — each with their own interaction model.</p>
+      <div class="cs-image-grid cols-2" style="margin-top:24px;">
+        <div class="cs-image-card"><img src="./assets/material/owl/owl1.png" alt="Owl"></div>
+        <div class="cs-image-card"><img src="./assets/material/owl/owl4.png" alt="Owl"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 03 PRODUCT IDEATION -->
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:60px;">
+      <span class="section-label">03 — Product Ideation</span>
+      <h2>From Chaos to Niche</h2>
+      <p class="lead" style="margin:0 auto;">After analyzing Material Design's clean aesthetic, I realized a broad e-commerce app would have too much visual noise, clashing with Material's minimal philosophy.</p>
+    </div>
+    <div class="grid-2">
+      <div class="glass-card reveal">
+        <i data-lucide="alert-triangle" class="card-icon" style="color: var(--danger, #ef4444);"></i>
+        <h3>General E-commerce</h3>
+        <ul class="issue-list" style="margin-top:12px;">
+          <li class="stagger-item" style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 8px;">
+            <i data-lucide="x" style="width:16px; color:var(--danger); margin-top:2px; flex-shrink:0;"></i>
+            <span><strong>Visual Chaos:</strong> A broad marketplace with thousands of unrelated products naturally creates a cluttered interface.</span>
+          </li>
+          <li class="stagger-item" style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 8px;">
+            <i data-lucide="x" style="width:16px; color:var(--danger); margin-top:2px; flex-shrink:0;"></i>
+            <span><strong>System Clash:</strong> Material Design relies on clean hierarchy and structured layouts; forcing it onto a cluttered interface defeats its purpose.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="glass-card reveal">
+        <i data-lucide="lightbulb" class="card-icon" style="color: var(--success, #10b981);"></i>
+        <h3>The Cubicon Idea</h3>
+        <ul class="issue-list" style="margin-top:12px;">
+          <li class="stagger-item" style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 8px;">
+            <i data-lucide="check" style="width:16px; color:var(--success); margin-top:2px; flex-shrink:0;"></i>
+            <span><strong>Niche Focus:</strong> Selling only Rubik's cubes provides a limited, curated scope that perfectly complements Material's minimal design.</span>
+          </li>
+          <li class="stagger-item" style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 8px;">
+            <i data-lucide="check" style="width:16px; color:var(--success); margin-top:2px; flex-shrink:0;"></i>
+            <span><strong>System Harmony:</strong> A niche marketplace is where Material Design can truly shine. That is how Cubicon was born.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 04 ITERATIONS -->
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:80px;">
+      <span class="section-label">04 — Iterations</span>
+      <h2>Evolution of the Interface</h2>
+      <p class="lead" style="margin: 0 auto;">Placing the initial Phase One designs alongside the refined Phase Two solutions to highlight the progression of visual hierarchy, semantic clarity, and proper affordances.</p>
+    </div>
+
+    <!-- Home Page Iteration -->
+    <div class="reveal" style="margin-bottom:80px;">
+      <h3 style="text-align:center; margin-bottom: 32px; color: var(--accent);">Home Page</h3>
+      <div class="grid-2" style="align-items: start;">
+        <!-- Phase 1 -->
+        <div>
+          <div class="mockup-phone" style="margin: 0 auto 24px auto;"><img src="./assets/mockups/iteration1/iter1_home.png" alt="V1 Home"></div>
+          <div class="ps-content" style="text-align: center;">
+            <span class="ps-badge problem icon-badge"><i data-lucide="x-circle" style="width:16px;"></i> Phase 1: Problem</span>
+            <h3 style="text-align: center; margin-bottom: 16px;">Poor Visual Hierarchy</h3>
+            <ul class="issue-list" style="max-width: 300px; margin: 0 auto; text-align: left; font-size: 1.1rem;">
+              <li class="stagger-item" style="margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;"><i data-lucide="x" style="width:14px; color:var(--danger); margin-top:3px; flex-shrink:0;"></i> <span>Foreground blending into background</span></li>
+              <li class="stagger-item" style="display: flex; align-items: flex-start; gap: 8px;"><i data-lucide="x" style="width:14px; color:var(--danger); margin-top:3px; flex-shrink:0;"></i> <span>Categories felt disorganized & chaotic</span></li>
+            </ul>
+          </div>
+        </div>
+        <!-- Phase 2 -->
+        <div>
+          <div class="mockup-phone" style="margin: 0 auto 24px auto;"><img src="./assets/mockups/iteration2/iter2_home.png" alt="V2 Home"></div>
+          <div class="ps-content" style="text-align: center;">
+            <span class="ps-badge improvement icon-badge"><i data-lucide="check-circle" style="width:16px;"></i> Phase 2: Solution</span>
+            <h3 style="text-align: center; margin-bottom: 16px;">Restructured Homepage</h3>
+            <ul class="issue-list" style="max-width: 300px; margin: 0 auto; text-align: left; font-size: 1.1rem;">
+              <li class="stagger-item" style="margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;"><i data-lucide="check" style="width:14px; color:var(--success); margin-top:3px; flex-shrink:0;"></i> <span>Clear depth and visual hierarchy</span></li>
+              <li class="stagger-item" style="display: flex; align-items: flex-start; gap: 8px;"><i data-lucide="check" style="width:14px; color:var(--success); margin-top:3px; flex-shrink:0;"></i> <span>Proper separation of UI layers</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Page Iteration -->
+    <div class="reveal" style="margin-bottom:80px;">
+      <h3 style="text-align:center; margin-bottom: 32px; color: var(--accent);">Search Page</h3>
+      <div class="grid-2" style="align-items: start;">
+        <!-- Phase 1 -->
+        <div>
+          <div class="mockup-phone" style="margin: 0 auto 24px auto;"><img src="./assets/mockups/iteration1/iter1_search.png" alt="V1 Search"></div>
+          <div class="ps-content" style="text-align: center;">
+            <span class="ps-badge problem icon-badge"><i data-lucide="x-circle" style="width:16px;"></i> Phase 1: Problem</span>
+            <h3 style="text-align: center; margin-bottom: 16px;">Missing Signifiers</h3>
+            <ul class="issue-list" style="max-width: 300px; margin: 0 auto; text-align: left; font-size: 1.1rem;">
+              <li class="stagger-item" style="margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;"><i data-lucide="x" style="width:14px; color:var(--danger); margin-top:3px; flex-shrink:0;"></i> <span>No voice search or back icons</span></li>
+              <li class="stagger-item" style="display: flex; align-items: flex-start; gap: 8px;"><i data-lucide="x" style="width:14px; color:var(--danger); margin-top:3px; flex-shrink:0;"></i> <span>Users lacked visual cues for actions</span></li>
+            </ul>
+          </div>
+        </div>
+        <!-- Phase 2 -->
+        <div>
+          <div class="mockup-phone" style="margin: 0 auto 24px auto;"><img src="./assets/mockups/iteration2/iter2_search.png" alt="V2 Search"></div>
+          <div class="ps-content" style="text-align: center;">
+            <span class="ps-badge improvement icon-badge"><i data-lucide="check-circle" style="width:16px;"></i> Phase 2: Solution</span>
+            <h3 style="text-align: center; margin-bottom: 16px;">Proper Signifiers</h3>
+            <ul class="issue-list" style="max-width: 300px; margin: 0 auto; text-align: left; font-size: 1.1rem;">
+              <li class="stagger-item" style="margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;"><i data-lucide="check" style="width:14px; color:var(--success); margin-top:3px; flex-shrink:0;"></i> <span>Added standard back arrow</span></li>
+              <li class="stagger-item" style="display: flex; align-items: flex-start; gap: 8px;"><i data-lucide="check" style="width:14px; color:var(--success); margin-top:3px; flex-shrink:0;"></i> <span>Included voice search indicator</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Page Iteration -->
+    <div class="reveal" style="margin-bottom:80px;">
+      <h3 style="text-align:center; margin-bottom: 32px; color: var(--accent);">Product Page</h3>
+      <div class="grid-2" style="align-items: start;">
+        <!-- Phase 1 -->
+        <div>
+          <div class="mockup-phone" style="margin: 0 auto 24px auto;"><img src="./assets/mockups/iteration1/iter1_product.png" alt="V1 Product"></div>
+          <div class="ps-content" style="text-align: center;">
+            <span class="ps-badge problem icon-badge"><i data-lucide="x-circle" style="width:16px;"></i> Phase 1: Problem</span>
+            <h3 style="text-align: center; margin-bottom: 16px;">Weak CTA Weight</h3>
+            <ul class="issue-list" style="max-width: 300px; margin: 0 auto; text-align: left; font-size: 1.1rem;">
+              <li class="stagger-item" style="margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;"><i data-lucide="x" style="width:14px; color:var(--danger); margin-top:3px; flex-shrink:0;"></i> <span>"Add to Cart" blended into page</span></li>
+              <li class="stagger-item" style="display: flex; align-items: flex-start; gap: 8px;"><i data-lucide="x" style="width:14px; color:var(--danger); margin-top:3px; flex-shrink:0;"></i> <span>Failed to drive primary action</span></li>
+            </ul>
+          </div>
+        </div>
+        <!-- Phase 2 -->
+        <div>
+          <div class="mockup-phone" style="margin: 0 auto 24px auto;"><img src="./assets/mockups/iteration2/iter2_product.png" alt="V2 Product"></div>
+          <div class="ps-content" style="text-align: center;">
+            <span class="ps-badge improvement icon-badge"><i data-lucide="check-circle" style="width:16px;"></i> Phase 2: Solution</span>
+            <h3 style="text-align: center; margin-bottom: 16px;">Stronger CTA</h3>
+            <ul class="issue-list" style="max-width: 300px; margin: 0 auto; text-align: left; font-size: 1.1rem;">
+              <li class="stagger-item" style="margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;"><i data-lucide="check" style="width:14px; color:var(--success); margin-top:3px; flex-shrink:0;"></i> <span>Redesigned with proper visual weight</span></li>
+              <li class="stagger-item" style="display: flex; align-items: flex-start; gap: 8px;"><i data-lucide="check" style="width:14px; color:var(--success); margin-top:3px; flex-shrink:0;"></i> <span>High-contrast color & rounded shape</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout Flow Iteration -->
+    <div class="reveal">
+      <h3 style="text-align:center; margin-bottom: 32px; color: var(--accent);">Checkout Flow</h3>
+      <div style="max-width: 480px; margin: 0 auto 48px auto; background: rgba(226, 232, 240, 0.03); padding: 24px; border-radius: 16px; border: 1px solid rgba(226, 232, 240, 0.1);">
+        <div style="text-align: center;">
+          <span class="ps-badge problem icon-badge" style="margin-bottom: 16px; display: inline-flex;"><i data-lucide="info" style="width:16px;"></i> Phase 1 Limitation</span>
+        </div>
+        <ul class="issue-list" style="margin: 0 auto; text-align: left; font-size: 0.95rem;">
+          <li class="stagger-item" style="margin-bottom: 4px; display: flex; align-items: flex-start; gap: 8px; padding: 6px 12px; background: transparent; border: none;"><i data-lucide="x" style="width:14px; color:var(--danger); margin-top:3px; flex-shrink:0;"></i> <span>Scope was limited to product discovery</span></li>
+          <li class="stagger-item" style="display: flex; align-items: flex-start; gap: 8px; padding: 6px 12px; background: transparent; border: none;"><i data-lucide="x" style="width:14px; color:var(--danger); margin-top:3px; flex-shrink:0;"></i> <span>Cart and checkout flows did not exist</span></li>
+        </ul>
+      </div>
+
+      <div style="max-width: 400px; margin: 0 auto;">
+        <div class="mockup-phone" style="margin: 0 auto 24px auto;"><img src="./assets/mockups/iteration2/iter2_cart.png" alt="V2 Cart"></div>
+        <div class="ps-content" style="text-align: center;">
+          <span class="ps-badge improvement icon-badge"><i data-lucide="check-circle" style="width:16px;"></i> Phase 2: Solution</span>
+          <h3 style="text-align: center; margin-bottom: 16px;">End-to-End Checkout</h3>
+          <ul class="issue-list" style="max-width: 300px; margin: 0 auto; text-align: left; font-size: 1.1rem;">
+            <li class="stagger-item" style="margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;"><i data-lucide="check" style="width:14px; color:var(--success); margin-top:3px; flex-shrink:0;"></i> <span>Added active & empty Cart states</span></li>
+            <li class="stagger-item" style="display: flex; align-items: flex-start; gap: 8px;"><i data-lucide="check" style="width:14px; color:var(--success); margin-top:3px; flex-shrink:0;"></i> <span>Integrated full Google Pay flow</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 05 SEMANTICS -->
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:60px;">
+      <span class="section-label">05 — Semantics Analysis</span>
+      <h2>Designing for Meaning</h2>
+      <p class="lead" style="margin:0 auto;">In the second iteration, I analyzed the semantic meaning of UI elements. A visually pleasing interface is useless if users misinterpret its signals. I focused on reducing cognitive load through clear visual cues.</p>
+    </div>
+
+    <!-- Bell vs Badge -->
+    <div class="problem-solution reveal">
+      <div class="mockup-phone has-signifier"><img src="./assets/mockups/iteration2/iter2_home.png" alt="V2 Home">
+        <div class="signifier-dot" style="top: 9%; right: 5%;"></div>
+      </div>
+      <div class="ps-content">
+        <span class="ps-badge improvement">1. The "Bell" Icon</span>
+        <h3>Ambiguous Notifications</h3>
+        <div style="margin-bottom: 16px;">
+          <div class="stagger-item" style="display:flex; align-items:flex-start; gap:8px; margin-bottom:12px;">
+            <i data-lucide="x-circle" style="color:var(--danger); width:18px; margin-top:2px; flex-shrink:0;"></i>
+            <p style="margin:0;"><strong>The Issue:</strong> A plain bell lacks context. Users guess if it's for price drops, shipping, or news.</p>
+          </div>
+          <div class="stagger-item" style="display:flex; align-items:flex-start; gap:8px;">
+            <i data-lucide="check-circle" style="color:var(--success); width:18px; margin-top:2px; flex-shrink:0;"></i>
+            <p style="margin:0;"><strong>The Solution:</strong> Added a numerical badge. It shifts meaning to "Actionable Updates", clearly showing new items.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add vs Buy -->
+    <div class="problem-solution reverse reveal">
+      <div class="mockup-phone has-signifier"><img src="./assets/mockups/iteration2/iter2_product.png" alt="V2 Product">
+        <div class="signifier-dot" style="bottom: 14%; left: 10%;"></div>
+      </div>
+      <div class="ps-content">
+        <span class="ps-badge improvement">2. Affordance</span>
+        <h3>"Add to Cart" vs. "Buy"</h3>
+        <div style="margin-bottom: 16px;">
+          <div class="stagger-item" style="display:flex; align-items:flex-start; gap:8px; margin-bottom:12px;">
+            <i data-lucide="x-circle" style="color:var(--danger); width:18px; margin-top:2px; flex-shrink:0;"></i>
+            <p style="margin:0;"><strong>The Issue:</strong> "Add" keeps users on-page, "Buy" goes to checkout. Sharing identical visual weight confuses their distinct functions.</p>
+          </div>
+          <div class="stagger-item" style="display:flex; align-items:flex-start; gap:8px;">
+            <i data-lucide="check-circle" style="color:var(--success); width:18px; margin-top:2px; flex-shrink:0;"></i>
+            <p style="margin:0;"><strong>The Solution:</strong> Established hierarchy. Outline buttons for secondary ("Add"), solid buttons for primary ("Buy").</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Remove vs Save -->
+    <div class="problem-solution reveal">
+      <div class="mockup-phone has-signifier"><img src="./assets/mockups/iteration2/iter2_cart.png" alt="V2 Cart">
+        <div class="signifier-dot" style="top: 35%; left: 30%;"></div>
+      </div>
+      <div class="ps-content">
+        <span class="ps-badge improvement">3. Semantic Clarity</span>
+        <h3>"Remove" vs. "Save"</h3>
+        <div style="margin-bottom: 16px;">
+          <div class="stagger-item" style="display:flex; align-items:flex-start; gap:8px; margin-bottom:12px;">
+            <i data-lucide="x-circle" style="color:var(--danger); width:18px; margin-top:2px; flex-shrink:0;"></i>
+            <p style="margin:0;"><strong>The Issue:</strong> Identical text links side-by-side risk misclicks. Users might accidentally delete instead of save.</p>
+          </div>
+          <div class="stagger-item" style="display:flex; align-items:flex-start; gap:8px;">
+            <i data-lucide="check-circle" style="color:var(--success); width:18px; margin-top:2px; flex-shrink:0;"></i>
+            <p style="margin:0;"><strong>The Solution:</strong> Replaced text with universal icons (Trash Can, Bookmark). Prevents misclicks and speeds up recognition.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="problem-solution reverse reveal">
+      <div class="mockup-phone has-signifier"><img src="./assets/mockups/iteration2/iter2_pay1.png" alt="V2 Navigation">
+        <div class="signifier-dot" style="top: 9%; left: 18%;"></div>
+      </div>
+      <div class="ps-content">
+        <span class="ps-badge improvement">4. Navigation Cues</span>
+        <h3>The 'X' Ambiguity</h3>
+        <div style="margin-bottom: 16px;">
+          <div class="stagger-item" style="display:flex; align-items:flex-start; gap:8px; margin-bottom:12px;">
+            <i data-lucide="x-circle" style="color:var(--danger); width:18px; margin-top:2px; flex-shrink:0;"></i>
+            <p style="margin:0;"><strong>The Issue:</strong> 'X' usually means closing or canceling an app. Using it for back navigation causes hesitation.</p>
+          </div>
+          <div class="stagger-item" style="display:flex; align-items:flex-start; gap:8px;">
+            <i data-lucide="check-circle" style="color:var(--success); width:18px; margin-top:2px; flex-shrink:0;"></i>
+            <p style="margin:0;"><strong>The Solution:</strong> Standardized with a left-pointing arrow, aligning with mental models for returning to previous screens.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 06 USABILITY ISSUES -->
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:60px;">
+      <span class="section-label">06 — Usability Issues</span>
+      <h2>Friction Points Discovered</h2>
+      <p class="lead" style="margin:0 auto;">Further analysis and testing of Iteration 2 revealed hidden usability barriers that hindered a seamless shopping experience.</p>
+    </div>
+
+    <div class="friction-pair reveal">
+      <!-- Left Column: Home Page -->
+      <div class="friction-col">
+        <div class="mockup-phone">
+          <img src="./assets/mockups/iteration2/iter2_home.png" alt="V2 Home — friction points">
+        </div>
+        <div class="friction-issues">
+          <div class="glass-card tilt-card reveal" style="margin-bottom: 24px; padding: 40px;">
+            <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+              <i data-lucide="sliders-horizontal" style="color:var(--error); width:32px; height:32px; filter:none !important;"></i>
+              <span class="ps-badge problem" style="margin:0; font-size: 1rem; padding: 6px 16px;">Carousel Navigation</span>
+            </div>
+            <h3 style="font-size: 1.6rem; margin-bottom:16px;">Invisible Boundaries</h3>
+            <p style="font-size: 1.15rem; line-height:1.7; margin:0; max-width:none;">The image carousel lacked pagination dots. Users had no indication of how many images were available or which one they were viewing.</p>
+          </div>
+          <div class="glass-card tilt-card reveal delay-1" style="padding: 40px;">
+            <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+              <i data-lucide="mouse-pointer-click" style="color:var(--error); width:32px; height:32px; filter:none !important;"></i>
+              <span class="ps-badge problem" style="margin:0; font-size: 1rem; padding: 6px 16px;">Misleading Links</span>
+            </div>
+            <h3 style="font-size: 1.6rem; margin-bottom:16px;">Underlined Headings</h3>
+            <p style="font-size: 1.15rem; line-height:1.7; margin:0; max-width:none;">Section headings with underlines and arrows were perceived as interactive hyperlinks (false affordance), causing interaction errors.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Product Detail Page -->
+      <div class="friction-col">
+        <div class="mockup-phone">
+          <img src="./assets/mockups/iteration2/iter2_product.png" alt="V2 Product — friction points">
+        </div>
+        <div class="friction-issues">
+          <div class="glass-card tilt-card reveal" style="margin-bottom: 24px; padding: 40px;">
+            <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+              <i data-lucide="align-justify" style="color:var(--error); width:32px; height:32px; filter:none !important;"></i>
+              <span class="ps-badge problem" style="margin:0; font-size: 1rem; padding: 6px 16px;">Cognitive Overload</span>
+            </div>
+            <h3 style="font-size: 1.6rem; margin-bottom:16px;">Walls of Text</h3>
+            <p style="font-size: 1.15rem; line-height:1.7; margin:0; max-width:none;">The product detail page presented a massive block of text, increasing cognitive load and making it difficult to scan for key information.</p>
+          </div>
+          <div class="glass-card tilt-card reveal delay-1" style="padding: 40px;">
+            <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+              <i data-lucide="bell-off" style="color:var(--error); width:32px; height:32px; filter:none !important;"></i>
+              <span class="ps-badge problem" style="margin:0; font-size: 1rem; padding: 6px 16px;">Feedback Failure</span>
+            </div>
+            <h3 style="font-size: 1.6rem; margin-bottom:16px;">Unnoticed Cart Updates</h3>
+            <p style="font-size: 1.15rem; line-height:1.7; margin:0; max-width:none;">Even after adding a numerical badge, users frequently missed the cart state change. The feedback mechanism wasn't grabbing attention properly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 07 THE SWIGGY EFFECT -->
+<section class="section">
+  <div class="container">
+    <div class="glass-card reveal" style="padding: clamp(40px, 6vw, 80px);">
+      <div style="text-align: center; margin-bottom: 48px;">
+        <span class="section-label">07 — Industry Insight</span>
+        <h2>The Swiggy Case Study: Micro-Interactions</h2>
+        <p class="lead" style="margin: 0 auto;">A lesson from a food delivery app on guiding user attention naturally.</p>
+      </div>
+      <div class="grid-3">
+        <!-- Swiggy Styled Problem -->
+        <div class="glass-card tilt-card" style="padding: 24px; background: rgba(252, 128, 25, 0.05); border-top: 4px solid #fc8019;">
+          <span style="background: rgba(252, 128, 25, 0.15); color: #fc8019; padding: 4px 10px; border-radius: 100px; font-size: 0.8rem; font-weight: 600; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 6px;"><i data-lucide="map-pin" style="width:14px; height:14px;"></i> The Problem</span>
+          <ul class="issue-list" style="margin-top:12px; font-size: 1.1rem;">
+            <li class="stagger-item" style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 8px;">
+              <i data-lucide="x" style="width:16px; color:#fc8019; margin-top:2px; flex-shrink:0;"></i>
+              <span>Users frequently ordered food to the wrong address because the app defaulted to their last location.</span>
+            </li>
+            <li class="stagger-item" style="display: flex; align-items: flex-start; gap: 8px;">
+              <i data-lucide="x" style="width:16px; color:#fc8019; margin-top:2px; flex-shrink:0;"></i>
+              <span>They only realized the error when the driver called, leading to canceled orders and lost revenue.</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Swiggy Styled Solution -->
+        <div class="glass-card tilt-card delay-1" style="padding: 24px; background: rgba(252, 128, 25, 0.05); border-top: 4px solid #fc8019;">
+          <span style="background: rgba(252, 128, 25, 0.15); color: #fc8019; padding: 4px 10px; border-radius: 100px; font-size: 0.8rem; font-weight: 600; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 6px;"><i data-lucide="navigation" style="width:14px; height:14px;"></i> Swiggy's Solution</span>
+          <ul class="issue-list" style="margin-top:12px; font-size: 1.1rem;">
+            <li class="stagger-item" style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 8px;">
+              <i data-lucide="check" style="width:16px; color:#fc8019; margin-top:2px; flex-shrink:0;"></i>
+              <span>Instead of using static warning text that users often ignore, they used an animated micro-interaction.</span>
+            </li>
+            <li class="stagger-item" style="display: flex; align-items: flex-start; gap: 8px;">
+              <i data-lucide="check" style="width:16px; color:#fc8019; margin-top:2px; flex-shrink:0;"></i>
+              <span>Their logo physically moved to the top address bar on launch, naturally drawing the user's eye to verify location.</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Cubicon Application -->
+        <div class="glass-card tilt-card delay-2" style="padding: 24px; border: 1px solid rgba(226, 232, 240, 0.4); background: rgba(226, 232, 240, 0.05); border-top: 4px solid var(--accent);">
+          <h3 style="color:var(--accent); font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;"><i data-lucide="sparkles" style="width:18px; height:18px;"></i> Applying it to Cubicon</h3>
+          <ul class="issue-list" style="margin-top:12px; font-size: 1.1rem;">
+            <li class="stagger-item" style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 8px;">
+              <i data-lucide="arrow-right" style="width:16px; color:var(--accent); margin-top:2px; flex-shrink:0;"></i>
+              <span>I solved the unnoticed cart updates by introducing an <strong>animated snackbar notification</strong>.</span>
+            </li>
+            <li class="stagger-item" style="display: flex; align-items: flex-start; gap: 8px;">
+              <i data-lucide="arrow-right" style="width:16px; color:var(--accent); margin-top:2px; flex-shrink:0;"></i>
+              <span>The dynamic motion immediately grabs attention and provides clear system feedback without interrupting the flow.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 08 USABILITY TESTING -->
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:60px;">
+      <span class="section-label">08 — Validation</span>
+      <h2>Usability Testing</h2>
+      <p class="lead" style="margin:0 auto;">Rigorous testing across 14 participants to validate the design decisions and measure overall system usability.</p>
+    </div>
+
+    <!-- Task Success -->
+    <div class="reveal" style="margin-bottom:60px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:24px; flex-wrap:wrap; gap:16px;">
+        <div>
+          <h3>Task Success Rate</h3>
+          <p style="margin-bottom:0;">Evaluated across three core shopping tasks.</p>
+        </div>
+        <div class="stat-card" style="padding:0; text-align:right;">
+          <div class="stat-value success rating-reveal rating-shine reveal"><span class="number-count" data-target="83.3" data-is-float="true">0</span>%</div>
+          <div class="stat-label">Overall Success</div>
+        </div>
+      </div>
+      <div class="data-table-wrapper board-animate reveal">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Participant</th>
+              <th>Task 1: Add 3x3 to Cart</th>
+              <th>Task 2: Complete Purchase</th>
+              <th>Task 3: Find 3 ways to buy</th>
+              <th>Success Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>User 01</td><td><span class="badge badge-pass">Pass</span></td><td><span class="badge badge-pass">Pass</span></td><td><span class="badge badge-pass">Pass</span></td><td>100%</td></tr>
+            <tr><td>User 02</td><td><span class="badge badge-pass">Pass</span></td><td><span class="badge badge-pass">Pass</span></td><td><span class="badge badge-fail">Fail (Found 2)</span></td><td>66%</td></tr>
+            <tr><td>User 05</td><td><span class="badge badge-pass">Pass (Friction)</span></td><td><span class="badge badge-pass">Pass</span></td><td><span class="badge badge-fail">Fail (Abandoned)</span></td><td>66%</td></tr>
+            <tr><td>User 09</td><td><span class="badge badge-fail">Fail (Nav Error)</span></td><td><span class="badge badge-pass">Pass</span></td><td><span class="badge badge-fail">Fail (Abandoned)</span></td><td>33%</td></tr>
+            <tr><td>Average (N=14)</td><td>92.8% Pass</td><td>100% Pass</td><td>57.1% Pass</td><td>83.3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SUS -->
+    <div class="reveal">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:24px; flex-wrap:wrap; gap:16px;">
+        <div>
+          <h3>System Usability Scale (SUS)</h3>
+          <p style="margin-bottom:0;">Measuring the perceived usability of the final design.</p>
+        </div>
+        <div class="stat-card" style="padding:0; text-align:right;">
+          <div class="stat-value accent rating-reveal rating-shine reveal"><span class="number-count" data-target="72.5" data-is-float="true">0</span></div>
+          <div class="stat-label">Good Rating</div>
+        </div>
+      </div>
+      <div class="data-table-wrapper board-animate reveal">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Participant</th>
+              <th>Calculated Score</th>
+              <th>Adjective Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>User 01</td><td>90.0</td><td><span class="badge badge-pass">Excellent</span></td></tr>
+            <tr><td>User 04</td><td>52.5</td><td><span class="badge badge-fail">Poor</span></td></tr>
+            <tr><td>User 06</td><td>82.5</td><td><span class="badge badge-pass">Excellent</span></td></tr>
+            <tr><td>User 12</td><td>62.5</td><td><span class="badge badge-fail">Marginal</span></td></tr>
+            <tr><td>Average (N=14)</td><td>72.5</td><td><span class="badge badge-pass">Good</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- NASA TLX -->
+    <div class="glass-card reveal" style="margin-top: 40px;" id="tlxSection">
+      <h3>NASA TLX Scoreboard</h3>
+      <p>Measuring subjective workload assessment across participants.</p>
+      
+      <div style="margin-top: 32px;">
+        <div class="tlx-item">
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+            <span>Mental Demand (Low)</span>
+            <span class="tlx-score"><span class="number-count tlx-num" data-target="22">0</span></span>
+          </div>
+          <div class="tlx-bar-container"><div class="tlx-bar" data-width="22%"></div></div>
+        </div>
+        
+        <div class="tlx-item">
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+            <span>Physical Demand (Low)</span>
+            <span class="tlx-score"><span class="number-count tlx-num" data-target="15">0</span></span>
+          </div>
+          <div class="tlx-bar-container"><div class="tlx-bar" data-width="15%"></div></div>
+        </div>
+        
+        <div class="tlx-item">
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+            <span>Temporal Demand (Low)</span>
+            <span class="tlx-score"><span class="number-count tlx-num" data-target="28">0</span></span>
+          </div>
+          <div class="tlx-bar-container"><div class="tlx-bar" data-width="28%"></div></div>
+        </div>
+        
+        <div class="tlx-item">
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+            <span>Performance (High Success)</span>
+            <span class="tlx-score" style="color:var(--success);"><span class="number-count tlx-num" data-target="85">0</span></span>
+          </div>
+          <div class="tlx-bar-container"><div class="tlx-bar" style="background:var(--success);" data-width="85%"></div></div>
+        </div>
+        
+        <div class="tlx-item">
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+            <span>Effort (Low)</span>
+            <span class="tlx-score"><span class="number-count tlx-num" data-target="30">0</span></span>
+          </div>
+          <div class="tlx-bar-container"><div class="tlx-bar" data-width="30%"></div></div>
+        </div>
+        
+        <div class="tlx-item">
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+            <span>Frustration (Low)</span>
+            <span class="tlx-score"><span class="number-count tlx-num" data-target="18">0</span></span>
+          </div>
+          <div class="tlx-bar-container"><div class="tlx-bar" data-width="18%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 09 FINAL ITERATION -->
+<section class="section">
+  <div class="container-wide">
+    <div class="reveal" style="text-align:center;margin-bottom:60px;">
+      <span class="section-label">09 — The Result</span>
+      <h2>Final Iteration</h2>
+      <p class="lead" style="margin:0 auto;">Implementing the insights from testing to create the refined, final experience.</p>
+    </div>
+
+    <div class="reveal" style="max-width:800px; margin:0 auto 60px auto;">
+      <h3>Key Improvements Made</h3>
+      <ul class="issue-list">
+        <li><span class="issue-icon pass"><i data-lucide="check" style="width:16px;"></i></span> Replaced text-heavy product details with scannable infographics to reduce cognitive load.</li>
+        <li><span class="issue-icon pass"><i data-lucide="check" style="width:16px;"></i></span> Implemented an animated snackbar notification for cart additions, ensuring immediate system feedback.</li>
+        <li><span class="issue-icon pass"><i data-lucide="check" style="width:16px;"></i></span> Removed misleading underlines from headings to prevent false affordances.</li>
+        <li><span class="issue-icon pass"><i data-lucide="check" style="width:16px;"></i></span> Fixed the carousel navigation by adding pagination dots, allowing users to understand image boundaries.</li>
+      </ul>
+    </div>
+
+    <div class="mockup-row reveal">
+      <div class="mockup-phone mockup-phone-lg tilt-card"><img src="./assets/mockups/iteration3/Image 1 (Home page).png" alt="Final Home"></div>
+      <div class="mockup-phone mockup-phone-lg tilt-card"><img src="./assets/mockups/iteration3/Image 2 (3x3 category page).png" alt="Final Category"></div>
+      <div class="mockup-phone mockup-phone-lg tilt-card"><img src="./assets/mockups/iteration3/Image 3 (Search page).png" alt="Final Search"></div>
+    </div>
+    <div class="mockup-row reveal">
+      <div class="mockup-phone mockup-phone-lg tilt-card"><img src="./assets/mockups/iteration3/Image 4 (Product detail page).png" alt="Final Product"></div>
+      <div class="mockup-phone mockup-phone-lg tilt-card"><img src="./assets/mockups/iteration3/Image 4 scrolled down (Product description section).png" alt="Product Description"></div>
+      <div class="mockup-phone mockup-phone-lg tilt-card"><img src="./assets/mockups/iteration3/Image 4 scrolled down (specification section).png" alt="Product Specs"></div>
+    </div>
+    <div class="mockup-row reveal">
+      <div class="mockup-phone mockup-phone-lg tilt-card"><img src="./assets/mockups/iteration3/Image 5 (Product added to cart notification screen).png" alt="Cart Notification"></div>
+      <div class="mockup-phone mockup-phone-lg tilt-card"><img src="./assets/mockups/iteration3/Image 6 (Cart page).png" alt="Final Cart"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container reveal">
+    <div class="logo-container" style="width:80px; height:80px; margin:0 auto 24px auto; border-radius:20px;">
+      <img src="./assets/logo/cubicon-logo.png" alt="Cubicon Logo" style="width:60px;">
+    </div>
+    <h2>Cubicon.</h2>
+    <p style="margin:0 auto; color: #ffffff;">Structured design thinking, iteration, semantic clarity, and usability validation.</p>
+    <p style="margin-top:40px; color: #ffffff;">Designed by Satwik Pachauri &copy; 2026</p>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+  // Initialize Lucide Icons
+  lucide.createIcons();
+
+  // Scroll-Driven Fluid Animations
+  const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+  
+  function updateScrollAnimations() {
+    const windowHeight = window.innerHeight;
+    
+    reveals.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const startAnim = windowHeight * 0.95;
+      const endAnim = windowHeight * 0.4;
+      
+      let progress = (startAnim - rect.top) / (startAnim - endAnim);
+      progress = Math.max(0, Math.min(1, progress));
+      
+      el.style.setProperty('--scroll', progress);
+      
+      // Restore .active class for children that rely on it (like stagger-items)
+      if (progress > 0.1) {
+        el.classList.add('active');
+      }
+    });
+    
+    requestAnimationFrame(updateScrollAnimations);
+  }
+  
+  requestAnimationFrame(updateScrollAnimations);
+  
+  // Reading Progress Island
+  const island = document.querySelector('.reading-progress-island');
+  const ringFill = document.getElementById('readingRing');
+  const percentText = document.getElementById('readingPercentage');
+  
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = winScroll / height;
+    const percent = Math.round(scrolled * 100);
+    
+    if (ringFill) {
+      const offset = 62.83 - (scrolled * 62.83);
+      ringFill.style.strokeDashoffset = offset;
+    }
+    if (percentText) {
+      percentText.innerText = percent + "%";
+    }
+    
+    if (island) {
+      if (percent < 2 || percent >= 99) {
+        island.classList.add('hidden');
+      } else {
+        island.classList.remove('hidden');
+      }
+    }
+  });
+
+  // Accurate Number Animations (Performance-based)
+  const numberObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counter = entry.target;
+        const target = parseFloat(counter.getAttribute('data-target'));
+        const isFloat = counter.hasAttribute('data-is-float');
+        const duration = 4000; // 4 seconds total
+        let startTime = null;
+        
+        const updateCounter = (timestamp) => {
+          if (!startTime) startTime = timestamp;
+          const elapsed = timestamp - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          
+          // easeOutExpo for natural slowing down at the end
+          const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+          const current = target * easeProgress;
+          
+          if (progress < 1) {
+            counter.innerText = isFloat ? current.toFixed(1) : Math.ceil(current);
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.innerText = isFloat ? target.toFixed(1) : target;
+          }
+        };
+        requestAnimationFrame(updateCounter);
+        
+        numberObserver.unobserve(counter);
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  document.querySelectorAll('.number-count').forEach(el => numberObserver.observe(el));
+
+  // TLX Bars Animation
+  const tlxObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const bars = document.querySelectorAll('.tlx-bar');
+        bars.forEach(bar => {
+          bar.style.width = bar.getAttribute('data-width');
+        });
+        tlxObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  const tlxSection = document.getElementById('tlxSection');
+  if(tlxSection) tlxObserver.observe(tlxSection);
+
+  // Tilt Effect for mockups
+  const tiltCards = document.querySelectorAll('.tilt-card');
+  tiltCards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+    });
+  });
+
+  // Parallax for iter2 mockups
+  window.addEventListener('scroll', () => {
+    const parallaxElements = document.querySelectorAll('.parallax-mockup');
+    parallaxElements.forEach((el, index) => {
+      const speed = 0.05 * (index % 3 + 1);
+      const rect = el.getBoundingClientRect();
+      if(rect.top < window.innerHeight && rect.bottom > 0) {
+        const yPos = -(rect.top * speed);
+        el.style.transform = `translateY(${yPos}px)`;
+      }
+    });
+  });
+</script>
+</body>
+</html>

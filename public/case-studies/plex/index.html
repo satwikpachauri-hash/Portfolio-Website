@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plex | Case Study</title>
+    
+    <!-- Fonts -->
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+    
+    <!-- Icon Library -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- GSAP & Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js" defer></script>
+    
+    <!-- Custom Script -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- CUBICON STYLE READING PROGRESS ISLAND -->
+    <div class="reading-progress-island hidden">
+      <svg class="progress-ring" width="24" height="24" viewBox="0 0 24 24">
+        <circle class="ring-bg" cx="12" cy="12" r="10"></circle>
+        <circle class="ring-fill" cx="12" cy="12" r="10" id="readingRing"></circle>
+      </svg>
+      <span class="reading-percentage" id="readingPercentage">0%</span>
+      <span class="reading-text">Completed</span>
+    </div>
+
+    <!-- SECTION 1: Hero -->
+    <section class="hero" id="hero">
+        <!-- Background Image Cover (Phone Focus) -->
+        <div class="hero-bg-cover hero-anim-bg">
+            <img src="./assets/hero/Hero Page.png" alt="Plex Application Homepage" class="hero-anim-phone">
+        </div>
+        
+        <!-- Floating Card Overlay - Apple Style Minimal Specs -->
+        <div class="hero-content-overlay hero-anim-card">
+            <div class="hero-header-row">
+                <h1 class="hero-title hero-anim-title">Plex</h1>
+            </div>
+            
+            <p class="hero-lead hero-anim-tagline">Less planning. More progress.</p>
+            
+            <div class="hero-meta-grid hero-anim-specs">
+                <div class="spec-item">
+                    <p class="section-number">Role</p>
+                    <h4>Product Designer</h4>
+                </div>
+                <div class="spec-item">
+                    <p class="section-number">Category</p>
+                    <h4>Product Design</h4>
+                </div>
+                <div class="spec-item">
+                    <p class="section-number">Project</p>
+                    <h4>Plex</h4>
+                </div>
+                <div class="spec-item">
+                    <p class="section-number">Platform</p>
+                    <h4>Android</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 01: The Problem -->
+    <section class="section the-problem" id="the-problem">
+        
+        <!-- PART A & B (Pinned for use-case animation) -->
+        <div class="problem-use-case-container">
+            
+            <!-- Intro Statement (Strictly Centered) -->
+            <div class="problem-statement-intro">
+                <span class="section-label">01 — THE PROBLEM</span>
+                <h2 class="section-title massive-headline">You can stay busy and still miss what matters most.</h2>
+                <h3 class="section-title st-muted supporting-line">When priorities compete, easier tasks can feel more rewarding than important ones.</h3>
+            </div>
+
+            <!-- Cinematic Use-Case Scenario -->
+            <div class="use-case-cinematic">
+                <!-- Day Start / Time Indicator -->
+                <div class="uc-time-header">
+                    <span class="uc-time-clock">09:00</span>
+                    <span class="uc-time-date">TODAY</span>
+                </div>
+
+                <!-- Focus Ring (dynamically positioned by JS) -->
+                <div class="uc-focus-ring"></div>
+
+                <!-- Tasks -->
+                <div class="uc-tasks-grid">
+                    <!-- Important Task -->
+                    <div class="uc-task-item uc-important" id="task-important">
+                        <div class="uc-task-info">
+                            <span class="uc-task-name" id="uc-important-title">Portfolio Deadline</span>
+                            <span class="uc-task-meta uc-meta-alert" id="uc-important-meta">DUE TODAY</span>
+                        </div>
+                        <div class="uc-task-status"></div>
+                    </div>
+
+                    <!-- Easy Task 1 -->
+                    <div class="uc-task-item uc-easy uc-e1" id="task-easy1">
+                        <div class="uc-task-info">
+                            <span class="uc-task-name">Mail to HR</span>
+                            <span class="uc-task-meta">10 MIN</span>
+                        </div>
+                        <div class="uc-task-status"><svg viewBox="0 0 24 24" class="uc-check"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                    </div>
+
+                    <!-- Easy Task 2 -->
+                    <div class="uc-task-item uc-easy uc-e2" id="task-easy2">
+                        <div class="uc-task-info">
+                            <span class="uc-task-name">Client Call</span>
+                            <span class="uc-task-meta">15 MIN</span>
+                        </div>
+                        <div class="uc-task-status"><svg viewBox="0 0 24 24" class="uc-check"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                    </div>
+                </div>
+
+                <!-- Progress / Reward Indicator -->
+                <div class="uc-progress-reward">
+                    <span class="uc-reward-text">0 TASKS COMPLETE</span>
+                    <div class="uc-reward-bar"><div class="uc-reward-fill"></div></div>
+                </div>
+            </div>
+
+            <!-- Outro Statement in the Pinned section -->
+            <div class="problem-statement-mid">
+                <h2 class="section-title">Staying busy isn't the same as making progress.</h2>
+            </div>
+        </div>
+
+        <!-- Research Insights Heading -->
+        <div class="research-insights-header text-center">
+            <span class="section-label">RESEARCH INSIGHTS</span>
+            <h2 class="section-title gsap-reveal" style="font-size: clamp(1.8rem, 4vw, 3rem);">The data behind the problem.</h2>
+        </div>
+
+        <!-- PART C: Static Data Panel (Scrolls naturally) -->
+        <div class="problem-data-panel container">
+            <div class="data-grid">
+                
+                <!-- CARD 01: 58% (Radial Donut) -->
+                <div class="data-card dc-1">
+                    <div class="dc-visual-container">
+                        <div class="dc-radial-chart">
+                            <svg viewBox="0 0 100 100" class="radial-svg">
+                                <circle cx="50" cy="50" r="40" class="radial-bg"></circle>
+                                <circle cx="50" cy="50" r="40" class="radial-fill"></circle>
+                            </svg>
+                            <div class="radial-center-text">58%</div>
+                            <div class="dc-hover-annotation">WORK ABOUT WORK</div>
+                        </div>
+                    </div>
+                    <div class="dc-text-content">
+                        <h3 class="dc-number">58%</h3>
+                        <p class="dc-label">58% of the workday can go to managing work instead of doing it.</p>
+                        <span class="dc-citation">Asana — Anatomy of Work</span>
+                    </div>
+                </div>
+                             <!-- CARD 02: 4.9 HOURS (Time Ruler) -->
+                <div class="data-card dc-2">
+                    <div class="dc-visual-container">
+                        <div class="dc-time-ruler">
+                            <div class="tr-track"></div>
+                            <div class="tr-fill"></div>
+                            <div class="tr-ticks">
+                                <div class="tr-tick t-0"><span class="tr-label">0h</span></div>
+                                <div class="tr-tick t-1"><span class="tr-label">1h</span></div>
+                                <div class="tr-tick t-2"><span class="tr-label">2h</span></div>
+                                <div class="tr-tick t-3"><span class="tr-label">3h</span></div>
+                                <div class="tr-tick t-4"><span class="tr-label">4h</span></div>
+                                <div class="tr-tick t-end"><span class="tr-label-end">4.9h</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dc-text-content">
+                        <h3 class="dc-number">4.9 HOURS</h3>
+                        <p class="dc-label">Better processes could recover 4.9 hours of work time each week.</p>
+                        <span class="dc-citation">Asana - Anatomy of Work</span>
+                    </div>
+                </div>
+
+                <!-- CARD 03: 33.9 -> 55.5 DAYS (Premium Dual-Line Timeline) -->
+                <div class="data-card dc-3">
+                    <div class="dc-visual-container">
+                        <div class="dc-premium-timeline">
+                            <div class="pt-line pt-planned">
+                                <div class="pt-track"></div>
+                                <div class="pt-fill" style="width: 61%;"></div>
+                                <div class="pt-marker" style="left: 61%;"></div>
+                                <span class="pt-label" style="left: 61%;">33.9</span>
+                            </div>
+                            
+                            <div class="pt-gap-region">
+                                <div class="pt-gap-fill" style="left: 61%; width: 39%;"></div>
+                                <div class="pt-gap-annotation">+21.6 DAYS</div>
+                            </div>
+
+                            <div class="pt-line pt-actual">
+                                <div class="pt-track"></div>
+                                <div class="pt-fill" style="width: 100%;"></div>
+                                <div class="pt-marker" style="left: 100%;"></div>
+                                <span class="pt-label" style="left: 100%;">55.5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dc-text-content">
+                        <h3 class="dc-number">33.9 <span style="opacity:0.5; font-size: 0.6em;">→</span> 55.5 DAYS</h3>
+                        <p class="dc-label">Planned completion took 33.9 days. Actual completion took 55.5.</p>
+                        <span class="dc-citation">Buehler, Griffin & Ross, 1994</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="problem-statement-outro text-center">
+            <h2 class="massive-question" style="font-size: clamp(2rem, 5vw, 3.5rem);">Planning can become part of the workload.</h2>
+        </div>
+    </section>
+
+    <!-- SECTION 2: Project Context -->
+    <section class="section project-context" id="problem">
+        <div class="context-pin-container">
+            <!-- Stage 1: Central Headline Area -->
+            <div class="context-headline-area">
+                <span class="section-label context-label">02 — PROJECT CONTEXT</span>
+                <h2 class="massive-headline">Everything felt important.</h2>
+            </div>
+            
+            <!-- Stage 2 & 3: Floating Tags Container -->
+            <div class="tags-container">
+                <div class="floating-tag tag-1"><i data-lucide="book" class="tag-icon"></i> JLPT N5</div>
+                <div class="floating-tag tag-2"><i data-lucide="code" class="tag-icon"></i> Frontend</div>
+                <div class="floating-tag tag-3"><i data-lucide="pen-tool" class="tag-icon"></i> Design Projects</div>
+                <div class="floating-tag tag-4"><i data-lucide="folder" class="tag-icon"></i> Portfolio</div>
+                <div class="floating-tag tag-5"><i data-lucide="file-text" class="tag-icon"></i> Resume</div>
+                <div class="floating-tag tag-6"><i data-lucide="briefcase" class="tag-icon"></i> Internships</div>
+                <div class="floating-tag tag-7"><i data-lucide="library" class="tag-icon"></i> Coursework</div>
+                <div class="floating-tag tag-8"><i data-lucide="check-square" class="tag-icon"></i> Assignments</div>
+                <div class="floating-tag tag-9"><i data-lucide="microscope" class="tag-icon"></i> Research</div>
+                <div class="floating-tag tag-10"><i data-lucide="calendar" class="tag-icon"></i> Deadlines</div>
+                <div class="floating-tag tag-11"><i data-lucide="mail" class="tag-icon"></i> Emails</div>
+                <div class="floating-tag tag-12"><i data-lucide="target" class="tag-icon"></i> Personal Goals</div>
+            </div>
+
+            <!-- Stage 5: The Final Void Question -->
+            <div class="context-final-question">
+                <h2 class="massive-question">What should I do next?</h2>
+                <p class="supporting-sentence">The workload wasn't the problem. Deciding what deserved my attention was.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: Looking For A Solution (Existing Tools) -->
+    <section class="section looking-solution" id="existing-tools">
+        <div class="friction-pin-container">
+            <div class="friction-content-wrapper">
+                <!-- Group 1: Centered Header Area -->
+                <div class="friction-header-area">
+                    <span class="section-label">03 — EXISTING TOOLS</span>
+                    <h2 class="massive-headline">Looking For A Solution</h2>
+                    <p class="friction-supporting-text">I explored existing productivity tools hoping they would reduce planning effort.</p>
+                </div>
+                
+                <!-- Group 2: Centered Fictional Native App -->
+                <div class="fictional-dashboard">
+                    <!-- Top Toolbar -->
+                <div class="dash-topnav">
+                    <div class="nav-left">
+                        <span class="nav-title">Workspace</span>
+                    </div>
+                    <div class="nav-center">
+                        <div class="nav-search">
+                            <i data-lucide="search" class="search-icon"></i>
+                            <span class="search-placeholder">Search...</span>
+                        </div>
+                    </div>
+                    <div class="nav-right">
+                        <i data-lucide="bell" class="nav-icon"></i>
+                        <i data-lucide="settings" class="nav-icon"></i>
+                        <div class="nav-avatar"></div>
+                    </div>
+                </div>
+
+                <div class="dash-body">
+                    <!-- Left Sidebar -->
+                    <div class="dash-sidebar">
+                        <div class="sidebar-icon active"><i data-lucide="layout-dashboard"></i></div>
+                        <div class="sidebar-icon"><i data-lucide="check-square"></i></div>
+                        <div class="sidebar-icon"><i data-lucide="calendar"></i></div>
+                        <div class="sidebar-icon"><i data-lucide="folder"></i></div>
+                        <div class="sidebar-icon"><i data-lucide="target"></i></div>
+                        <div class="sidebar-icon"><i data-lucide="bar-chart-2"></i></div>
+                        <div class="sidebar-spacer"></div>
+                        <div class="sidebar-icon"><i data-lucide="settings"></i></div>
+                    </div>
+                    
+                    <!-- Main Content -->
+                    <div class="dash-content">
+                        <div class="dash-task-list">
+                            <div class="dash-task-row">
+                                <div class="task-checkbox"></div>
+                                <span class="task-title">Review Q3 Marketing Strategy</span>
+                                <span class="task-date">Today</span>
+                                <span class="task-chip">High</span>
+                            </div>
+                            <div class="dash-task-row">
+                                <div class="task-checkbox"></div>
+                                <span class="task-title">Draft Client Proposal</span>
+                                <span class="task-date">Tomorrow</span>
+                                <span class="task-chip draft">Draft</span>
+                            </div>
+                            <div class="dash-task-row">
+                                <div class="task-checkbox"></div>
+                                <span class="task-title">Update Design System Components</span>
+                                <span class="task-date">Oct 12</span>
+                                <span class="task-chip">Medium</span>
+                            </div>
+                            <div class="dash-task-row">
+                                <div class="task-checkbox"></div>
+                                <span class="task-title">Weekly Team Sync Setup</span>
+                                <span class="task-date">Oct 14</span>
+                                <span class="task-chip routine">Routine</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Panel -->
+                        <div class="dash-right-panel">
+                            <div class="mini-calendar">
+                                <div class="cal-header">October</div>
+                                <div class="cal-grid">
+                                    <span></span><span></span><span></span><span></span><span></span>
+                                    <span></span><span></span><span></span><span></span><span></span>
+                                </div>
+                            </div>
+                            <div class="schedule-block">
+                                <div class="block-title">Today's Schedule</div>
+                                <div class="schedule-item">10:00 AM - Design Sync</div>
+                            </div>
+                            <div class="reminder-block">
+                                <div class="block-title">Upcoming Reminder</div>
+                                <div class="reminder-item">Review budget docs</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Friction Modals Overlay (Contextual UI) -->
+                <div class="friction-modals-container">
+                    <div class="friction-modal mod-1 ui-dropdown">Choose Priority <i data-lucide="chevron-down"></i></div>
+                    <div class="friction-modal mod-2 ui-datepicker"><i data-lucide="calendar"></i> Add Due Date</div>
+                    <div class="friction-modal mod-3 ui-small"><i data-lucide="clock"></i> Estimate Time</div>
+                    <div class="friction-modal mod-4 ui-input">Create Project...</div>
+                    <div class="friction-modal mod-5 ui-tags"><i data-lucide="tag"></i> Choose Labels</div>
+                    <div class="friction-modal mod-6 ui-dialog"><i data-lucide="bell"></i> Set Reminder</div>
+                    <div class="friction-modal mod-7 ui-dropdown">Select Workspace <i data-lucide="chevron-down"></i></div>
+                    <div class="friction-modal mod-8 ui-toggle">Repeat Weekly? <div class="toggle-switch"></div></div>
+                    <div class="friction-modal mod-9 ui-popup">Archive Completed? <button class="btn-primary">Yes</button></div>
+                    <div class="friction-modal mod-10 ui-color"><div class="color-dot"></div> Choose Color</div>
+                </div>
+                </div>
+            </div> <!-- End friction-content-wrapper -->
+
+            <!-- Stage 4: The Final Void Conclusion -->
+            <div class="friction-final-conclusion">
+                <h2 class="massive-question">Planning became another task.</h2>
+                <p class="supporting-sentence">The tools organized tasks. They never reduced decisions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: Product Philosophy Transition -->
+    <section class="section problem-statement" id="philosophy">
+        <div class="philosophy-pin-container">
+            <div class="philosophy-text-block">
+                <!-- Line 1 -->
+                <div class="philosophy-line">
+                    <div class="line-mask"><span class="phrase part-1">Spend</span></div>
+                    <div class="line-mask"><span class="phrase part-2">&nbsp;less time</span></div>
+                    <div class="line-mask"><span class="phrase part-3 dim-target">&nbsp;planning.</span></div>
+                </div>
+                <!-- Line 2 -->
+                <div class="philosophy-line">
+                    <div class="line-mask"><span class="phrase part-4">More time</span></div>
+                    <div class="line-mask"><span class="phrase part-5 highlight-target">&nbsp;getting work done.</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: Product Reveal -->
+    <section class="section introduce-plex" id="solution">
+        <div class="introduce-container">
+            <div class="introduce-text">
+                <span class="section-label reveal-label">04 — THE SOLUTION</span>
+                <div class="line-mask title-mask">
+                    <h2 class="massive-headline reveal-title">Plex</h2>
+                </div>
+            </div>
+            
+            <div class="reveal-video-wrapper">
+                <video class="reveal-video" loop muted playsinline preload="metadata">
+                    <source src="./assets/Plex/Introducing%20Plex%20Phone%20%26%20Tablet.mp4" media="(max-width: 768px)" type="video/mp4">
+                    <source src="./assets/Plex/Introducing%20Plex%20Laptop%20%26%20Desktop.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: Product Vision (Pinned Presentation) -->
+    <section class="section product-vision" id="principles">
+        <div class="vision-pin-container">
+            <!-- Initial Intro State -->
+            <div class="vision-intro">
+                <span class="section-label">05 — PRINCIPLES</span>
+                <h2 class="massive-headline">Product Vision</h2>
+            </div>
+            
+            <div class="vision-content-wrapper">
+                <!-- Left Side: Narration Typography -->
+                <div class="vision-left">
+                    <div class="principle-text p-1">
+                        <span class="p-number">01</span>
+                        <h3 class="p-title">Reduce<br>Cognitive Load</h3>
+                        <p class="p-desc">Minimal interfaces that only show what matters right now.</p>
+                    </div>
+                    <div class="principle-text p-2">
+                        <span class="p-number">02</span>
+                        <h3 class="p-title">Automation<br>Without<br>Losing Control</h3>
+                        <p class="p-desc">AI handles complexity while the user remains in control.</p>
+                    </div>
+                    <div class="principle-text p-3">
+                        <span class="p-number">03</span>
+                        <h3 class="p-title">Support<br>Instead of<br>Pressure</h3>
+                        <p class="p-desc">Guidance instead of guilt.</p>
+                    </div>
+                    <div class="principle-text p-4">
+                        <span class="p-number">04</span>
+                        <h3 class="p-title">Realistic<br>Planning</h3>
+                        <p class="p-desc">Schedules adapt to real life.</p>
+                    </div>
+                    <div class="principle-text p-5">
+                        <span class="p-number">05</span>
+                        <h3 class="p-title">Local<br>Processing</h3>
+                        <p class="p-desc">Your information stays on your device.</p>
+                    </div>
+                    <div class="principle-text p-6">
+                        <span class="p-number">06</span>
+                        <h3 class="p-title">Intelligent<br>Planning</h3>
+                        <p class="p-desc">Plex turns your tasks, goals, and time into a plan that works around your day.</p>
+                    </div>
+                </div>
+                
+                <!-- Right Side: Phone Evidence -->
+                <div class="vision-right">
+                    <div class="vision-phone-container">
+                        <div class="vision-phone-frame">
+                            <!-- Internal screens crossfade and morph -->
+                            <img src="./assets/mockups/Homepage.png" alt="Homepage UI" class="p-screen s-1">
+                            <img src="./assets/mockups/Automation%20Without%20Losing%20Control.png" alt="Automation UI" class="p-screen s-2">
+                            <img src="./assets/mockups/Analytics%20Page%201.png" alt="Analytics UI" class="p-screen s-3">
+                            <img src="./assets/mockups/Schedule%20Page.png" alt="Schedule UI" class="p-screen s-4">
+                            <img src="./assets/mockups/Privacy%20Page.png" alt="Privacy UI" class="p-screen s-5">
+                            <img src="./assets/mockups/Local%20Intelligence.png" alt="Local AI UI" class="p-screen s-6">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: Design Exploration -->
+    <section class="section design-exploration" id="exploration">
+        <div class="container">
+            
+            <!-- HEADER -->
+            <div class="exploration-header text-center mx-auto">
+                <span class="section-label">06 — PROCESS</span>
+                <h2 class="massive-headline gsap-reveal">Design Exploration</h2>
+                <div class="editorial-text mx-auto" style="max-width: 700px;">
+                    <p class="gsap-reveal-text mt-spacing">Every screen went through multiple iterations before reaching its final form. Each redesign solved specific usability problems rather than simply improving aesthetics.</p>
+                </div>
+            </div>
+
+            <!-- OVERVIEW BOARDS -->
+            <div class="exploration-overview mt-huge gsap-reveal">
+                <div class="overview-boards">
+                    <img src="./assets/wireframes/image 5.png" alt="Exploration Board 1">
+                    <img src="./assets/wireframes/image 6.png" alt="Exploration Board 2">
+                </div>
+                <div class="overview-caption text-center mt-spacing">
+                    <span class="stat-huge">150+</span>
+                    <p class="stat-sub">Design iterations created throughout<br>the development of Plex.</p>
+                </div>
+            </div>
+
+            <!-- COMPARISON 1: Homepage -->
+            <div class="comparison-block mt-huge gsap-reveal">
+                <h3 class="comp-title">Homepage</h3>
+                
+                <div class="comp-phones">
+                    <div class="comp-phone-col">
+                        <span class="comp-tag">INITIAL DESIGN</span>
+                        <img src="./assets/wireframes/Iteration 1.png" alt="Iteration 1">
+                    </div>
+                    <div class="comp-phone-col">
+                        <span class="comp-tag">FINAL DESIGN</span>
+                        <img src="./assets/wireframes/Iteration 1 Fixed.png" alt="Iteration 1 Fixed">
+                    </div>
+                </div>
+
+                <div class="comp-details">
+                    <div class="comp-problems">
+                        <h4 class="detail-heading">Problems</h4>
+                        <ul>
+                            <li><i data-lucide="hand" class="comp-icon"></i> Brain Dump required excessive thumb reach during one-handed use.</li>
+                            <li><i data-lucide="layers" class="comp-icon"></i> The interface prioritized planning before helping users understand their day.</li>
+                        </ul>
+                    </div>
+                    <div class="comp-solutions">
+                        <h4 class="detail-heading">Solutions</h4>
+                        <ul>
+                            <li><i data-lucide="mouse-pointer-click" class="comp-icon"></i> Brain Dump moved into the natural interaction zone.</li>
+                            <li><i data-lucide="layout-template" class="comp-icon"></i> Information hierarchy reorganized to emphasize today's workload first.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMPARISON 2: Schedule -->
+            <div class="comparison-block mt-huge gsap-reveal">
+                <h3 class="comp-title">Schedule</h3>
+                
+                <div class="comp-phones">
+                    <div class="comp-phone-col">
+                        <span class="comp-tag">INITIAL DESIGN</span>
+                        <img src="./assets/wireframes/Iteration 2.png" alt="Iteration 2">
+                    </div>
+                    <div class="comp-phone-col">
+                        <span class="comp-tag">FINAL DESIGN</span>
+                        <img src="./assets/wireframes/Iteration 2 Fixed.png" alt="Iteration 2 Fixed">
+                    </div>
+                </div>
+
+                <div class="comp-details">
+                    <div class="comp-problems">
+                        <h4 class="detail-heading">Problems</h4>
+                        <ul>
+                            <li><i data-lucide="align-justify" class="comp-icon"></i> Active tasks blended with upcoming tasks, reducing scanability.</li>
+                            <li><i data-lucide="link-2-off" class="comp-icon"></i> Long-term goals felt disconnected from today's schedule.</li>
+                        </ul>
+                    </div>
+                    <div class="comp-solutions">
+                        <h4 class="detail-heading">Solutions</h4>
+                        <ul>
+                            <li><i data-lucide="target" class="comp-icon"></i> Active work is visually prioritized.</li>
+                            <li><i data-lucide="link" class="comp-icon"></i> Goals and daily planning are connected through contextual scheduling.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMPARISON 3: Analytics -->
+            <div class="comparison-block mt-huge gsap-reveal">
+                <h3 class="comp-title">Analytics</h3>
+                
+                <div class="comp-phones">
+                    <div class="comp-phone-col">
+                        <span class="comp-tag">INITIAL DESIGN</span>
+                        <img src="./assets/wireframes/Iteration 3.png" alt="Iteration 3">
+                    </div>
+                    <div class="comp-phone-col">
+                        <span class="comp-tag">FINAL DESIGN</span>
+                        <img src="./assets/wireframes/Iteration 3 Fixed.png" alt="Iteration 3 Fixed">
+                    </div>
+                </div>
+
+                <div class="comp-details">
+                    <div class="comp-problems">
+                        <h4 class="detail-heading">Problems</h4>
+                        <ul>
+                            <li><i data-lucide="pie-chart" class="comp-icon"></i> Every metric competed equally for attention.</li>
+                            <li><i data-lucide="scan-line" class="comp-icon"></i> Users had to interpret multiple charts before understanding progress.</li>
+                        </ul>
+                    </div>
+                    <div class="comp-solutions">
+                        <h4 class="detail-heading">Solutions</h4>
+                        <ul>
+                            <li><i data-lucide="bar-chart" class="comp-icon"></i> Primary insights receive clear visual priority.</li>
+                            <li><i data-lucide="eye" class="comp-icon"></i> Analytics communicate progress at a glance.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMPARISON 4: Profile -->
+            <div class="comparison-block mt-huge gsap-reveal">
+                <h3 class="comp-title">Profile</h3>
+                
+                <div class="comp-phones">
+                    <div class="comp-phone-col">
+                        <span class="comp-tag">INITIAL DESIGN</span>
+                        <img src="./assets/wireframes/Iteration 4.png" alt="Iteration 4">
+                    </div>
+                    <div class="comp-phone-col">
+                        <span class="comp-tag">FINAL DESIGN</span>
+                        <img src="./assets/wireframes/Iteration 4 Fixed.png" alt="Iteration 4 Fixed">
+                    </div>
+                </div>
+
+                <div class="comp-details">
+                    <div class="comp-problems">
+                        <h4 class="detail-heading">Problems</h4>
+                        <ul>
+                            <li><i data-lucide="settings" class="comp-icon"></i> Settings lacked clear organization.</li>
+                            <li><i data-lucide="align-left" class="comp-icon"></i> Frequently used controls were mixed with secondary options.</li>
+                        </ul>
+                    </div>
+                    <div class="comp-solutions">
+                        <h4 class="detail-heading">Solutions</h4>
+                        <ul>
+                            <li><i data-lucide="folder" class="comp-icon"></i> Related settings are grouped logically.</li>
+                            <li><i data-lucide="star" class="comp-icon"></i> Frequently accessed controls receive higher visual priority.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 8: Product Evolution -->
+    <section class="section product-evolution" id="evolution">
+        <div class="container">
+            
+            <div class="roadmap-header text-center mx-auto" style="max-width: 800px;">
+                <span class="section-label">07 — ROADMAP</span>
+                <h2 class="section-title gsap-reveal">Product Evolution</h2>
+                <div class="editorial-text mx-auto" style="max-width: 700px;">
+                    <p class="gsap-reveal-text huge-quote" style="font-size: 3rem;">Make it exist first.<br><span style="color:var(--accent);">Make it good later.</span></p>
+                    <p class="gsap-reveal-text mt-spacing">Version One intentionally focuses only on solving the core problem. The roadmap reflects a gradual expansion of intelligence.</p>
+                </div>
+            </div>
+
+            <div class="evolution-timeline">
+                <div class="timeline-progress-track">
+                    <div class="timeline-progress-fill"></div>
+                </div>
+                
+                <!-- Milestone 1 -->
+                <div class="evolution-milestone milestone-1">
+                    <div class="milestone-content">
+                        <span class="milestone-caption">IN DEVELOPMENT</span>
+                        <h3 class="milestone-heading">Version One</h3>
+                        <ul class="issue-list mt-spacing">
+                            <li><i data-lucide="check" class="list-icon-success"></i> Natural language capture</li>
+                            <li><i data-lucide="check" class="list-icon-success"></i> Basic automatic scheduling</li>
+                            <li><i data-lucide="check" class="list-icon-success"></i> Local-first architecture</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Milestone 2 -->
+                <div class="evolution-milestone milestone-2">
+                    <div class="milestone-content">
+                        <span class="milestone-caption">NEXT PHASE</span>
+                        <h3 class="milestone-heading">Next Milestone</h3>
+                        <ul class="issue-list mt-spacing">
+                            <li><i data-lucide="diamond" class="list-icon-accent"></i> Improved AI reasoning</li>
+                            <li><i data-lucide="diamond" class="list-icon-accent"></i> Better schedule adaptation</li>
+                            <li><i data-lucide="diamond" class="list-icon-accent"></i> More personalized planning</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Milestone 3 -->
+                <div class="evolution-milestone milestone-3">
+                    <div class="milestone-content">
+                        <span class="milestone-caption">CONTINUOUS EVOLUTION</span>
+                        <h3 class="milestone-heading">Beyond Mobile</h3>
+                        <p class="milestone-philosophy mt-spacing">The long-term direction is to bring Plex to desktop, evolving it from an intelligent planner into a more proactive system that can understand context and take action across your workflow.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 9: Product Walkthrough -->
+    <section class="section walkthrough" id="product">
+        <div class="container" style="max-width: 1200px;">
+            <div class="text-center mx-auto" style="margin-bottom: 120px;">
+                <span class="section-label">08 — WALKTHROUGH</span>
+            </div>
+            
+            <!-- Feature 01: Brain Dump Cinematic (Pinned) -->
+            <div class="feature-moment fm-braindump">
+                <div class="fm-text text-center mx-auto">
+                    <h3 class="fm-heading">Brain Dump</h3>
+                    <p class="fm-desc">Brain Dump transforms unstructured thoughts into organized, actionable tasks.</p>
+                </div>
+                
+                <div class="fm-visual-container bd-cinematic-container">
+                    
+                    <!-- Stage 1, 2, 3: Natural Typing & Understanding Workspace -->
+                    <div class="bd-typing-layer">
+                        <div class="bd-typing-line line-1">
+                            <span class="bd-text bd-t1"></span><span class="bd-cursor cursor-1">|</span>
+                            <span class="bd-tag tag-1">→ Deadline detected</span>
+                        </div>
+                        <div class="bd-typing-line line-2">
+                            <span class="bd-text bd-t2"></span><span class="bd-cursor cursor-2" style="opacity:0;">|</span>
+                            <span class="bd-tag tag-2">→ Estimated duration</span>
+                        </div>
+                        <div class="bd-typing-line line-3">
+                            <span class="bd-text bd-t3"></span><span class="bd-cursor cursor-3" style="opacity:0;">|</span>
+                            <span class="bd-tag tag-3">→ Preferred time identified</span>
+                        </div>
+                        <div class="bd-typing-line line-4">
+                            <span class="bd-text bd-t4"></span><span class="bd-cursor cursor-4" style="opacity:0;">|</span>
+                            <span class="bd-tag tag-4">→ High priority</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Stage 4: Structured Cards (Lift away) -->
+                    <div class="bd-structured-layer">
+                        <div class="bd-card card-1">
+                            <div class="card-title">Portfolio</div>
+                            <div class="card-meta">Today • 2h 30m • High Priority</div>
+                        </div>
+                        <div class="bd-card card-2">
+                            <div class="card-title">JLPT Practice</div>
+                            <div class="card-meta">45 min • Study</div>
+                        </div>
+                        <div class="bd-card card-3">
+                            <div class="card-title">Gym Session</div>
+                            <div class="card-meta">Tomorrow • Recovery</div>
+                        </div>
+                        <div class="bd-card card-4">
+                            <div class="card-title">Oracle Internship</div>
+                            <div class="card-meta">Application • Medium Priority</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Stage 5: Final Dashboard & Masks -->
+                    <div class="bd-dashboard-layer">
+                        <img src="./assets/mockups/Homepage.png" alt="Brain Dump Dashboard" class="bd-dashboard-img">
+                        
+                        <!-- Masks covering specific parts of Homepage.png to reveal them sequentially -->
+                        <div class="dash-mask mask-greeting"></div>
+                        <div class="dash-mask mask-overview"></div>
+                        <div class="dash-mask mask-focus"></div>
+                        <div class="dash-mask mask-tasks"></div>
+                        <div class="dash-mask mask-goals"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 02: Smart Scheduling -->
+            <div class="feature-moment fm-scheduling mt-large">
+                <div class="fm-text text-center mx-auto">
+                    <h3 class="fm-heading">Smart Scheduling</h3>
+                    <p class="fm-desc">Plans are created around real life instead of ideal conditions.</p>
+                </div>
+                <div class="fm-visual-container" style="display: flex; gap: 40px; justify-content: center;">
+                    <div class="fm-schedule-wrapper">
+                        <div class="schedule-mask"></div>
+                        <img src="./assets/mockups/Schedule Page.png" alt="Schedule Page" class="schedule-mockup">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 03: Future Goals -->
+            <div class="feature-moment fm-goals mt-huge">
+                <div class="fm-text text-center mx-auto">
+                    <h3 class="fm-heading">Future Goals</h3>
+                    <p class="fm-desc">Long-term ambitions become manageable through gradual, consistent progress.</p>
+                </div>
+                <div class="fm-visual-container">
+                    <div class="fm-goal-cards text-center">
+                        <img src="./assets/mockups/Future Goals Page.png" alt="Future Goals" class="goal-mockup">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 04: Analytics -->
+            <div class="feature-moment fm-analytics mt-huge">
+                <div class="fm-text text-center mx-auto">
+                    <h3 class="fm-heading">Analytics</h3>
+                    <p class="fm-desc">Progress is measured through consistency, not pressure.</p>
+                </div>
+                <div class="fm-visual-container analytics-container" style="display: flex; gap: 40px; justify-content: center;">
+                    <img src="./assets/mockups/Analytics Page 1.png" alt="Analytics 1" class="analytics-img a-img-1">
+                    <img src="./assets/mockups/Analytics Page 2.png" alt="Analytics 2" class="analytics-img a-img-2">
+                </div>
+            </div>
+
+            <!-- Feature 05: Healthy Productivity -->
+            <div class="feature-moment fm-healthy mt-huge">
+                <div class="fm-text text-center mx-auto">
+                    <h3 class="fm-heading">Healthy Productivity</h3>
+                    <p class="fm-desc">Productive days begin with sustainable routines and proper recovery.</p>
+                </div>
+                <div class="fm-visual-container text-center">
+                    <img src="./assets/mockups/Sleep Schedule Page.png" alt="Sleep Schedule" class="healthy-mockup">
+                </div>
+            </div>
+
+            <!-- Feature 06: Privacy (Pinned) -->
+            <div class="feature-moment fm-privacy mt-huge">
+                <div class="fm-text text-center mx-auto">
+                    <h3 class="fm-heading">Privacy</h3>
+                    <p class="fm-desc">Your plans, preferences, and personal data remain on your device.</p>
+                </div>
+                <div class="fm-visual-container fm-privacy-container">
+                    <div class="privacy-words">
+                        <span class="p-word pw-1">Local.</span>
+                        <span class="p-word pw-2">Private.</span>
+                        <span class="p-word pw-3">Yours.</span>
+                    </div>
+                    <img src="./assets/mockups/Privacy Page.png" alt="Privacy Page" class="privacy-mockup">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 08: Behind The Intelligence -->
+    <section class="section intelligence">
+        <div class="container">
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%;">
+                <span class="section-label">09 — Architecture</span>
+                <h2 class="section-title gsap-reveal">Behind The Intelligence</h2>
+                <div class="editorial-text" style="display: flex; justify-content: center;">
+                    <p class="gsap-reveal-text">Meet the AI in Plex. Every schedule begins with understanding before planning.</p>
+                </div>
+            </div>
+            
+            <div class="arch-cinematic-container">
+                <!-- Stage 1: The Raw Request -->
+                <div class="arch-request-layer">
+                    <div class="arch-req-line arl-1">Finish my portfolio by Friday.</div>
+                    <div class="arch-req-line arl-2">Practice JLPT tonight.</div>
+                    <div class="arch-req-line arl-3">Go to the gym tomorrow.</div>
+                    <div class="arch-req-line arl-4">Apply to Oracle internship.</div>
+                </div>
+
+                <!-- Stage 2: Understanding Pulse -->
+                <div class="arch-understanding-pulse">
+                    <div class="pulse-dot"></div>
+                    <span class="pulse-text">Understanding...</span>
+                </div>
+
+                <!-- Stage 3 & 4: Structured Data & Context -->
+                <div class="arch-structured-layer">
+                    <div class="arch-card ac-1">
+                        <div class="ac-title">Portfolio</div>
+                        <div class="ac-meta">Deadline: Friday</div>
+                        <div class="ac-meta">Est: 3 Hours</div>
+                    </div>
+                    <div class="arch-card ac-2">
+                        <div class="ac-title">JLPT</div>
+                        <div class="ac-meta">Duration: 45m</div>
+                        <div class="ac-meta">Evening</div>
+                    </div>
+                    <div class="arch-card ac-3">
+                        <div class="ac-title">Gym</div>
+                        <div class="ac-meta">Tomorrow</div>
+                        <div class="ac-meta">Recovery</div>
+                    </div>
+                    
+                    <div class="arch-context ctx-1">Working Hours</div>
+                    <div class="arch-context ctx-2">Sleep Schedule</div>
+                    <div class="arch-context ctx-3">Travel Time</div>
+                    <div class="arch-context ctx-4">Existing Tasks</div>
+                    <div class="arch-context ctx-5">Preferences</div>
+                    
+                    <p class="arch-caption cap-context">Every recommendation begins with understanding your personal context.</p>
+                </div>
+
+                <!-- Stage 5: Reasoning / Decision Chips -->
+                <div class="arch-decision-layer">
+                    <div class="decision-chip dc-1">High Priority</div>
+                    <div class="decision-chip dc-2">Deadline Conflict</div>
+                    <div class="decision-chip dc-3">Available Time</div>
+                    <div class="decision-chip dc-4">Estimated Duration</div>
+                    <div class="decision-chip dc-5">Dependencies</div>
+                    <p class="arch-caption cap-decisions">Priorities are evaluated before time is assigned.</p>
+                </div>
+
+                <!-- Stage 6: Planning / Schedule Assembly -->
+                <div class="arch-schedule-layer">
+                    <div class="sched-block sb-focus">Focus: Portfolio (3h)</div>
+                    <div class="sched-block sb-lunch">Lunch Break</div>
+                    <div class="sched-block sb-task">JLPT Practice (45m)</div>
+                    <div class="sched-block sb-travel">Travel to Gym</div>
+                    <div class="sched-block sb-gym">Gym Workout</div>
+                    <p class="arch-caption cap-planning">Plans are created around real life instead of ideal conditions.</p>
+                </div>
+                
+                <!-- Stage 7: Protection -->
+                <div class="arch-safety-layer">
+                    <div class="safety-badge saf-1"><i data-lucide="shield"></i> Sleep Protected</div>
+                    <div class="safety-badge saf-2"><i data-lucide="shield"></i> Recovery Preserved</div>
+                    <div class="safety-badge saf-3"><i data-lucide="shield"></i> Break Maintained</div>
+                    <p class="arch-caption cap-safety">Productivity should never come at the expense of recovery.</p>
+                </div>
+
+                <!-- Stage 8: Final Result -->
+                <div class="arch-final-layer">
+                    <div class="final-schedule-frame">
+                        <img src="./assets/mockups/Schedule Page.png" alt="Generated Schedule" class="arch-final-img">
+                    </div>
+                    <p class="arch-caption cap-final" style="position: relative; bottom: auto; margin-top: 40px;">Every schedule is generated locally through Plex's intelligence, combining your goals, routines, and priorities into a realistic plan designed around your life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 09: Collaboration -->
+    <section class="section collaboration">
+        <div class="container">
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; max-width: 800px; margin: 0 auto;">
+                <span class="section-label">10 — Team</span>
+                <h2 class="section-title gsap-reveal">Collaboration</h2>
+                <p class="gsap-reveal-text large-body mt-spacing">Plex was built through close collaboration between product design and AI engineering. Clear responsibilities allowed both disciplines to contribute their expertise while building a single cohesive product.</p>
+            </div>
+            
+            <div class="team-editorial-grid mt-huge">
+                <!-- Left Column -->
+                <div class="team-col team-col-left">
+                    <h3 class="team-heading">Product Design & Frontend</h3>
+                    <span class="team-label">Done by me</span>
+                    <ul class="team-list mt-spacing">
+                        <li class="team-item">Product Strategy</li>
+                        <li class="team-item">Problem Definition</li>
+                        <li class="team-item">UX Research</li>
+                        <li class="team-item">Feature Planning</li>
+                        <li class="team-item">Information Architecture</li>
+                        <li class="team-item">User Flows</li>
+                        <li class="team-item">Wireframing</li>
+                        <li class="team-item">UI & Interaction Design</li>
+                        <li class="team-item">Frontend Development</li>
+                    </ul>
+                </div>
+                
+                <!-- Right Column -->
+                <div class="team-col team-col-right">
+                    <h3 class="team-heading">AI/ML Engineering</h3>
+                    <span class="team-label">Done by AI/ML Engineer</span>
+                    <ul class="team-list mt-spacing">
+                        <li class="team-item">AI Architecture</li>
+                        <li class="team-item">Plex's AI Core & Backend</li>
+                        <li class="team-item">Reasoning Engine</li>
+                        <li class="team-item">Memory System</li>
+                        <li class="team-item">Local AI</li>
+                        <li class="team-item">Safety Layer</li>
+                        <li class="team-item">Backend Implementation</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <p class="gsap-reveal-text team-closing-statement text-center" style="font-size: 1.15rem; color: var(--text-muted); max-width: 700px; margin: 4rem auto 0 auto;">Together, product design and AI engineering transformed Plex from an idea into a fully functioning product.</p>
+        </div>
+    </section>
+
+    <!-- SECTION Finale -->
+    <section class="section finale">
+        <div class="finale-cinematic-container">
+            <div class="finale-thought-sequence">
+                <!-- Keywords -->
+                <div class="finale-keyword kw-1">Planning</div>
+                <div class="finale-keyword kw-2">Mental Effort</div>
+                <div class="finale-keyword kw-3">Attention</div>
+                <div class="finale-keyword kw-4">Time</div>
+                
+                <!-- Supporting Sentences -->
+                <div class="finale-sentence st-1">Plex began as a way to organize everyday planning.</div>
+                <div class="finale-sentence st-2">The challenge was never managing tasks. It was reducing the effort required to think about them.</div>
+                <div class="finale-sentence st-3">Great products don't ask for more attention. They quietly give it back.</div>
+                <div class="finale-sentence st-4">In the end, time was never the feature. It was always the outcome.</div>
+            </div>
+            
+            <h2 class="finale-main-title">The Output is Focus.</h2>
+        </div>
+    </section>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

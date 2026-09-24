@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube — Watchlater Redesign</title>
+  
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=clash-display@200,300,400,500,600,700&f%5B%5D=satoshi@300,400,500,700,900&display=swap">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<!-- PREMIUM READING PROGRESS ISLAND -->
+<div class="reading-progress-island hidden">
+  <svg class="progress-ring" width="24" height="24" viewBox="0 0 24 24">
+    <circle class="ring-bg" cx="12" cy="12" r="10"></circle>
+    <circle class="ring-fill" cx="12" cy="12" r="10" id="readingRing"></circle>
+  </svg>
+  <span class="reading-percentage" id="readingPercentage">0%</span>
+  <span class="reading-text">Completed</span>
+</div>
+
+<div class="ambient-mesh">
+  <div class="mesh-orb mesh-orb-1"></div>
+  <div class="mesh-orb mesh-orb-2"></div>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-card reveal">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+          <div style="width: 40px; height: 40px; background: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+             <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" style="width: 70%;">
+          </div>
+          <span style="font-weight: 600; letter-spacing: 0.1em; font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted);">Case Study</span>
+        </div>
+        
+        <h1 class="hero-title" style="margin-bottom: 12px;">Youtube Watchlater</h1>
+        <p class="lead" style="margin-bottom: 0;">Bridging the gap between intent and consumption by transforming a passive archive into an active discovery hub.</p>
+        
+        <div class="hero-meta">
+          <div class="meta-item"><label>Designer</label><h4>Satwik Pachauri</h4></div>
+          <div class="meta-item"><label>Tool</label><h4>Figma</h4></div>
+          <div class="meta-item"><label>Category</label><h4>UX Redesign</h4></div>
+          <div class="meta-item"><label>Project</label><h4>YouTube Watchlater</h4></div>
+        </div>
+      </div>
+      
+      <div class="hero-img-box reveal">
+        <img src="./Hero Section.png" alt="YouTube Mockups">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 01 PROBLEM (BULLETS) ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <h2>The Problem</h2>
+      <ul class="bullet-p">
+        <li><i data-lucide="alert-circle" style="color: #f59e0b;"></i> <span>Users save videos to "watch later" when they are busy, but the list becomes a messy dumping ground.</span></li>
+        <li><i data-lucide="alert-circle" style="color: #f59e0b;"></i> <span>The feature is hidden deep in the Library menu, making it invisible to the user during their daily scrolling.</span></li>
+        <li><i data-lucide="alert-circle" style="color: #f59e0b;"></i> <span>Because it is hard to find, users forget what they saved and end up searching for the same videos again.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 02 PROCESS (ANIMATED) ===================== -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="reveal">
+      <h2>Design Process</h2>
+      <div class="process-box">
+        <div class="process-line"></div>
+        <div class="process-fill" id="pFill"></div>
+        
+        <div class="process-step" id="s1">
+          <div class="process-dot"></div>
+          <h4>1. Empathize</h4>
+          <p>Surveyed 52 users via Google Forms to find out why they stop using the Watch Later list. Found that it feels like "manual labor" to find videos.</p>
+        </div>
+        <div class="process-step" id="s2">
+          <div class="process-dot"></div>
+          <h4>2. Define</h4>
+          <p>Identified the core issue: Visibility. If a user doesn't see their saved videos on the homepage, they won't watch them.</p>
+        </div>
+        <div class="process-step" id="s3">
+          <div class="process-dot"></div>
+          <h4>3. Ideate</h4>
+          <p>Created sketches for a "Collections Hub" that brings saved content back to the user automatically.</p>
+        </div>
+        <div class="process-step" id="s4">
+          <div class="process-dot"></div>
+          <h4>4. Prototype</h4>
+          <p>Built high-fidelity mockups in Figma showing the new one-tap save and AI playlists.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 03 DATA (CHARTS) ===================== -->
+<section class="section" id="data">
+  <div class="container">
+    <div class="reveal" style="margin-bottom: 60px;">
+      <h2>Research Data</h2>
+    </div>
+    
+    <div class="chart-grid">
+      <!-- Card 1: Vertical Pillars -->
+      <div class="glass-card premium-data-card reveal">
+        <div class="data-header" style="margin-bottom: 40px;">
+          <div class="data-icon"><i data-lucide="bar-chart-2" style="color: #3b82f6;"></i></div>
+          <div>
+            <h4 style="margin:0;">App Saving Habits</h4>
+            <p style="font-size: 0.85rem; margin:0; color: var(--text-muted);">Return rate for saved content</p>
+          </div>
+        </div>
+        
+        <div class="pillars-container">
+          <!-- Pillar 1 -->
+          <div class="pillar-item">
+            <span class="pillar-value" style="color: #3b82f6;">85%</span>
+            <div class="pillar-track">
+              <div class="pillar-fill" data-height="85" style="background: linear-gradient(180deg, #3b82f6, #1e3a8a); box-shadow: 0 0 15px rgba(59,130,246,0.5);">
+              </div>
+            </div>
+            <span class="pillar-label">IG / Netflix</span>
+          </div>
+          <!-- Pillar 2 -->
+          <div class="pillar-item">
+            <span class="pillar-value" style="color: #ef4444;">59%</span>
+            <div class="pillar-track">
+              <div class="pillar-fill" data-height="59" style="background: linear-gradient(180deg, #ef4444, #7f1d1d); box-shadow: 0 0 15px rgba(239,68,68,0.5);">
+              </div>
+            </div>
+            <span class="pillar-label">Watchlater</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 2: Segmented Glass Capsule -->
+      <div class="glass-card premium-data-card reveal">
+        <div class="data-header" style="justify-content: center; margin-bottom: 24px;">
+          <h4 style="margin:0;">Why Users Forget</h4>
+        </div>
+        
+        <div class="capsule-wrapper" style="margin-top: 40px; margin-bottom: 32px;">
+           <div class="capsule-track">
+             <!-- 40.7% Forget -->
+             <div class="capsule-segment" data-width="40.7" style="width: 0%; background: linear-gradient(90deg, #ef4444, #991b1b); box-shadow: 0 0 20px rgba(239,68,68,0.5);">
+             </div>
+             <!-- 33.3% Save, no return -->
+             <div class="capsule-segment" data-width="33.3" style="width: 0%; background: linear-gradient(90deg, #3b82f6, #1e3a8a); box-shadow: 0 0 20px rgba(59,130,246,0.5);">
+             </div>
+           </div>
+           
+           <div class="capsule-total">
+             <h3>74%</h3>
+             <span>Total Drop-off</span>
+           </div>
+        </div>
+        
+        <div class="rings-legend" style="margin-top: 40px;">
+          <div class="legend-item">
+            <div class="legend-dot" style="background: #ef4444; box-shadow: 0 0 10px #ef4444;"></div>
+            <span><strong>40.7%</strong> Forget it exists</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background: #3b82f6; box-shadow: 0 0 10px #3b82f6;"></div>
+            <span><strong>33.3%</strong> Save, no return</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 04 SOLUTIONS ===================== -->
+<section class="section" id="solution">
+  <div class="container">
+    
+    <!-- Feature 1 -->
+    <div class="feature-row reveal">
+      <div>
+        <h4 style="color: var(--accent);">Feature 01</h4>
+        <h3>Direct Access</h3>
+        <p>I added a Clock Icon directly to the video thumbnails on the homepage. Users can now save a video with just one tap, similar to how Instagram allows users to save posts instantly.</p>
+        <ul class="bullet-p" style="margin-top: 24px;">
+           <li><i data-lucide="check" style="color: #10b981;"></i> <span>Faster saving process (1 tap instead of 3).</span></li>
+           <li><i data-lucide="check" style="color: #10b981;"></i> <span>Higher visual reminder on the home screen.</span></li>
+        </ul>
+      </div>
+      <div class="mock-wrap">
+        <div class="phone"><img src="./Mockup 1 homepage.png" alt="Homepage"></div>
+        <div class="tag" style="top: 20%; right: -20%;">One-Tap Save</div>
+      </div>
+    </div>
+    
+    <!-- Feature 2 -->
+    <div class="feature-row reverse reveal" style="margin-top: 80px;">
+      <div>
+        <h4 style="color: var(--accent);">Feature 02</h4>
+        <h3>AI Organization</h3>
+        <p>The app now automatically categorizes saved videos into playlists like "Tech," "Tutorials," and "Travel" using AI, so the list never feels cluttered.</p>
+      </div>
+      <div class="mock-wrap">
+        <div class="multi-mockup-flex" style="display: flex; gap: 20px;">
+          <div class="phone" style="max-width: 240px; transform: rotate(-5deg);"><img src="./Mockup 2.png"></div>
+          <div class="phone" style="max-width: 240px; transform: rotate(5deg);"><img src="./Mockup 3.png"></div>
+        </div>
+        <div class="tag" style="bottom: 0%; left: -20%;">Smart Sorting</div>
+      </div>
+    </div>
+    
+    <!-- Feature 3 -->
+    <div class="feature-row reveal" style="margin-top: 80px;">
+      <div>
+        <h4 style="color: var(--accent);">Feature 03</h4>
+        <h3>Search Integration</h3>
+        <p>When you search for a topic, the app reminds you about relevant videos you already saved, placing them right at the top of the search results.</p>
+      </div>
+      <div class="mock-wrap">
+        <div class="phone"><img src="./Mockup 4.png"></div>
+        <div class="tag" style="top: 15%; right: -20%;">Search Nudge</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== 05 REVENUE ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="glass-card metrics-grid reveal">
+      <div>
+        <h2>Projected Business Impact</h2>
+        <p>By making it easier to watch saved videos, we estimate an increase in the overall watch time on the platform. This hypothesized improvement leads to more ads being shown and higher potential revenue.</p>
+        <div style="display: flex; gap: 40px; margin-top: 32px;">
+          <div><h3 style="color: var(--chart-2);">+22%</h3><p style="font-size: 0.8rem;">Estimated CTR Potential</p></div>
+          <div><h3 style="color: var(--chart-1);">+15%</h3><p style="font-size: 0.8rem;">Estimated Watch Time Growth</p></div>
+        </div>
+      </div>
+      <div style="background: rgba(255,255,255,0.02); padding: 32px; border-radius: 20px;">
+        <h4 style="color: var(--chart-4);">Ad Revenue</h4>
+        <p style="font-size: 0.9rem; margin: 0;">Intent-based watching allows for more relevant, higher-paying ads to be served to the user.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 06 IMPACT (BULLETS) ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="text-align: center; margin-bottom: 60px;">
+      <h2>Final Impact</h2>
+    </div>
+    <div class="chart-grid" style="margin-top: 0;">
+      <div class="glass-card reveal">
+        <h4>For Users</h4>
+        <ul class="bullet-p" style="margin-top: 16px;">
+          <li><i data-lucide="check-circle" style="color: #10b981;"></i> <span>No more stress managing a messy "Watch Later" list.</span></li>
+          <li><i data-lucide="check-circle" style="color: #10b981;"></i> <span>Instant access to content they actually care about.</span></li>
+          <li><i data-lucide="check-circle" style="color: #10b981;"></i> <span>Smarter reminders during search and browsing.</span></li>
+        </ul>
+      </div>
+      <div class="glass-card reveal">
+        <h4>For YouTube</h4>
+        <ul class="bullet-p" style="margin-top: 16px;">
+          <li><i data-lucide="trending-up" style="color: #ef4444;"></i> <span>Increased user retention and session depth.</span></li>
+          <li><i data-lucide="trending-up" style="color: #ef4444;"></i> <span>Higher value ad inventory per session.</span></li>
+          <li><i data-lucide="trending-up" style="color: #ef4444;"></i> <span>Better monetization of existing user intent.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container reveal" style="display: flex; flex-direction: column; align-items: center; text-align: center; justify-content: center;">
+    <div class="logo-container" style="width:80px; height:80px; margin:0 auto 24px auto; border-radius:20px; background:#fff; display:flex; align-items:center; justify-content:center;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube Logo" style="width:60%;">
+    </div>
+    <h2>YouTube Watchlater.</h2>
+    <p style="margin:0 auto; color: #ffffff;">Redesigning Intent. Maximizing Engagement. 2026.</p>
+    <p style="margin-top:40px; color: #ffffff;">Designed by Satwik Pachauri &copy; 2026</p>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+
+  window.addEventListener('scroll', () => {
+    const scroll = window.scrollY;
+    const processSection = document.getElementById('process');
+    
+    if (processSection) {
+      const pTop = processSection.offsetTop;
+      const pHeight = processSection.offsetHeight;
+      
+      if (scroll > pTop - 600) {
+        // Calculate line fill based on scroll through the section
+        const startOffset = pTop - 400;
+        const relativeScroll = scroll - startOffset;
+        const fillPct = Math.min(Math.max((relativeScroll / (pHeight - 200)) * 100, 0), 100);
+        
+        const pFill = document.getElementById('pFill');
+        if (pFill) pFill.style.height = fillPct + '%';
+        
+        // Activate steps as they hit the 75% mark of the screen
+        document.querySelectorAll('.process-step').forEach(step => {
+          const rect = step.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.75) {
+            step.classList.add('active');
+          } else {
+            step.classList.remove('active');
+          }
+        });
+      }
+    }
+  });
+
+  // Reading Progress Island
+  const island = document.querySelector('.reading-progress-island');
+  const ringFill = document.getElementById('readingRing');
+  const percentText = document.getElementById('readingPercentage');
+  
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let percent = Math.round((winScroll / height) * 100);
+    if (percent < 0) percent = 0;
+    if (percent > 100) percent = 100;
+    
+    if (ringFill) {
+      const circumference = 62.83;
+      const offset = circumference - (percent / 100) * circumference;
+      ringFill.style.strokeDashoffset = offset;
+    }
+    if (percentText) {
+      percentText.innerText = percent + "%";
+    }
+    
+    if (island) {
+      if (percent < 2 || percent >= 99) {
+        island.classList.add('hidden');
+      } else {
+        island.classList.remove('hidden');
+      }
+    }
+  });
+
+  // Scroll-Driven Fluid Animations for reveal classes
+  const reveals = document.querySelectorAll('.reveal');
+  
+  function updateScrollAnimations() {
+    const windowHeight = window.innerHeight;
+    
+    reveals.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const startAnim = windowHeight * 0.95;
+      const endAnim = windowHeight * 0.4;
+      
+      let progress = (startAnim - rect.top) / (startAnim - endAnim);
+      progress = Math.max(0, Math.min(1, progress));
+      
+      el.style.setProperty('--scroll', progress);
+      
+      // Preserve .active for charts when partially revealed
+      if (progress > 0.1) {
+        el.classList.add('active');
+      }
+    });
+    
+    requestAnimationFrame(updateScrollAnimations);
+  }
+  
+  requestAnimationFrame(updateScrollAnimations);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        if (entry.target.querySelector('.pillar-fill')) {
+           entry.target.querySelectorAll('.pillar-fill').forEach(b => b.style.height = b.dataset.height + '%');
+        }
+        if (entry.target.querySelector('.capsule-segment')) {
+           setTimeout(() => {
+             entry.target.querySelectorAll('.capsule-segment').forEach(b => b.style.width = b.dataset.width + '%');
+           }, 100);
+        }
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.glass-card, .phone').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = `perspective(1000px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg)`;
+    });
+    card.addEventListener('mouseleave', () => card.style.transform = '');
+  });
+</script>
+
+</body>
+</html>

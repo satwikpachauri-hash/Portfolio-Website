@@ -1,0 +1,7 @@
+/* themes.css - Add any utility classes for themes here */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.bg-base { background-color: var(--bg); }
+.bg-surface { background-color: var(--surface); }
+.text-accent { color: var(--accent); }

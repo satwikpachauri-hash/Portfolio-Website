@@ -1,0 +1,246 @@
+.contact-section {
+  padding: calc(var(--section-spacing) * 0.75) 24px var(--section-spacing) 24px;
+  position: relative;
+  z-index: 10;
+  background-color: var(--bg);
+  width: 100%;
+  scroll-margin-top: 80px;
+}
+
+.contact-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.contact-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+@media (min-width: 1024px) {
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 120px;
+    align-items: start;
+  }
+}
+
+.contact-title {
+  font-size: var(--heading-scale);
+  letter-spacing: var(--heading-letter-spacing);
+  font-weight: var(--heading-weight);
+  text-transform: var(--heading-case);
+  margin: 0 0 var(--section-gap) 0;
+  color: var(--text-primary);
+}
+
+.contact-main-statement {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 500;
+  margin: 0 0 24px 0;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: var(--text-primary);
+}
+
+.contact-support-text {
+  font-size: clamp(1.125rem, 1.5vw, 1.25rem);
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.contact-actions {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+@media (max-width: 1023px) {
+  .contact-editorial {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+  }
+  .contact-support-text {
+    text-align: center;
+  }
+  .contact-actions {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+.contact-action-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  border-top: 1px solid var(--border);
+  padding: 32px 0;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
+  outline: none;
+}
+
+.contact-action-row:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+/* Touch feedback for mobile/tablet */
+.contact-action-row:active {
+  background-color: var(--bg-surface-hover);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.contact-action-row:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.ca-left {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.ca-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.contact-icon {
+  color: var(--text-muted);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
+  will-change: transform;
+}
+
+/* Base Light/Dark Icon Handling */
+.brand-linkedin, .brand-gmail, .brand-phone {
+  color: var(--text-muted);
+}
+
+.ca-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ca-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.ca-action {
+  font-size: clamp(1.5rem, 2vw, 1.75rem);
+  font-weight: 500;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.ca-right {
+  display: flex;
+  align-items: center;
+}
+
+.ca-arrow {
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  transition: transform 0.25s ease, color 0.25s ease;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ca-arrow, .contact-icon, .contact-action-row {
+    transition: none !important;
+  }
+}
+
+/* Desktop Hover Effects */
+@media (hover: hover) and (pointer: fine) {
+  /* When hovering ANY row in the container, quiet down the others slightly */
+  .contact-actions:hover .contact-action-row {
+    opacity: 0.7;
+  }
+
+  /* The active row regains full opacity */
+  .contact-actions .contact-action-row:hover {
+    opacity: 1;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-color: var(--text-secondary);
+    background-color: var(--bg-surface-hover);
+  }
+
+  .contact-actions .contact-action-row:hover .ca-label {
+    color: var(--text-primary);
+  }
+
+  /* Specific brand colors on hover if they fit the theme, or just default to text color */
+  .contact-actions .contact-action-row:hover .brand-linkedin {
+    color: #0A66C2; /* LinkedIn Blue */
+    transform: translateX(2px);
+  }
+  
+  .contact-actions .contact-action-row:hover .brand-gmail {
+    color: #EA4335; /* Gmail Red/Orange */
+    transform: translateX(2px);
+  }
+
+  .contact-actions .contact-action-row:hover .brand-phone {
+    color: var(--accent); /* Portfolio Accent */
+    transform: translateX(2px);
+  }
+
+  .contact-actions .contact-action-row:hover .ca-arrow {
+    transform: translateX(4px);
+    color: var(--text);
+  }
+}
+/* Mobile/Tablet Touch Interaction */
+@media (hover: none), (pointer: coarse) {
+  .contact-action-row.is-touch-active {
+    background-color: var(--bg-surface-hover);
+    padding-left: 20px;
+    padding-right: 20px;
+    border-color: var(--text-secondary);
+  }
+  
+  .contact-linkedin.is-touch-active .brand-linkedin {
+    color: #0A66C2 !important;
+    transform: translateX(2px);
+  }
+
+  .contact-email.is-touch-active .brand-gmail {
+    color: #EA4335 !important;
+    transform: translateX(2px);
+  }
+
+  .contact-call.is-touch-active .brand-phone {
+    color: var(--accent) !important;
+    transform: translateX(2px);
+  }
+
+  .contact-action-row.is-touch-active .ca-label {
+    color: var(--text-primary);
+  }
+
+  .contact-action-row.is-touch-active .ca-arrow {
+    transform: translateX(4px);
+    color: var(--text);
+  }
+}

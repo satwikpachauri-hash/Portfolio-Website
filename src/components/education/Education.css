@@ -1,0 +1,238 @@
+/* --- BASE LAYOUT --- */
+.education-section {
+  padding: var(--section-spacing) 0;
+  background-color: var(--bg);
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  overflow-x: hidden;
+}
+
+.education-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+}
+
+.education-heading {
+  font-size: var(--heading-scale);
+  letter-spacing: var(--heading-letter-spacing);
+  font-weight: var(--heading-weight);
+  text-transform: var(--heading-case);
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.education-list {
+  display: flex;
+  flex-direction: column;
+  /* Forms a hover group */
+}
+
+@media (max-width: 1023px) {
+  .education-list {
+    padding-left: 32px; /* Pull the list inward so the dot is inside */
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .education-heading {
+    text-align: center;
+  }
+}
+
+/* --- ENTRY LAYOUT --- */
+.education-entry {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  outline: none;
+  cursor: pointer; /* Pointer affordance */
+}
+
+.education-entry:first-child {
+  border-top: 1px solid var(--border);
+}
+
+@media (min-width: 1024px) {
+  .education-entry {
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+    padding: 64px 0;
+  }
+}
+
+/* --- META (LEFT COLUMN) --- */
+.edu-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (max-width: 1023px) {
+  .edu-meta {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 16px;
+  }
+}
+
+.edu-index {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.edu-date {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* --- TIMELINE MARKER & CONNECTOR --- */
+.edu-node-marker {
+  position: absolute;
+  top: 56px; /* align with first line of text */
+  left: -24px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--border);
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 2;
+}
+
+[data-theme="dark"] .edu-node-marker {
+  /* Subtle neutral default for dark mode if needed, handled by var(--border) */
+}
+
+@media (min-width: 1024px) {
+  .edu-node-marker {
+    left: -48px;
+    top: 74px; /* Align with title */
+  }
+}
+
+/* Halo */
+.edu-node-halo {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* --- CONTENT (RIGHT COLUMN) --- */
+.edu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 800px;
+}
+
+.edu-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.edu-degree {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.01em;
+  transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.edu-institution {
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  font-weight: 500;
+  color: var(--text-muted);
+  margin: 0;
+  transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.edu-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+  transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* --- INTERACTIVE STATE (HOVER / TAP) --- */
+/* Apply to both :hover (desktop) and .is-active (mobile tap) */
+.education-entry:hover .edu-node-marker,
+.education-entry.is-active .edu-node-marker {
+  transform: translate(-50%, -50%) scale(1.10);
+  background-color: var(--accent);
+}
+
+.education-entry:hover .edu-node-halo,
+.education-entry.is-active .edu-node-halo {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.education-entry:hover .edu-degree,
+.education-entry.is-active .edu-degree {
+  color: var(--text-primary); /* Ensure it's prominent */
+}
+
+.education-entry:hover .edu-institution,
+.education-entry.is-active .edu-institution {
+  color: var(--text-primary);
+}
+
+.education-entry:hover .edu-description,
+.education-entry.is-active .edu-description {
+  color: var(--text-secondary); /* Subtle enhancement */
+}
+
+.education-entry:hover .edu-date,
+.education-entry.is-active .edu-date {
+  color: var(--text-primary);
+}
+
+/* Ensure inactive items quiet down slightly when one is hovered */
+.education-list:hover .education-entry:not(:hover) {
+  opacity: 0.6;
+}
+
+/* Focus visibility for accessibility */
+.education-entry:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+/* --- REDUCED MOTION --- */
+@media (prefers-reduced-motion: reduce) {
+  .education-entry,
+  .edu-node-marker,
+  .edu-node-halo,
+  .edu-date,
+  .edu-institution,
+  .edu-degree,
+  .edu-description {
+    transition: none !important;
+    transform: none !important;
+  }
+}

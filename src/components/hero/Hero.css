@@ -1,0 +1,276 @@
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg);
+  cursor: crosshair;
+}
+
+.hero-base-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+
+
+.hero-text-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.hero-lens-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+  /* Transparent layer with subtle optical refraction. ZERO FROST. */
+  backdrop-filter: brightness(1.05) contrast(1.05) blur(2px);
+  -webkit-backdrop-filter: brightness(1.05) contrast(1.05) blur(2px);
+}
+
+.hero-lens-magnification {
+  width: 100%;
+  height: 100%;
+  transform: scale(1.05);
+  transform-origin: center center;
+}
+
+.hero-lens-edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+/* Typography Safe Zone */
+.hero-content-safe-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 800px;
+  padding: 2rem;
+  z-index: 10;
+}
+
+/* --- MOBILE/TABLET SIMPLE HERO --- */
+.hero-simple {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+}
+
+.hero-simple .hero-content-safe-zone {
+  z-index: 2;
+  margin-top: 100px; /* Offset for nav */
+}
+
+.hero-simple-portrait {
+  width: 90%;
+  max-width: 320px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.hero-simple-portrait img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 6.5rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.5rem;
+  color: var(--hero-primary);
+  text-transform: none;
+  white-space: normal;
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 1.2vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+  color: var(--hero-secondary);
+  text-transform: uppercase;
+}
+
+.hero-body {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--hero-body);
+  max-width: 580px;
+  text-wrap: balance;
+}
+
+@media (max-width: 767px) {
+  .hero-title {
+    white-space: normal;
+  }
+}
+
+/* Visual Field & Images */
+.hero-visual-field {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.project-visuals {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.visual {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.15);
+}
+
+.visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Editorial layout (asymmetrical) */
+.plex-visual {
+  top: 4%;
+  left: 2%;
+  width: 42vw;
+  height: 28vh;
+  transform: rotate(-2deg);
+}
+
+.youtube-visual {
+  top: 35%;
+  right: 4%;
+  width: 24vw;
+  height: auto;
+  aspect-ratio: 2608 / 2800;
+  transform: rotate(3deg);
+}
+
+.youtube-visual img {
+  object-fit: contain;
+}
+
+.cubicon-visual {
+  bottom: 4%;
+  left: 6%;
+  width: 32vw;
+  height: 26vh;
+  transform: rotate(1deg);
+}
+
+/* Central portrait layer */
+.main-portrait-visual {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 29vw;
+  height: 42vh;
+  box-shadow: none; /* No shadow needed for the hidden portrait layer */
+  border-radius: 0; /* Remove border radius if source image has its own borders or if we just want raw source */
+}
+
+.main-portrait-visual img {
+  object-fit: contain;
+  object-position: center; /* Neutral center to show full image */
+}
+
+/* Responsive Overrides */
+@media (max-width: 1023px) {
+  .plex-visual { top: 4%; left: 2%; width: 45vw; height: 26vh; }
+  .youtube-visual { top: 35%; right: 2%; width: 30vw; height: auto; aspect-ratio: 2608 / 2800; }
+  .cubicon-visual { bottom: 4%; left: 4%; width: 38vw; height: 24vh; }
+  .main-portrait-visual { width: 38vw; height: 42vh; }
+}
+
+@media (max-width: 767px) {
+  .plex-visual { top: 3%; left: 0; width: 55vw; height: 20vh; }
+  .youtube-visual { top: 40%; right: 0; width: 40vw; height: auto; aspect-ratio: 2608 / 2800; }
+  .cubicon-visual { bottom: 3%; left: 0; width: 50vw; height: 22vh; }
+  .main-portrait-visual { width: 48vw; height: 36vh; }
+}
+
+/* Abstract layer */
+.abstract-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-size: 80px 80px;
+  background-image: 
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+}
+
+.hero-base-layer .abstract-layer {
+  opacity: 0.1; /* Extremely subtle outside the lens */
+}
+
+.hero-lens-layer .abstract-layer {
+  opacity: 0.5; /* Clearer inside the lens */
+}
+
+@media (max-width: 1023px) {
+  .abstract-layer {
+    background-size: 64px 64px;
+  }
+}
+
+@media (max-width: 767px) {
+  .abstract-layer {
+    background-size: 40px 40px;
+  }
+}
+
+.crop-mark {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--text-secondary);
+}
+
+.crop-mark.top-right { top: 40px; right: 40px; border-bottom: none; border-left: none; }
+.crop-mark.bottom-left { bottom: 40px; left: 40px; border-top: none; border-right: none; }
