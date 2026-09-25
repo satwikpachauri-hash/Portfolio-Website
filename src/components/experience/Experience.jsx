@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'motion/react';
 import { useViewportClasses } from '../../hooks/useMediaQuery';
 import './Experience.css';
 
@@ -73,42 +73,59 @@ const CHAPTERS = [
 export default function Experience() {
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
+  const railRef = useRef(null);
+  const [markerThresholds, setMarkerThresholds] = useState([]);
+  
   const viewport = useViewportClasses();
-  const isMobileOrTablet = viewport === 'mobile' || viewport === 'tablet';
-  const showScrollAnimation = isMobileOrTablet || viewport === 'laptop';
 
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: railRef,
     offset: ["start center", "end center"]
   });
 
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   useEffect(() => {
-    if (!containerRef.current) return;
-    const triggers = containerRef.current.querySelectorAll('.scroll-trigger');
+    if (!railRef.current) return;
     
-    // We determine active chapter by finding which trigger is intersecting the viewport's middle zone
-    const handleIntersect = (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const index = Number(entry.target.dataset.index);
-          setActiveIndex(index);
-        }
+    const measure = () => {
+      const markers = Array.from(railRef.current.querySelectorAll('.chapter-marker'));
+      const railRect = railRef.current.getBoundingClientRect();
+      if (railRect.height === 0) return;
+      
+      const thresholds = markers.map(marker => {
+        const markerRect = marker.getBoundingClientRect();
+        // Calculate the center of the marker relative to the top of the rail
+        const relativeTop = (markerRect.top - railRect.top) + (markerRect.height / 2);
+        return relativeTop / railRect.height;
       });
+      
+      setMarkerThresholds(thresholds);
     };
 
-    const observer = new IntersectionObserver(handleIntersect, {
-      root: null,
-      // Target the upper-middle of the screen (35% to 55% from top)
-      rootMargin: "-35% 0px -45% 0px", 
-      threshold: 0
-    });
+    // Initial measurement
+    measure();
+    
+    // Give layout a moment to settle in case fonts/images load
+    setTimeout(measure, 100);
+    setTimeout(measure, 500);
 
-    triggers.forEach(el => observer.observe(el));
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, [viewport]);
 
-    return () => observer.disconnect();
-  }, []);
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (markerThresholds.length === 0) return;
+    
+    let newIndex = 0;
+    for (let i = 0; i < markerThresholds.length; i++) {
+      // Small 0.01 buffer so the dot activates exactly as the line touches it
+      if (latest >= markerThresholds[i] - 0.01) {
+        newIndex = i;
+      }
+    }
+    setActiveIndex(newIndex);
+  });
 
   return (
     <section id="experience" className="experience-section" ref={containerRef}>
@@ -123,14 +140,12 @@ export default function Experience() {
           EXPERIENCE
         </motion.h2>
 
-        <div className="career-rail">
+        <div className="career-rail" ref={railRef}>
           <div className="rail-line"></div>
-          {showScrollAnimation && (
-            <motion.div 
-              className="rail-line-fill" 
-              style={{ height: lineHeight }}
-            />
-          )}
+          <motion.div 
+            className="rail-line-fill" 
+            style={{ height: lineHeight }}
+          />
           
           {CHAPTERS.map((chapter, i) => {
             const isActive = activeIndex === i;
