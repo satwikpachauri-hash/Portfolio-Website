@@ -52,7 +52,8 @@ const CHAPTERS = [
     role: 'MERCHANDISER',
     company: '1 Artifact Decor',
     date: 'October 2022',
-    location: 'Noida, Uttar Pradesh, India',
+    location: 'Greater Noida, Uttar Pradesh, India',
+    description: 'Represented 1 Artifact Décor at the IHGF Delhi Fair, handling international client enquiries and coordinating product requirements between two exhibition stalls.'
   },
   {
     id: 'retail-2021',

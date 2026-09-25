@@ -155,7 +155,7 @@
 .edu-degree {
   font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--text-muted);
   margin: 0;
   letter-spacing: -0.01em;
   transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
@@ -178,43 +178,34 @@
 }
 
 /* --- INTERACTIVE STATE (HOVER / TAP) --- */
-/* Apply to both :hover (desktop) and .is-active (mobile tap) */
-.education-entry:hover .edu-node-marker,
+/* Apply only to .is-active (viewport automatic) */
 .education-entry.is-active .edu-node-marker {
   transform: translate(-50%, -50%) scale(1.10);
   background-color: var(--accent);
 }
 
-.education-entry:hover .edu-node-halo,
 .education-entry.is-active .edu-node-halo {
   opacity: 1;
   transform: scale(1);
 }
 
-.education-entry:hover .edu-degree,
 .education-entry.is-active .edu-degree {
   color: var(--text-primary); /* Ensure it's prominent */
 }
 
-.education-entry:hover .edu-institution,
 .education-entry.is-active .edu-institution {
   color: var(--text-primary);
 }
 
-.education-entry:hover .edu-description,
 .education-entry.is-active .edu-description {
   color: var(--text-secondary); /* Subtle enhancement */
 }
 
-.education-entry:hover .edu-date,
 .education-entry.is-active .edu-date {
   color: var(--text-primary);
 }
 
-/* Ensure inactive items quiet down slightly when one is hovered */
-.education-list:hover .education-entry:not(:hover) {
-  opacity: 0.6;
-}
+
 
 /* Focus visibility for accessibility */
 .education-entry:focus-visible {

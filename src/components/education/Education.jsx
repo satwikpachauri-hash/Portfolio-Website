@@ -47,20 +47,61 @@ const entryVariants = {
 };
 
 export default function Education() {
-  const [activeEntry, setActiveEntry] = React.useState(null);
+  const [activeEntry, setActiveEntry] = React.useState(0); // Default to 0
 
-  // Clear active state if user clicks outside
   React.useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest('.education-entry')) {
-        setActiveEntry(null);
+    const handleScroll = () => {
+      const entries = document.querySelectorAll('.education-entry');
+      if (entries.length === 0) return;
+      
+      const viewportCenter = window.innerHeight / 2;
+      let minDistance = Infinity;
+      let closestIdx = 0;
+      let isSectionVisible = false;
+
+      entries.forEach((entry, idx) => {
+        const rect = entry.getBoundingClientRect();
+        // Check if the entry is visible in the viewport with some buffer
+        if (rect.top < window.innerHeight + 200 && rect.bottom > -200) {
+          isSectionVisible = true;
+        }
+        
+        // Use a weighted center. The visual weight of an entry is often near the top
+        // But geometric center works well enough. Let's use top + 25% of height as reading position
+        const readingPoint = rect.top + (rect.height * 0.25);
+        const distance = Math.abs(viewportCenter - readingPoint);
+        
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIdx = idx;
+        }
+      });
+      
+      if (isSectionVisible) {
+        setActiveEntry(closestIdx);
       }
     };
-    document.addEventListener('touchstart', handleClickOutside);
-    document.addEventListener('click', handleClickOutside);
+    
+    let ticking = false;
+    const scrollListener = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', scrollListener, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    
+    // Initial evaluation
+    handleScroll();
+    
     return () => {
-      document.removeEventListener('touchstart', handleClickOutside);
-      document.removeEventListener('click', handleClickOutside);
+      window.removeEventListener('scroll', scrollListener);
+      window.removeEventListener('resize', handleScroll);
     };
   }, []);
 
@@ -91,10 +132,6 @@ export default function Education() {
                 whileInView="visible"
                 viewport={{ once: true, margin: "-10%" }}
                 transition={{ delay: idx * 0.15 }}
-                tabIndex="0"
-                onClick={() => setActiveEntry(idx)}
-                onFocus={() => setActiveEntry(idx)}
-                onBlur={() => setActiveEntry(null)}
               >
                 <div className="edu-node-marker">
                   <div className="edu-node-halo"></div>
