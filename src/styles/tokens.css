@@ -42,11 +42,11 @@
   --glass-highlight: rgba(255, 255, 255, 0.6);
   --glass-shadow: rgba(0, 0, 0, 0.05);
 
-  --lens-surface: transparent;
-  --lens-border: rgba(23,62,73,0.1);
+  --lens-surface: rgba(255, 255, 255, 0.05);
+  --lens-border: rgba(23,62,73,0.15);
   --lens-highlight: rgba(255,255,255,0.7);
-  --lens-shadow: rgba(0, 0, 0, 0);
-  --lens-blur: 0px;
+  --lens-shadow: rgba(0, 0, 0, 0.05);
+  --lens-blur: 12px;
   --lens-refraction-brightness: 1.05;
   --lens-refraction-contrast: 1.02;
   --lens-text: #F4F5F2; 
@@ -92,12 +92,12 @@
   --glass-highlight: rgba(255, 255, 255, 0.1);
   --glass-shadow: rgba(0, 0, 0, 0.5);
 
-  --lens-surface: rgba(255,255,255,0.015);
-  --lens-border: rgba(255,255,255,0.06);
-  --lens-highlight: rgba(255,255,255,0.03);
+  --lens-surface: rgba(255, 255, 255, 0.02);
+  --lens-border: rgba(255,255,255,0.1);
+  --lens-highlight: rgba(255,255,255,0.05);
   --lens-shadow: rgba(0,0,0,0.4);
-  --lens-blur: 1px;
-  --lens-refraction-brightness: 1.05;
+  --lens-blur: 12px;
+  --lens-refraction-brightness: 1.1;
   --lens-refraction-contrast: 1.05;
   --lens-text: #FFFFFF;
 

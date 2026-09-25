@@ -22,7 +22,9 @@ export default function HeroLens({ x, y, size, children }) {
           maskSize: '100% 100%',
           WebkitMaskSize: '100% 100%',
           maskRepeat: 'no-repeat',
-          WebkitMaskRepeat: 'no-repeat'
+          WebkitMaskRepeat: 'no-repeat',
+          backdropFilter: 'blur(var(--lens-blur)) brightness(var(--lens-refraction-brightness)) contrast(var(--lens-refraction-contrast))',
+          WebkitBackdropFilter: 'blur(var(--lens-blur)) brightness(var(--lens-refraction-brightness)) contrast(var(--lens-refraction-contrast))'
         }}
       >
         {/* Subtle magnification inside the lens */}

@@ -101,6 +101,7 @@
   width: 100%;
   height: auto;
   object-fit: contain;
+  border-radius: 16px;
 }
 
 .hero-title {
@@ -208,12 +209,14 @@
   width: 29vw;
   height: 42vh;
   box-shadow: none; /* No shadow needed for the hidden portrait layer */
-  border-radius: 0; /* Remove border radius if source image has its own borders or if we just want raw source */
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .main-portrait-visual img {
   object-fit: contain;
   object-position: center; /* Neutral center to show full image */
+  border-radius: 16px;
 }
 
 /* Responsive Overrides */
