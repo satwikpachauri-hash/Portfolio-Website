@@ -75,6 +75,7 @@ export default function Experience() {
   const containerRef = useRef(null);
   const viewport = useViewportClasses();
   const isMobileOrTablet = viewport === 'mobile' || viewport === 'tablet';
+  const showScrollAnimation = isMobileOrTablet || viewport === 'laptop';
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -124,7 +125,7 @@ export default function Experience() {
 
         <div className="career-rail">
           <div className="rail-line"></div>
-          {isMobileOrTablet && (
+          {showScrollAnimation && (
             <motion.div 
               className="rail-line-fill" 
               style={{ height: lineHeight }}

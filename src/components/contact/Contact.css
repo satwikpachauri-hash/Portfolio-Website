@@ -132,6 +132,10 @@
 .brand-phone {
   fill: transparent;
 }
+.brand-gmail path {
+  fill: currentColor;
+  transition: fill 0.3s ease;
+}
 
 .ca-text-group {
   display: flex;
@@ -200,9 +204,13 @@
   }
   
   .contact-actions .contact-action-row:hover .brand-gmail {
-    color: #EA4335; /* Gmail Red/Orange */
     transform: translateX(2px);
   }
+  .contact-actions .contact-action-row:hover .brand-gmail .gmail-path-blue { fill: #4285f4; }
+  .contact-actions .contact-action-row:hover .brand-gmail .gmail-path-red { fill: #ea4335; }
+  .contact-actions .contact-action-row:hover .brand-gmail .gmail-path-green { fill: #34a853; }
+  .contact-actions .contact-action-row:hover .brand-gmail .gmail-path-dark-red { fill: #c5221f; }
+  .contact-actions .contact-action-row:hover .brand-gmail .gmail-path-yellow { fill: #fbbc04; }
 
   .contact-actions .contact-action-row:hover .brand-phone {
     color: var(--accent); /* Portfolio Accent */
@@ -230,9 +238,13 @@
   }
 
   .contact-email.is-touch-active .brand-gmail {
-    color: #EA4335 !important;
     transform: translateX(2px);
   }
+  .contact-email.is-touch-active .brand-gmail .gmail-path-blue { fill: #4285f4 !important; }
+  .contact-email.is-touch-active .brand-gmail .gmail-path-red { fill: #ea4335 !important; }
+  .contact-email.is-touch-active .brand-gmail .gmail-path-green { fill: #34a853 !important; }
+  .contact-email.is-touch-active .brand-gmail .gmail-path-dark-red { fill: #c5221f !important; }
+  .contact-email.is-touch-active .brand-gmail .gmail-path-yellow { fill: #fbbc04 !important; }
 
   .contact-call.is-touch-active .brand-phone {
     color: var(--accent) !important;

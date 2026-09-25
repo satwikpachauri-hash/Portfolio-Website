@@ -14,7 +14,7 @@
   pointer-events: auto; /* Catch clicks even inside the masked lens layer */
   background-color: var(--note-bg);
   /* Use filter instead of box-shadow so it conforms to the clip-path torn edges */
-  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.12));
+  filter: var(--note-shadow);
   padding: 24px 24px 24px 24px;
   width: clamp(220px, 18vw, 280px);
   color: var(--text-primary);
@@ -133,9 +133,11 @@
 }
 
 :root {
-  --note-bg: #F9F8F6; /* Warm off-white paper */
+  --note-bg: #EAECE8; /* Slightly darker than page background #F4F5F2 */
+  --note-shadow: drop-shadow(0 0 1px rgba(23,62,73,0.12)) drop-shadow(0 8px 24px rgba(23,62,73,0.06));
 }
 
 [data-theme='dark'] {
   --note-bg: #22201F; /* Warm muted charcoal */
+  --note-shadow: drop-shadow(0 2px 5px rgba(0,0,0,0.12));
 }

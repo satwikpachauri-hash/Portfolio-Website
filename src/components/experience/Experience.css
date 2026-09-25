@@ -238,7 +238,7 @@
     gap: 80px;
   }
   
-  .rail-line {
+  .rail-line, .rail-line-fill {
     left: 200px; /* 160px col + 40px half gap */
   }
 
