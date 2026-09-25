@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function GmailIcon({ size = 24, className = '', color = 'currentColor' }) {
+export function GmailIcon({ size = 24, className = '' }) {
   return (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
@@ -8,9 +8,13 @@ export function GmailIcon({ size = 24, className = '', color = 'currentColor' })
       width={size} 
       height={size} 
       className={className}
-      fill={color}
+      fill="none"
     >
-      <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+      <path d="M16 20.5v-5L22 11v7.5c0 1.1-.9 2-2 2h-4z" fill="#34A853"/>
+      <path d="M8 20.5v-5L2 11v7.5c0 1.1.9 2 2 2h4z" fill="#4285F4"/>
+      <path d="M16 15.5V4.5L22 9v2l-6 4.5z" fill="#FBBC05"/>
+      <path d="M8 15.5V4.5L2 9v2l6 4.5z" fill="#C5221F"/>
+      <path d="M16 4.5 12 1.5 8 4.5V15.5l4-3 4 3V4.5z" fill="#EA4335"/>
     </svg>
   );
 }

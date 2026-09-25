@@ -121,13 +121,16 @@
 
 .contact-icon {
   color: var(--text-muted);
-  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease, fill 0.3s ease;
   will-change: transform;
 }
 
 /* Base Light/Dark Icon Handling */
 .brand-linkedin, .brand-gmail, .brand-phone {
   color: var(--text-muted);
+}
+.brand-phone {
+  fill: transparent;
 }
 
 .ca-text-group {
@@ -203,6 +206,7 @@
 
   .contact-actions .contact-action-row:hover .brand-phone {
     color: var(--accent); /* Portfolio Accent */
+    fill: currentColor !important;
     transform: translateX(2px);
   }
 
@@ -232,6 +236,7 @@
 
   .contact-call.is-touch-active .brand-phone {
     color: var(--accent) !important;
+    fill: currentColor !important;
     transform: translateX(2px);
   }
 
