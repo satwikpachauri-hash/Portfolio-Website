@@ -32,7 +32,7 @@ export default function Contact() {
       href: 'tel:+919718550488',
       isExternal: false,
       ariaLabel: "Call Satwik",
-      icon: <Phone size={32} strokeWidth={1.5} className="contact-icon brand-phone" />
+      icon: <Phone size={32} fill="currentColor" stroke="none" className="contact-icon brand-phone" />
     }
   ];
 

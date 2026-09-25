@@ -14,6 +14,7 @@ export default function Hero() {
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const viewport = useViewportClasses();
+  const containerRect = useRef({ left: 0, top: 0 });
 
   const mouseX = useMotionValue(-1000);
   const mouseY = useMotionValue(-1000);
@@ -35,7 +36,8 @@ export default function Hero() {
     
     ctx.add("(min-width: 1024px)", () => {
       // Scroll animation ONLY for laptop/desktop
-      gsap.to(textRef.current, {
+      const textElements = gsap.utils.toArray('.hero-content-safe-zone');
+      gsap.to(textElements, {
         y: 100,
         opacity: 0,
         ease: "none",
@@ -51,18 +53,42 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
 
+  // Update rect geometry for pointer calculations
+  useEffect(() => {
+    if (isMobileOrTablet) return;
+
+    const updateRect = () => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        containerRect.current = { left: rect.left, top: rect.top };
+      }
+    };
+
+    updateRect();
+    window.addEventListener('resize', updateRect);
+    window.addEventListener('scroll', updateRect, { passive: true });
+
+    return () => {
+      window.removeEventListener('resize', updateRect);
+      window.removeEventListener('scroll', updateRect);
+    };
+  }, [isMobileOrTablet]);
+
   const handlePointerMove = (e) => {
     if (isMobileOrTablet) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    mouseX.set(e.clientX - rect.left);
-    mouseY.set(e.clientY - rect.top);
+    mouseX.set(e.clientX - containerRect.current.left);
+    mouseY.set(e.clientY - containerRect.current.top);
   };
 
   const handlePointerEnter = (e) => {
     if (isMobileOrTablet) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    mouseX.jump(e.clientX - rect.left);
-    mouseY.jump(e.clientY - rect.top);
+    // Fast update on enter just in case layout shifted
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      containerRect.current = { left: rect.left, top: rect.top };
+    }
+    mouseX.jump(e.clientX - containerRect.current.left);
+    mouseY.jump(e.clientY - containerRect.current.top);
     lensSize.jump(10); 
     
     let targetSize = 135; // laptop/desktop

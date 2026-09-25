@@ -130,7 +130,7 @@
   color: var(--text-muted);
 }
 .brand-phone {
-  fill: transparent;
+  fill: currentColor;
 }
 .brand-gmail path {
   fill: currentColor;
