@@ -113,17 +113,17 @@ export default function DynamicIsland() {
   };
 
   // Dimensions based on viewport
-  let pillWidth = 260;
+  let pillWidth = 260; // desktop default
   let circleSize = 48;
   let menuWidth = 320;
   let fallDistance = 24;
 
   if (viewport === 'mobile') {
-    pillWidth = 200;
+    pillWidth = 'max-content';
     menuWidth = 280;
     fallDistance = 12;
   } else if (viewport === 'tablet') {
-    pillWidth = 240;
+    pillWidth = 'max-content';
     menuWidth = 300;
     fallDistance = 16;
   }
@@ -212,12 +212,18 @@ export default function DynamicIsland() {
             <motion.div 
               key="closed"
               className="di-content-closed"
+              style={{ position: navState === STATE.CLOSED ? 'relative' : 'absolute' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              exit={{ opacity: 0, transition: { duration: 0.15 } }}
+              exit={{ opacity: 0, position: 'absolute', transition: { duration: 0.15 } }}
             >
-              <span className="di-name font-body">Satwik Pachauri</span>
-              <ChevronDown className="di-chevron" size={14} />
+              <div className="di-spacer"></div>
+              <div className="di-name-container">
+                <span className="di-name font-body">Satwik Pachauri</span>
+              </div>
+              <div className="di-indicator-box">
+                <ChevronDown className="di-chevron" size={16} strokeWidth={2.5} />
+              </div>
             </motion.div>
           )}
 
@@ -238,9 +244,18 @@ export default function DynamicIsland() {
               key="open"
               className="di-content-open"
               initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0, transition: { duration: 0.3, delay: 0.25 } }} // content appears AFTER surface expands mostly
-              exit={{ opacity: 0, y: -8, transition: { duration: 0.15 } }} // content disappears fast on close
+              animate={{ opacity: 1, y: 0, transition: { duration: 0.3, delay: 0.25 } }}
+              exit={{ opacity: 0, y: -8, transition: { duration: 0.15 } }}
             >
+              <div className="di-open-header" onClick={(e) => { e.stopPropagation(); handleClose(); }}>
+                <div className="di-spacer"></div>
+                <div className="di-name-container">
+                  <span className="di-name font-body">Satwik Pachauri</span>
+                </div>
+                <div className="di-indicator-box is-open">
+                  <ChevronDown className="di-chevron" size={16} strokeWidth={2.5} />
+                </div>
+              </div>
               <nav className="di-nav">
                 <ul>
                   {navigationLinks.map((link, i) => (
