@@ -4,6 +4,7 @@ import Lenis from 'lenis';
 import { useTheme } from './hooks/useTheme';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Analytics } from '@vercel/analytics/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,6 +60,7 @@ function App() {
         <Route path="/experience" element={<Experience />} />
         <Route path="/education" element={<Education />} />
       </Routes>
+      <Analytics />
     </Router>
   );
 }
