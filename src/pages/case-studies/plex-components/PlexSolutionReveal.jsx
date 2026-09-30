@@ -4,18 +4,18 @@ import CaseStudySectionChip from './CaseStudySectionChip';
 import './PlexSolutionReveal.css';
 
 export default function PlexSolutionReveal() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 767px)');
-    setIsMobile(mediaQuery.matches);
+    const mediaQuery = window.matchMedia('(max-width: 1023px)');
+    setIsMobileOrTablet(mediaQuery.matches);
     
-    const handler = (e) => setIsMobile(e.matches);
+    const handler = (e) => setIsMobileOrTablet(e.matches);
     mediaQuery.addEventListener('change', handler);
     return () => mediaQuery.removeEventListener('change', handler);
   }, []);
 
-  const videoSrc = isMobile 
+  const videoSrc = isMobileOrTablet 
     ? "/case-studies/plex/assets/Plex/Introducing Plex Phone & Tablet.mp4"
     : "/case-studies/plex/assets/Plex/Introducing Plex Laptop & Desktop.mp4";
 
