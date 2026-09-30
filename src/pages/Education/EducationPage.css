@@ -1,0 +1,386 @@
+/* EducationPage.css — scoped to .education-page */
+
+/* ── Theme palette ── */
+.education-page {
+  --edu-text-primary: var(--text-primary);
+  --edu-text-secondary: var(--text-secondary);
+  --edu-text-muted: var(--text-muted);
+  --edu-bg: var(--bg);
+  --edu-accent-strong: var(--accent, #4f46e5); /* deeper violet in light mode */
+  --edu-accent-soft: #818cf8; /* supporting cool blue/periwinkle */
+  --edu-border: var(--border-color, rgba(0, 0, 0, 0.1));
+  --edu-line-color: rgba(0, 0, 0, 0.35); /* Increased contrast for light mode */
+  
+  background-color: var(--edu-bg);
+  color: var(--edu-text-primary);
+  min-height: 100svh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+[data-theme="dark"] .education-page {
+  --edu-accent-strong: #a78bfa; /* lavender/violet */
+  --edu-accent-soft: #818cf8;
+  --edu-border: rgba(255, 255, 255, 0.1);
+  --edu-line-color: rgba(255, 255, 255, 0.3);
+}
+
+.education-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: clamp(100px, 14vh, 160px) var(--container-padding, 32px) clamp(80px, 12vh, 140px);
+}
+
+/* ── Intro & Landing Frame ── */
+.edu-intro {
+  margin-bottom: clamp(40px, 8vh, 80px);
+  max-width: 900px;
+}
+
+.edu-marker {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  color: var(--edu-text-muted);
+  margin-bottom: 24px;
+}
+
+.edu-heading {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5.5vw, 4.75rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  color: var(--edu-text-primary);
+  margin: 0 0 24px 0;
+  line-height: 1.1;
+}
+
+.edu-supporting {
+  font-family: var(--font-body);
+  font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+  line-height: 1.6;
+  color: var(--edu-text-secondary);
+  margin: 0 0 48px 0;
+  max-width: 780px;
+}
+
+/* ── Verified Credentials ── */
+.edu-credentials {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 32px;
+  border-top: 1px solid var(--edu-border);
+  max-width: 760px;
+}
+
+.edu-cred-degree {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+  font-weight: 500;
+  color: var(--edu-text-primary);
+  margin: 0;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.edu-cred-inst {
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  color: var(--edu-text-secondary);
+  margin: 4px 0 0 0;
+}
+
+.edu-cred-date {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--edu-text-muted);
+  letter-spacing: 0.03em;
+  margin-top: 6px;
+}
+
+/* ── Learning Map ── */
+.edu-map-section {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: clamp(20px, 5vh, 60px);
+}
+
+.edu-map-desktop {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 960px; /* Tighter footprint */
+  height: 550px;
+}
+
+/* Base Node Styles */
+.edu-node {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
+  cursor: default;
+  background-color: var(--edu-bg); /* Prevents lines from crossing text */
+  padding: 6px 12px;
+  border-radius: 6px;
+  /* Hardware acceleration */
+  will-change: transform, opacity;
+}
+
+/* Anchor: Interaction Design */
+.edu-node--anchor {
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  padding: 10px 20px;
+}
+
+.edu-node--anchor .edu-node-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--edu-accent-strong);
+  margin: 0;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+/* Branch Nodes */
+.edu-node-title {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.25vw, 1.125rem); /* Increased hierarchy */
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--edu-text-primary);
+  margin: 0 0 6px 0;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.edu-node-context {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--edu-text-muted);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 180px;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+/* Visual Comm is supporting - slightly softer */
+.edu-node--viscomm .edu-node-title {
+  color: var(--edu-accent-soft);
+}
+
+/* Node Positioning (Tighter radial/tree layout) */
+.edu-node--research {
+  top: 12%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.edu-node--structure {
+  top: 38%;
+  left: 18%;
+  transform: translate(-50%, -50%);
+}
+
+.edu-node--interaction {
+  top: 38%;
+  left: 82%;
+  transform: translate(-50%, -50%);
+}
+
+.edu-node--viscomm {
+  top: 75%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+}
+
+.edu-node--making {
+  top: 75%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+}
+
+/* Lines (SVG) */
+.edu-lines-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.edu-line {
+  stroke: var(--edu-line-color);
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  fill: none;
+  /* Animated via GSAP strokeDashoffset */
+}
+
+/* Hover/Focus States */
+.edu-map-desktop:has(.edu-node:hover) .edu-node:not(:hover):not(.edu-node--anchor) {
+  opacity: 0.3 !important;
+  transition: opacity 0.4s ease;
+}
+
+.edu-node:hover .edu-node-title {
+  color: var(--edu-accent-strong);
+}
+
+.edu-node--viscomm:hover .edu-node-title {
+  color: var(--edu-accent-soft);
+}
+
+.edu-node:hover .edu-node-context {
+  color: var(--edu-text-primary);
+}
+
+/* ── Synthesis ── */
+.edu-synthesis {
+  text-align: center;
+  max-width: 640px;
+  margin-top: 40px; /* Pulled closer to the map */
+  z-index: 10;
+}
+
+.edu-synthesis p {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--edu-text-primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.edu-synthesis p.edu-syn-highlight {
+  color: var(--edu-accent-strong);
+}
+
+/* ── Mobile/Tablet Vertical Layout ── */
+.edu-map-mobile {
+  display: none;
+  flex-direction: column;
+  padding-left: 20px;
+  border-left: 1px solid var(--edu-line);
+  margin-top: 64px;
+}
+
+.edu-mob-node {
+  position: relative;
+  margin-bottom: 48px;
+}
+
+.edu-mob-node:last-child {
+  margin-bottom: 0;
+}
+
+/* Node marker on the line */
+.edu-mob-node::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  top: 8px;
+  width: 7px;
+  height: 7px;
+  background-color: var(--edu-line);
+  border-radius: 50%;
+}
+
+.edu-mob-node--anchor::before {
+  background-color: var(--edu-accent-strong);
+  width: 9px;
+  height: 9px;
+  left: -25px;
+}
+
+.edu-mob-node--viscomm::before {
+  background-color: var(--edu-accent-soft);
+}
+
+.edu-mob-title {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--edu-text-primary);
+  margin: 0 0 6px 0;
+}
+
+.edu-mob-node--anchor .edu-mob-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  color: var(--edu-accent-strong);
+  text-transform: none;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.edu-mob-node--viscomm .edu-mob-title {
+  color: var(--edu-accent-soft);
+}
+
+.edu-mob-context {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--edu-text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Animation helper classes ── */
+/* Hidden initial state for GSAP */
+.edu-anim-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* For reduced motion, ensure everything is visible */
+@media (prefers-reduced-motion: reduce) {
+  .edu-anim-hidden {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* ── Responsive breakpoints ── */
+@media (max-width: 1023px) {
+  /* Tablet / Phone */
+  .edu-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .edu-map-desktop {
+    display: none;
+  }
+  .edu-map-mobile {
+    display: flex;
+  }
+  
+  .edu-synthesis {
+    text-align: left;
+    margin-top: 80px;
+    padding-left: 20px;
+  }
+}

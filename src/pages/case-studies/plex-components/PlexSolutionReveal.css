@@ -1,0 +1,74 @@
+/* PlexSolutionReveal.css */
+
+.plex-solution-reveal-wrapper {
+  width: 100%;
+  position: relative;
+  /* Rely on global section gap instead of adding extra margins/padding */
+}
+
+.plex-solution-reveal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5vw; /* Keeps it off the absolute edges on small screens */
+}
+
+.plex-solution-reveal-header {
+  margin-bottom: clamp(1rem, 3vw, 2rem); /* Comfortable small gap to title */
+  display: flex;
+  justify-content: center;
+}
+
+.plex-solution-reveal-title {
+  font-size: clamp(4rem, 10vw, 10rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--text-primary);
+  margin-bottom: clamp(3rem, 6vw, 5rem); /* Moderate breathing space before video */
+  text-align: center;
+}
+
+.plex-solution-reveal-video-container {
+  width: 100%;
+  /* width: min(90vw, 1400px) is handled by max-width on parent + padding */
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background-color: var(--surface);
+  overflow: hidden;
+  display: flex;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.08), inset 0 1px 1px var(--glass-highlight);
+}
+
+[data-theme="dark"] .plex-solution-reveal-video-container {
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4), inset 0 1px 1px var(--glass-highlight);
+}
+
+.plex-solution-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: inherit; /* inherit from container */
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .plex-solution-reveal-video-container {
+    border-radius: 16px; /* slightly smaller radius on phone */
+  }
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .plex-solution-reveal-header,
+  .plex-solution-reveal-title,
+  .plex-solution-reveal-video-container {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

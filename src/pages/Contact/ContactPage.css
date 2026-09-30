@@ -1,0 +1,554 @@
+/* ContactPage.css — scoped to .contact-page */
+
+/* ── Theme palette ── */
+.contact-page {
+  --cp-text-primary: var(--text-primary);
+  --cp-text-secondary: var(--text-secondary);
+  --cp-text-muted: var(--text-muted);
+  --cp-bg: var(--bg);
+  --cp-accent: var(--accent, #4f46e5);
+  --cp-border: var(--border-color, rgba(0, 0, 0, 0.1));
+  --cp-border-strong: rgba(0, 0, 0, 0.15);
+
+  /* Card surface — neutral material family for BOTH front and back */
+  --cp-card-bg: var(--surface, #f5f5f3);
+  --cp-card-hover-bg: rgba(0, 0, 0, 0.04);
+
+  background-color: var(--cp-bg);
+  color: var(--cp-text-primary);
+  min-height: 100svh;
+  overflow-x: hidden;
+}
+
+[data-theme="dark"] .contact-page {
+  --cp-accent: #a78bfa;
+  --cp-border: rgba(255, 255, 255, 0.1);
+  --cp-border-strong: rgba(255, 255, 255, 0.16);
+  --cp-card-bg: #18181c;
+  --cp-card-hover-bg: rgba(255, 255, 255, 0.05);
+}
+
+/* ── Wrapper ── */
+.cp-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(80px, 12vh, 120px) var(--container-padding, 32px) clamp(40px, 8vh, 80px);
+  box-sizing: border-box;
+}
+
+/* ── Layout Grid ──
+   DOM Order: Intro -> Card -> Quick Contact
+   Desktop: 2 columns via grid-template-rows & grid-column placement
+            Left Column: Intro (row 1), Quick Contact (row 2, controlled margin-top)
+            Right Column: Business Card (spans row 1 & 2, aligned to center of left block)
+   Mobile/Tablet: Single column flex (Intro top -> Card middle -> Quick bottom)
+── */
+.cp-grid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 5vh, 48px);
+}
+
+@media (min-width: 1024px) {
+  .cp-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-rows: auto auto;
+    gap: 0 clamp(48px, 6vw, 80px);
+    align-items: start;
+    align-content: center;
+    min-height: calc(100vh - 200px);
+  }
+
+  .cp-intro {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .cp-quick {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: clamp(36px, 4vw, 54px);
+  }
+
+  .cp-card-zone {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center; /* Center card relative to the unified left column block */
+  }
+}
+
+/* ── Intro Section ── */
+.cp-intro {
+  display: flex;
+  flex-direction: column;
+}
+
+.cp-marker {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  color: var(--cp-text-muted);
+  margin: 0 0 20px 0;
+}
+
+.cp-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--cp-text-primary);
+  margin: 0 0 16px 0;
+}
+
+.cp-sub {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--cp-text-secondary);
+  margin: 0;
+  max-width: 480px;
+}
+
+/* ── Quick Contact ── */
+.cp-quick {
+  padding-top: 24px;
+  border-top: 1px solid var(--cp-border);
+}
+
+.cp-quick-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cp-text-muted);
+  margin: 0 0 10px 0;
+}
+
+.cp-quick-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cp-quick-email {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  color: var(--cp-text-secondary);
+  text-decoration: none;
+  user-select: text;
+  transition: color 0.2s ease;
+}
+
+.cp-quick-email:hover {
+  color: var(--cp-accent);
+}
+
+.cp-copy-btn {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cp-text-primary);
+  background: none;
+  border: 1px solid var(--cp-border-strong);
+  border-radius: 4px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  min-width: 56px;
+  text-align: center;
+}
+
+.cp-copy-btn:hover,
+.cp-copy-btn:focus-visible {
+  border-color: var(--cp-accent);
+  color: var(--cp-accent);
+  outline: none;
+}
+
+.cp-copy-btn:focus-visible {
+  outline: 2px solid var(--cp-accent);
+  outline-offset: 2px;
+}
+
+/* ── Business Card Zone ── */
+.cp-card-zone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Tilt wrapper — owns pointer tilt transform */
+.cp-card-tilt {
+  perspective: 1000px;
+}
+
+/* Flip wrapper — owns the Y-rotation flip transform */
+.cp-card-flip {
+  position: relative;
+  width: clamp(320px, 42vw, 480px);
+  aspect-ratio: 1.62 / 1;
+  transform-style: preserve-3d;
+  transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  outline: none;
+}
+
+.cp-card-flip:focus-visible {
+  outline: 2px solid var(--cp-accent);
+  outline-offset: 6px;
+  border-radius: 18px;
+}
+
+.cp-card-flip.is-flipped {
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-card-flip {
+    transition: none !important;
+  }
+}
+
+/* Shared Card Face styling (Clean Neutral Material for BOTH Front & Back) */
+.cp-card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 18px;
+  border: 1px solid var(--cp-border-strong);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(22px, 3.2vw, 30px);
+  box-sizing: border-box;
+  background-color: var(--cp-card-bg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  user-select: none;
+}
+
+/* ── Card Front ── */
+.cp-front-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cp-card-tag {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cp-text-muted);
+}
+
+.cp-front-main {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 12px 0;
+}
+
+.cp-portrait {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  flex-shrink: 0;
+  border: 1px solid var(--cp-border);
+}
+
+.cp-front-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cp-front-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--cp-text-primary);
+  margin: 0;
+  line-height: 1.15;
+}
+
+.cp-front-role {
+  font-family: var(--font-body);
+  font-size: clamp(0.82rem, 1vw, 0.92rem);
+  color: var(--cp-text-muted);
+  margin: 0;
+}
+
+.cp-card-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--cp-text-muted);
+  text-transform: uppercase;
+  align-self: flex-end;
+  transition: color 0.2s ease;
+}
+
+.cp-card-flip:hover .cp-card-hint {
+  color: var(--cp-accent);
+}
+
+.cp-hint-icon {
+  font-size: 0.85rem;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.cp-card-flip:hover .cp-hint-icon {
+  transform: rotate(45deg);
+}
+
+/* ── Card Back ── */
+.cp-card-back {
+  transform: rotateY(180deg);
+}
+
+.cp-back-header {
+  margin-bottom: 8px;
+}
+
+.cp-back-heading {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cp-text-muted);
+  margin: 0;
+}
+
+.cp-contact-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  justify-content: center;
+}
+
+/* Individual Contact Row */
+.cp-contact-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+}
+
+.cp-row-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.cp-row-icon-box {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cp-row-icon {
+  color: var(--cp-text-muted);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Gmail icon paths transition */
+.brand-gmail path {
+  fill: currentColor;
+  transition: fill 0.3s ease;
+}
+.brand-phone {
+  fill: currentColor;
+}
+
+.cp-row-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cp-row-label {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cp-text-muted);
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.cp-row-action {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  font-weight: 500;
+  color: var(--cp-text-primary);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease;
+}
+
+.cp-row-arrow {
+  font-size: 1.1rem;
+  color: var(--cp-text-muted);
+  flex-shrink: 0;
+  transition: transform 0.25s ease, color 0.25s ease;
+  will-change: transform;
+}
+
+/* ── Desktop Row Hover Behavior ── */
+@media (hover: hover) and (pointer: fine) {
+  .cp-contact-rows:hover .cp-contact-row {
+    opacity: 0.65;
+  }
+
+  .cp-contact-rows .cp-contact-row:hover {
+    opacity: 1;
+    background-color: var(--cp-card-hover-bg);
+    border-color: var(--cp-border);
+  }
+
+  .cp-contact-row:hover .cp-row-label {
+    color: var(--cp-text-primary);
+  }
+
+  /* LinkedIn active color */
+  .cp-contact-row:hover .brand-linkedin {
+    color: #0A66C2 !important;
+    transform: translateX(2px);
+  }
+
+  /* Gmail multi-color paths on hover */
+  .cp-contact-row:hover .brand-gmail {
+    transform: translateX(2px);
+  }
+  .cp-contact-row:hover .brand-gmail .gmail-path-blue { fill: #4285f4 !important; }
+  .cp-contact-row:hover .brand-gmail .gmail-path-red { fill: #ea4335 !important; }
+  .cp-contact-row:hover .brand-gmail .gmail-path-green { fill: #34a853 !important; }
+  .cp-contact-row:hover .brand-gmail .gmail-path-dark-red { fill: #c5221f !important; }
+  .cp-contact-row:hover .brand-gmail .gmail-path-yellow { fill: #fbbc04 !important; }
+
+  /* Phone active color */
+  .cp-contact-row:hover .brand-phone {
+    color: var(--cp-accent) !important;
+    fill: currentColor !important;
+    transform: translateX(2px);
+  }
+
+  .cp-contact-row:hover .cp-row-arrow {
+    transform: translateX(4px);
+    color: var(--cp-text-primary);
+  }
+}
+
+/* Mobile/Tablet Touch Interaction */
+@media (hover: none), (pointer: coarse) {
+  .cp-contact-row:active {
+    background-color: var(--cp-card-hover-bg);
+  }
+
+  .cp-contact-row:active .brand-linkedin {
+    color: #0A66C2 !important;
+  }
+  .cp-contact-row:active .brand-gmail .gmail-path-blue { fill: #4285f4 !important; }
+  .cp-contact-row:active .brand-gmail .gmail-path-red { fill: #ea4335 !important; }
+  .cp-contact-row:active .brand-gmail .gmail-path-green { fill: #34a853 !important; }
+  .cp-contact-row:active .brand-gmail .gmail-path-dark-red { fill: #c5221f !important; }
+  .cp-contact-row:active .brand-gmail .gmail-path-yellow { fill: #fbbc04 !important; }
+
+  .cp-contact-row:active .brand-phone {
+    color: var(--cp-accent) !important;
+    fill: currentColor !important;
+  }
+
+  .cp-contact-row:active .cp-row-arrow {
+    transform: translateX(4px);
+  }
+}
+
+/* Keyboard focus state for contact row */
+.cp-contact-row:focus-visible {
+  outline: 2px solid var(--cp-accent);
+  outline-offset: 2px;
+  background-color: var(--cp-card-hover-bg);
+}
+
+/* ── Entrance Animation helper ── */
+.cp-anim-from {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+/* ── Responsive adjustments ── */
+@media (max-width: 1023px) {
+  .cp-grid {
+    gap: clamp(32px, 5vh, 48px);
+  }
+
+  .cp-card-flip {
+    width: min(440px, 92vw);
+  }
+}
+
+@media (max-width: 599px) {
+  .cp-wrapper {
+    padding-top: clamp(80px, 12vh, 110px);
+  }
+
+  .cp-card-flip {
+    width: calc(100vw - 44px);
+    aspect-ratio: 1.55 / 1;
+  }
+
+  .cp-card-face {
+    padding: 18px 20px;
+  }
+
+  .cp-portrait {
+    width: 54px;
+    height: 54px;
+  }
+
+  .cp-front-name {
+    font-size: 1.2rem;
+  }
+
+  .cp-row-action {
+    font-size: 1rem;
+  }
+
+  .cp-contact-row {
+    padding: 6px 8px;
+  }
+}

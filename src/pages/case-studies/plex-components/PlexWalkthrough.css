@@ -1,0 +1,518 @@
+/* ============================================================
+   PlexWalkthrough.css
+   Section 08 — Walkthrough
+   ============================================================ */
+
+/* ── Root section ──────────────────────────────────────────── */
+.plex-walkthrough {
+  width: 100%;
+  background-color: var(--bg);
+  overflow: hidden; /* prevent any GSAP transform bleed */
+}
+
+/* ── Section header ────────────────────────────────────────── */
+.wt-section-header {
+  padding: 140px 5vw 80px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ── Shared feature typography ─────────────────────────────── */
+.wt-feature-num {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.wt-feature-title {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.wt-feature-desc {
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 420px;
+}
+
+/* ============================================================
+   BRAIN DUMP — Desktop / Laptop
+   ============================================================ */
+.wt-braindum-desktop {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5vw;
+}
+
+.wt-bd-inner {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.wt-bd-meta {
+  position: relative;
+  z-index: 2;
+}
+
+/* Scene container — everything animated goes here */
+.wt-bd-scene-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  will-change: transform;
+}
+
+.wt-bd-scene {
+  position: relative;
+  width: min(420px, 42vw);
+  height: min(700px, 72vh);
+  will-change: transform;
+}
+
+/* ── INPUT LAYER ─────────────────────────────────────────── */
+.wt-bd-input-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: opacity, transform;
+}
+
+.wt-bd-input-box {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.wt-bd-input-hint {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted, var(--text-secondary));
+  margin-bottom: 4px;
+}
+
+.wt-bd-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  will-change: opacity;
+}
+
+.wt-bd-typing-wrapper {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.wt-bd-line-text {
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  color: var(--text-primary);
+  line-height: 1.4;
+  white-space: pre-wrap; /* ensure typing spaces are respected */
+}
+
+.wt-bd-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background-color: var(--accent);
+  vertical-align: middle;
+  margin-left: 2px;
+  opacity: 0; /* GSAP controls this */
+  will-change: opacity;
+}
+
+.wt-bd-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  white-space: nowrap;
+  will-change: opacity, transform;
+}
+
+/* ── CARD LAYER ──────────────────────────────────────────── */
+.wt-bd-card-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  will-change: opacity;
+}
+
+.wt-bd-card-layer--static {
+  position: static;
+  padding: 0;
+}
+
+.wt-bd-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  will-change: opacity, transform;
+}
+
+.wt-bd-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.wt-bd-card-meta {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* ── DASHBOARD LAYER ─────────────────────────────────────── */
+.wt-bd-dash-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: opacity, transform;
+}
+
+.wt-bd-dash-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 24px;
+  display: block;
+}
+
+/* Reveal masks — coloured rectangles sitting over the image */
+.wt-bd-mask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: var(--bg);
+  will-change: opacity;
+  pointer-events: none;
+}
+
+/* Five vertical slices of the dashboard image */
+.wt-bd-mask--1 { top: 0;     height: 14%;  border-radius: 24px 24px 0 0; }
+.wt-bd-mask--2 { top: 14%;   height: 18%; }
+.wt-bd-mask--3 { top: 32%;   height: 20%; }
+.wt-bd-mask--4 { top: 52%;   height: 26%; }
+.wt-bd-mask--5 { top: 78%;   height: 22%; border-radius: 0 0 24px 24px; }
+
+/* ============================================================
+   BRAIN DUMP — Mobile (tablet / phone)
+   ============================================================ */
+.wt-braindum-mobile {
+  width: 100%;
+  padding: 60px 5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.wt-mob-stage {
+  width: 100%;
+  will-change: opacity, transform;
+}
+
+.wt-mob-img {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+/* Stable container for the Brain Dump dashboard mockup.
+   Reserves layout space before the image loads and provides
+   the single GSAP transform target — no competing transforms. */
+.wt-bd-dash-wrapper {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  /* Lock the aspect ratio of the Plex Homepage mockup so the
+     browser reserves the exact height before image loads.
+     The Homepage.png is a phone screen: roughly 9:19.5 */
+  aspect-ratio: 9 / 19.5;
+  border-radius: 20px;
+  overflow: hidden;
+  /* GPU-composite from the start — prevents mid-animation promotion jitter */
+  will-change: opacity, transform;
+  /* Ensure the element is in the compositor before animation */
+  transform: translateZ(0);
+}
+
+.wt-bd-dash-wrapper .wt-mob-img {
+  /* Fill wrapper exactly — no margin shifts inside */
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  margin: 0;
+  border-radius: 0;
+  object-fit: cover;
+}
+
+.wt-bd-tag-row {
+  padding: 10px 0;
+}
+
+.wt-bd-tag-row:last-child {
+  border-bottom: none;
+}
+
+/* Animated divider drawn in by GSAP scaleX */
+.wt-bd-tag-divider {
+  height: 1px;
+  background: var(--border);
+  width: 100%;
+  transform-origin: left center;
+  will-change: transform;
+}
+
+/* Interpretation box — distinct left-accent feel */
+.wt-bd-interp-box {
+  border-left: 2px solid var(--accent);
+}
+
+/* Mobile card — supports borderColor accent transition via GSAP */
+.wt-bd-card--mobile {
+  border: 1px solid var(--border);
+  transition: border-color 0.3s ease;
+  will-change: opacity, transform;
+}
+
+/* ============================================================
+   SIMPLE FEATURE (02–05)
+   ============================================================ */
+.wt-simple-feature {
+  width: 100%;
+  padding: 120px 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+}
+
+.wt-feature-header {
+  text-align: left;
+  max-width: 560px;
+  width: 100%;
+  will-change: opacity, transform;
+}
+
+.wt-feature-header--center {
+  text-align: center;
+}
+
+.wt-feature-header--center .wt-feature-desc {
+  margin: 0 auto;
+}
+
+.wt-imgs-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.wt-imgs-wrap--dual .wt-feature-img {
+  width: calc(50% - 16px);
+}
+
+.wt-feature-img {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+  object-fit: contain;
+  will-change: opacity, transform;
+}
+
+/* ============================================================
+   PRIVACY — Desktop / Laptop (pinned)
+   ============================================================ */
+.wt-privacy-desktop {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wt-privacy-inner {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+}
+
+.wt-privacy-stage {
+  position: relative;
+  width: 100%;
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wt-privacy-word {
+  position: absolute;
+  font-size: clamp(4rem, 8vw, 7rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  will-change: opacity;
+  pointer-events: none;
+  font-family: var(--font-display, inherit);
+}
+
+.wt-privacy-img {
+  width: min(380px, 38vw);
+  height: auto;
+  border-radius: 24px;
+  display: block;
+  will-change: opacity, transform;
+}
+
+/* ============================================================
+   PRIVACY — Mobile
+   ============================================================ */
+.wt-privacy-mobile {
+  width: 100%;
+  padding: 80px 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.wt-privacy-word-row {
+  will-change: opacity, transform;
+}
+
+.wt-privacy-word--stacked {
+  font-size: clamp(3rem, 10vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  display: block;
+  text-align: center;
+}
+
+/* ============================================================
+   RESPONSIVE OVERRIDES
+   ============================================================ */
+
+/* Tablet */
+@media (max-width: 1023px) {
+  .wt-bd-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .wt-bd-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wt-bd-scene {
+    width: min(380px, 80vw);
+    height: min(600px, 65vh);
+  }
+
+  .wt-imgs-wrap--dual {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wt-imgs-wrap--dual .wt-feature-img {
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .wt-simple-feature {
+    padding: 80px 5vw;
+    gap: 48px;
+  }
+}
+
+/* Phone */
+@media (max-width: 767px) {
+  .wt-section-header {
+    padding: 80px 5vw 48px;
+  }
+
+  .wt-simple-feature {
+    padding: 60px 5vw;
+    gap: 36px;
+  }
+
+  .wt-bd-scene {
+    width: min(320px, 85vw);
+    height: min(520px, 60vh);
+  }
+
+  .wt-feature-img {
+    max-width: 320px;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .wt-bd-input-layer,
+  .wt-bd-card-layer,
+  .wt-bd-dash-wrap,
+  .wt-bd-line,
+  .wt-bd-tag,
+  .wt-bd-card,
+  .wt-bd-mask,
+  .wt-privacy-word,
+  .wt-privacy-img,
+  .wt-feature-img,
+  .wt-feature-header,
+  .wt-mob-stage,
+  .wt-privacy-word-row {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

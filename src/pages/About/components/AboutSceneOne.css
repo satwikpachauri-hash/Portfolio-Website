@@ -1,0 +1,305 @@
+.about-page {
+  /* Scoped Theme Variables */
+  --about-bg: var(--bg);
+  --about-text-primary: var(--text-primary);
+  --about-text-secondary: var(--text-secondary);
+  --about-text-muted: var(--text-muted);
+  
+  /* Light Mode Palette */
+  --about-interaction: #4f46e5; /* Deep royal violet / indigo */
+  --about-graphic: #1e3a8a; /* Deep cobalt / slate-blue */
+  
+  /* Shared values to match homepage */
+  --about-border: var(--border-color, rgba(0, 0, 0, 0.1));
+  --about-radius: var(--border-radius, 12px);
+  
+  background-color: var(--about-bg);
+  color: var(--about-text-primary);
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow-x: hidden;
+}
+
+[data-theme="dark"] .about-page {
+  /* Dark Mode Palette */
+  --about-interaction: var(--accent, #a78bfa); /* Portfolio violet */
+  --about-graphic: #818cf8; /* Cool blue-violet / periwinkle */
+  
+  --about-border: var(--border-color, rgba(255, 255, 255, 0.1));
+}
+
+/* Layout Constraints */
+.as1-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: clamp(100px, 15vh, 160px) var(--container-padding, 24px) clamp(64px, 10vh, 120px);
+}
+
+.as1-content {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: clamp(48px, 6vw, 96px);
+}
+
+/* Left Column (~60%) */
+.as1-left-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+}
+
+/* Marker */
+.as1-marker {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  color: var(--about-text-muted);
+  margin-bottom: clamp(24px, 4vh, 48px);
+}
+
+/* Headline */
+.as1-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--about-text-primary);
+  margin: 0 0 24px 0;
+}
+
+.as1-subheadline {
+  font-family: var(--font-body);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  line-height: 1.4;
+  color: var(--about-text-secondary);
+  margin: 0 0 clamp(48px, 8vh, 80px) 0;
+  max-width: 480px;
+}
+
+.as1-br-mobile {
+  display: none;
+}
+
+/* Disciplines */
+.as1-disciplines {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: auto; /* push down slightly if needed */
+}
+
+.as1-disc-primary {
+  display: flex;
+  flex-direction: column;
+}
+
+.as1-disc-title {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+}
+
+.as1-disc-title.interaction {
+  color: var(--about-interaction);
+}
+
+.as1-disc-concepts {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--about-text-primary);
+  margin: 0;
+}
+
+.as1-disc-secondary {
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px;
+  border-top: 1px solid var(--about-border);
+}
+
+.as1-disc-desc {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--about-text-secondary);
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+  max-width: 420px;
+}
+
+.as1-disc-concepts.secondary {
+  color: var(--about-graphic); /* Lower emphasis accent */
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Right Column (~40%) */
+.as1-right-col {
+  width: clamp(300px, 35vw, 420px);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  /* Subtle asymmetry: align portrait slightly lower than headline */
+  padding-top: clamp(32px, 5vh, 64px); 
+}
+
+/* Portrait Frame */
+.as1-portrait-frame {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background-color: var(--about-border);
+  border-radius: var(--about-radius);
+  overflow: hidden;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Very subtle border to match homepage restraint */
+  border: 1px solid var(--about-border);
+}
+
+.as1-portrait-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.as1-placeholder-note {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--about-text-muted);
+  text-align: center;
+  padding: 24px;
+}
+
+/* Signature */
+.as1-signature-block {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.as1-sig-name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--about-text-primary);
+  margin-bottom: 2px;
+}
+
+.as1-sig-role {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--about-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --- RESPONSIVE CHOREOGRAPHY --- */
+
+@media (max-width: 1023px) {
+  /* Tablet */
+  .as1-content {
+    flex-direction: column;
+    gap: 64px;
+  }
+  .as1-right-col {
+    width: 100%;
+    max-width: 480px;
+    padding-top: 0;
+  }
+  .as1-portrait-frame {
+    aspect-ratio: 16 / 9; /* Wider crop for tablet flow */
+  }
+}
+
+@media (max-width: 767px) {
+  /* Phone */
+  .as1-wrapper {
+    padding-top: 100px;
+    padding-bottom: 64px;
+    align-items: flex-start; 
+  }
+  .as1-content {
+    gap: 48px;
+  }
+  .as1-headline {
+    font-size: clamp(2.25rem, 9vw, 3rem);
+    margin-bottom: 16px;
+  }
+  .as1-subheadline {
+    font-size: 1.125rem;
+    margin-bottom: 48px;
+  }
+  .as1-br-mobile {
+    display: block; /* Break line early on narrow screens */
+  }
+  .as1-portrait-frame {
+    aspect-ratio: 4 / 5; /* Back to portrait for mobile */
+    margin-bottom: 16px;
+  }
+  .as1-right-col {
+    order: 2; /* Keep portrait below headline but above disciplines if needed, wait prompt says:
+    ABOUT / Headline / Subheadline / Portrait / Signature / Disciplines */
+    width: 100%;
+  }
+  
+  /* To achieve mobile order, we need to restructure JSX or use flex order */
+  .as1-content {
+    display: contents; /* Allows flattening to sort children */
+  }
+  .as1-left-col {
+    display: contents;
+  }
+  .as1-right-col {
+    display: contents;
+  }
+  
+  /* Rebuilding wrapper flow */
+  .as1-wrapper > .as1-content {
+    display: flex;
+    flex-direction: column;
+  }
+  .as1-left-col, .as1-right-col {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+  }
+  
+  /* Actually, CSS grid or moving elements in JSX is better. I will use flex order within a flattened structure for phone, but it's simpler to just let the right col drop below left col. The prompt says: "Recommended order: ABOUT / I design... / Digital... / [ PORTRAIT ] / Satwik / INTERACTION DESIGN / Visual communication". To do this cleanly, I'll use CSS order on the specific blocks by setting display: contents on the columns at mobile break. */
+  
+  .as1-left-col { display: contents; }
+  .as1-right-col { display: contents; }
+  
+  .as1-marker { order: 1; margin-bottom: 24px; }
+  .as1-headline { order: 2; margin-bottom: 16px; }
+  .as1-subheadline { order: 3; margin-bottom: 32px; }
+  
+  .as1-portrait-frame { order: 4; aspect-ratio: 4 / 5; margin-bottom: 16px; border-radius: 8px; width: 100%; }
+  .as1-signature-block { order: 5; margin-bottom: 48px; }
+  
+  .as1-disciplines { order: 6; gap: 32px; width: 100%; }
+}
+
+@media (max-height: 700px) and (min-width: 1024px) {
+  /* Short Laptop */
+  .as1-right-col { padding-top: 0; }
+  .as1-subheadline { margin-bottom: 32px; }
+  .as1-portrait-frame { margin-bottom: 16px; }
+}

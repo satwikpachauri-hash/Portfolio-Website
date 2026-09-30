@@ -1,0 +1,524 @@
+﻿/* PlexProblemSection.css */
+
+.plex-problem-wrapper { width: 100%; background-color: var(--bg); color: var(--text-primary); display: flex; flex-direction: column; gap: var(--case-study-section-gap); }
+
+/* Cinematic Track & Sticky Container */
+.plex-cinematic-track {
+  height: 350vh; /* Provides plenty of scroll distance for the 7 steps */
+  position: relative; width: 100%; margin: 0 auto;
+}
+
+.plex-cinematic-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  padding: 0 24px;
+}
+
+/* Common Section Label */
+.plex-section-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+/* Intro & Resolution Overlays */
+.plex-cinematic-layout { display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr; align-items: center; justify-items: center; width: 100%; max-width: 1200px; } .plex-cinematic-intro-region, .plex-cinematic-scenario-region, .plex-cinematic-resolution-region { grid-row: 1; grid-column: 1; width: 100%; display: flex; align-items: center; justify-content: center; } .plex-problem-intro, .plex-problem-resolution { text-align: center; max-width: 800px; margin: 0 auto; z-index: 20; }
+
+.plex-intro-main {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.plex-intro-sub {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Task Interface */
+.plex-task-interface {
+  position: relative; width: 100%; margin: 0 auto;
+  max-width: 900px;
+  background-color: var(--nav-surface);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.08), inset 0 1px 1px var(--glass-highlight);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  z-index: 10;
+}
+
+[data-theme="dark"] .plex-task-interface {
+  background-color: rgba(22, 23, 26, 0.6);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4), inset 0 1px 1px var(--glass-highlight);
+}
+
+/* Task Header */
+.plex-task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 24px;
+}
+
+.plex-task-time {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.time-val {
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.time-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+.plex-task-progress {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+/* Task Body */
+.plex-task-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.plex-task-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Task Cards */
+.plex-card {
+  position: relative;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  transition: all 0.4s ease;
+  z-index: 1;
+}
+
+[data-theme="dark"] .plex-card {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.plex-card.important-task {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.plex-card.important-task h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.task-status {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 6px 12px;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.task-status.warning {
+  background-color: rgba(245, 166, 35, 0.15);
+  color: #f5a623;
+}
+
+.task-status.error {
+  background-color: rgba(230, 57, 70, 0.15);
+  color: #e63946;
+}
+
+.plex-card.important-task.missed {
+  border-color: rgba(230, 57, 70, 0.5);
+  background-color: rgba(230, 57, 70, 0.05);
+}
+
+.plex-card.easy-task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+}
+
+.easy-info h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.easy-info span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.easy-check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg);
+}
+
+.plex-card.completed {
+  opacity: 0.5;
+}
+
+.plex-card.completed .easy-check {
+  background-color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+/* Focus Ring */
+.plex-focus-ring {
+  position: absolute;
+  inset: -2px;
+  border: 2px solid var(--text-primary);
+  border-radius: 18px; /* Slightly larger than card border-radius */
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Research Section */
+.plex-research-section {
+  padding: 40px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.plex-research-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.plex-research-header h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.plex-research-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.plex-insight-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+[data-theme="dark"] .plex-insight-card {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.plex-insight-content h3 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.plex-insight-content p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+
+.plex-citation {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  display: block;
+}
+
+/* Visualizations */
+.plex-insight-visual {
+  height: 120px;
+  display: flex;
+  align-items: center;
+}
+
+/* Radial */
+.plex-radial-container { position: relative; width: 140px; height: 140px; margin: 0 auto; display: flex; align-items: center; justify-content: center; } .plex-insight-visual { width: 100%; display: flex; align-items: center; justify-content: center; min-height: 160px; }
+
+.plex-radial-bg {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 8;
+}
+
+.plex-radial-fill {
+  fill: none;
+  stroke: var(--text-primary);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+.plex-radial-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Ruler */
+.plex-ruler-container {
+  width: 100%;
+}
+
+.plex-ruler-track {
+  height: 8px;
+  background-color: var(--border);
+  border-radius: 4px;
+  margin-bottom: 16px;
+  position: relative;
+  
+}
+
+.plex-ruler-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: var(--text-primary);
+  border-radius: 4px;
+}
+
+.plex-ruler-markers {
+  position: relative;
+  height: 20px;
+  width: 100%;
+}
+
+.plex-ruler-markers span {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Comparison */
+.plex-comp-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.plex-comp-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.plex-comp-label {
+  width: 60px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.plex-comp-track {
+  flex: 1;
+  height: 8px;
+  background-color: var(--border);
+  border-radius: 4px;
+  
+}
+
+.plex-comp-fill {
+  height: 100%;
+  background-color: var(--text-primary);
+  border-radius: 4px;
+}
+
+.plex-comp-fill.actual {
+  background-color: #e63946;
+}
+
+.plex-comp-val {
+  width: 40px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+.plex-comp-annotation {
+  position: absolute;
+  right: 60px;
+  top: -24px;
+  background-color: rgba(230, 57, 70, 0.15);
+  color: #e63946;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Conclusion */
+.plex-problem-conclusion {
+  padding: 40px 24px 0 24px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.plex-problem-conclusion h2 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Responsive Overrides */
+@media (max-width: 1023px) {
+  .plex-research-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .plex-task-interface {
+    padding: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .plex-task-interface {
+    padding: 24px;
+  }
+  
+  .plex-task-body {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .plex-task-col {
+    gap: 16px;
+  }
+  
+  .plex-card {
+    padding: 24px;
+  }
+  
+  .plex-card.important-task h3 {
+    font-size: 1.5rem;
+  }
+  
+  .plex-task-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .time-val {
+    font-size: 2rem;
+  }
+  
+  .plex-research-section {
+    padding: 40px 24px;
+  }
+}
+
+@media (max-height: 800px) and (min-width: 1024px) {
+  .plex-task-interface {
+    padding: 24px 32px;
+    gap: 24px;
+  }
+  
+  .plex-task-body {
+    gap: 24px;
+  }
+  
+  .plex-card {
+    padding: 24px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (prefers-reduced-motion: reduce) { .plex-cinematic-track { height: auto !important; padding: 100px 24px; } .plex-cinematic-sticky { position: relative !important; height: auto !important; } .plex-cinematic-layout { display: flex !important; flex-direction: column !important; gap: 80px !important; } .plex-cinematic-intro-region, .plex-cinematic-scenario-region, .plex-cinematic-resolution-region { position: relative !important; opacity: 1 !important; transform: none !important; width: 100%; display: flex; justify-content: center; } .plex-radial-fill, .plex-ruler-fill, .plex-comp-fill { animation: none !important; transition: none !important; } .plex-radial-fill { stroke-dashoffset: 0 !important; } .plex-ruler-fill { width: 100% !important; } .plex-comp-fill { width: 61% !important; } .plex-comp-fill.actual { width: 100% !important; } }
+
+
+
+
+
+
+.check-icon { opacity: 0; transform: scale(0.9); transition: opacity 0.3s ease, transform 0.3s ease; display: flex; align-items: center; justify-content: center; } .check-icon.visible { opacity: 1; transform: scale(1); } .plex-focus-ring { opacity: 0; transition: opacity 0.3s ease; } .plex-focus-ring.active { opacity: 1; }
+
+.plex-focus-ring-global { position: absolute; border: 2px solid var(--text-primary); border-radius: 22px; pointer-events: none; z-index: 2; box-sizing: border-box; box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); }
+

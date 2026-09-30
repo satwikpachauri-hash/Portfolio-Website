@@ -1,0 +1,405 @@
+/* PlexDesignExploration.css */
+
+.plex-design-exploration {
+  width: 100%;
+  padding: 160px 5vw;
+  background-color: var(--bg);
+  position: relative;
+}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+.exploration-header {
+  max-width: 700px;
+  margin: 0 auto 120px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.exploration-header h2 {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin-top: 24px;
+}
+
+.exploration-header p {
+  font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-top: 24px;
+}
+
+/* ==========================================================================
+   ITERATION STATISTIC  (replaces the two PNG overview boards)
+   ========================================================================== */
+
+.iteration-stat {
+  max-width: 680px;
+  margin: 0 auto 160px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* ── Number ──────────────────────────────────────────────── */
+.iteration-number {
+  /*
+    Reserve the full width of the widest possible value "150+"
+    so the surrounding layout never shifts as the counter runs.
+  */
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  min-width: 14ch;         /* generous reservation for 3-digit + plus */
+  font-size: clamp(7rem, 14vw, 13rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums; /* prevent digit-width jitter */
+  margin-bottom: 28px;
+}
+
+.iteration-digits {
+  display: inline-block;
+  min-width: 3ch;          /* always hold space for 3 characters "150" */
+  text-align: right;
+}
+
+.iteration-plus {
+  /* Starts at same color as the number; GSAP tweens to accent at the end */
+  color: var(--text-primary);
+  transition: color 0s;    /* let GSAP own the color transition */
+  display: inline-block;
+}
+
+/* ── Label ──────────────────────────────────────────────── */
+.iteration-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 36px;
+}
+
+/* ── Progress track ─────────────────────────────────────── */
+.iteration-track {
+  position: relative;
+  width: min(480px, 80%);
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 36px;
+  overflow: visible;
+}
+
+.iteration-track-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--accent);
+  transform-origin: left center;
+  /* initial scaleX set by GSAP; pre-promote to GPU */
+  will-change: transform;
+  transform: scaleX(0) translateZ(0);
+}
+
+/* Tiny vertical markers along the track */
+.iteration-marker {
+  position: absolute;
+  top: -4px;
+  width: 1px;
+  height: 9px;
+  background: var(--accent);
+  opacity: 0;             /* GSAP animates opacity 0 → 0.55 */
+  will-change: opacity;
+  transform: translateX(-50%);
+}
+
+/* ── Description ────────────────────────────────────────── */
+.iteration-desc {
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 420px;
+}
+
+
+/* ==========================================================================
+   COMPARISON BLOCKS (Desktop Base)
+   ========================================================================== */
+.comparisons-container {
+  display: flex;
+  flex-direction: column;
+  /* Use consistent comparison-gap */
+  gap: var(--comparison-gap, 240px);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.comparison-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.comparison-title {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  text-align: center;
+  margin-bottom: 80px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Images Row */
+.comparison-images {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(32px, 5vw, 80px); /* Controlled comparison gap */
+  margin-bottom: 64px;
+}
+
+.comparison-side {
+  flex: 0 1 auto; /* Let it shrink to image size */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comparison-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent, #6366f1);
+  margin-bottom: 24px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  text-transform: uppercase;
+}
+
+.comparison-img {
+  height: min(650px, 68vh);
+  width: auto;
+  max-width: 100%;
+  aspect-ratio: auto;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.06);
+}
+
+[data-theme="dark"] .comparison-img {
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+}
+
+/* Details Row */
+.comparison-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 80px); /* Match image gap */
+  max-width: 800px; /* Constrain width so text aligns with the mockups above */
+  margin: 0 auto;
+}
+
+.detail-column {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.detail-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: normal;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  text-transform: none;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  width: 100%;
+}
+
+.detail-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+}
+
+.detail-list li {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.95rem; /* Reduced font size to match reference */
+}
+
+.detail-list li span {
+  width: min(100%, 360px); /* Further constrain width to match the exact visual wrapping in reference */
+}
+
+.detail-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px; /* Align precisely with the first line of text */
+}
+
+.problem-icon {
+  color: #ef4444; /* Coral/Red for problems */
+}
+
+.solution-icon {
+  color: #10b981; /* Teal/Green for solutions */
+}
+
+/* We removed the old bullet `::before` pseudo-element in the JSX and replacing it here by completely overwriting it */
+
+/* ==========================================================================
+   LAPTOP (1440x900 etc)
+   ========================================================================== */
+@media (max-width: 1440px) {
+  .comparisons-container {
+    gap: 160px;
+  }
+  .comparison-images {
+    gap: 24px;
+  }
+  .comparison-details {
+    gap: 40px;
+  }
+  .detail-column {
+    padding: 32px;
+  }
+}
+
+/* ==========================================================================
+   TABLET (Max 1024px)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .plex-design-exploration {
+    padding: 120px 5vw;
+  }
+  
+
+  .comparison-images {
+    gap: 40px;
+  }
+  
+  .comparisons-container {
+    gap: 140px;
+  }
+
+  /* Stack problems and solutions nicely */
+  .comparison-details {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  /* Tablet: moderately sized stat */
+  .iteration-number {
+    font-size: clamp(5.5rem, 12vw, 9rem);
+  }
+  .iteration-track {
+    width: min(380px, 80%);
+  }
+}
+
+/* ==========================================================================
+   PHONE (Mobile-first vertical flow)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .plex-design-exploration {
+    padding: 80px 5vw;
+  }
+
+  .exploration-header {
+    margin-bottom: 80px;
+  }
+  
+  .exploration-header h2 {
+    font-size: 2.5rem;
+  }
+
+  /* Phone: reduced number size, shorter track */
+  .iteration-number {
+    font-size: clamp(4.5rem, 18vw, 7rem);
+    min-width: 8ch;
+  }
+
+  .iteration-stat {
+    margin-bottom: 100px;
+  }
+
+  .iteration-track {
+    width: min(280px, 78%);
+  }
+
+  /* Comparisons */
+  .comparisons-container {
+    gap: 120px;
+  }
+
+  .comparison-title {
+    margin-bottom: 40px;
+    font-size: 2rem;
+  }
+
+  .comparison-images {
+    flex-direction: column;
+    gap: 60px;
+    margin-bottom: 40px;
+  }
+
+  .detail-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .comparison-label {
+    margin-bottom: 16px;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .overview-board,
+  .comparison-side,
+  .comparison-details,
+  .exploration-header,
+  .comparison-title {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  /* Stat: show final state without animation */
+  .iteration-track-fill {
+    transform: scaleX(1) !important;
+  }
+  .iteration-marker {
+    opacity: 0.55 !important;
+  }
+  .iteration-plus {
+    color: var(--accent) !important;
+  }
+}

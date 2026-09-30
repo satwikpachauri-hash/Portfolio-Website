@@ -1,0 +1,286 @@
+/* PlexProductVision.css */
+
+.plex-product-vision {
+  width: 100%;
+  position: relative;
+  background-color: var(--bg);
+}
+
+.vision-standard-render {
+  display: block;
+}
+
+.vision-rm-render {
+  display: none;
+}
+
+/* ==========================================================================
+   DESKTOP / LAPTOP (Sticky 2-column)
+   ========================================================================== */
+.vision-desktop-container {
+  height: 400vh; /* Moderate total scroll span */
+  position: relative;
+  width: 100%;
+}
+
+.vision-desktop-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Protect navbar area robustly */
+  padding-top: max(80px, 8vh);
+  padding-bottom: max(40px, 4vh);
+  box-sizing: border-box;
+}
+
+.vision-desktop-stage {
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 5vw;
+  display: flex;
+  flex-direction: column;
+  height: 100%; 
+  max-height: 1000px; 
+}
+
+.vision-header-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+  margin-top: 15vh; /* Move headings downwards noticeably */
+  margin-bottom: clamp(32px, 5vh, 64px);
+}
+
+.vision-main-title {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin-top: 24px;
+}
+
+.vision-presentation-area {
+  display: flex;
+  flex: 1; 
+  align-items: center; /* Vertically centers the text and phone */
+  justify-content: space-between;
+  gap: 40px;
+  min-height: 0;
+}
+
+.vision-text-col {
+  flex: 1;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  transform: translateY(-6vh); /* Balance text slightly with upward phone */
+}
+
+.vision-text-stable-region {
+  position: relative;
+  width: 100%;
+  display: grid;
+  align-items: center;
+  min-height: 280px; 
+}
+
+.vision-text-block {
+  grid-area: 1 / 1;
+  width: 100%;
+}
+
+.vision-principle-number {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 16px;
+}
+
+.vision-principle-title {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  line-height: 1.1;
+  margin-bottom: 24px;
+  white-space: pre-line;
+}
+
+.vision-principle-desc {
+  font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.vision-phone-col {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+}
+
+.vision-phone-mockup {
+  height: min(860px, 75vh);
+  aspect-ratio: 1 / 2;
+  width: auto;
+  border-radius: clamp(24px, 4vh, 40px);
+  border: clamp(8px, 1.5vh, 12px) solid var(--border);
+  background-color: var(--surface);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.15);
+  transform: translateY(-18vh); /* Move phone mockup more upwards to middle of screen */
+}
+
+[data-theme="dark"] .vision-phone-mockup {
+  border-color: #2a2a2a;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+}
+
+.vision-screen-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: clamp(16px, 3vh, 28px);
+}
+
+/* Short height laptop media query */
+@media (max-height: 800px) and (min-width: 1024px) {
+  .vision-phone-mockup {
+    height: min(720px, 65vh); 
+  }
+  .vision-principle-title {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+  }
+  .vision-text-stable-region {
+    min-height: 240px;
+  }
+  .vision-header-group {
+    margin-bottom: 4vh;
+  }
+}
+
+/* ==========================================================================
+   TABLET (Centered Simplified)
+   ========================================================================== */
+.vision-tablet-container {
+  height: 350vh;
+  position: relative;
+  width: 100%;
+}
+
+.vision-tablet-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: max(80px, 8vh);
+  box-sizing: border-box;
+}
+
+.vision-tablet-stage {
+  width: 100%;
+  padding: 0 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  max-height: 1000px;
+}
+
+.tablet-header {
+  align-items: center;
+  text-align: center;
+}
+
+.tablet-phone {
+  height: min(500px, 45vh);
+  margin-bottom: 32px;
+  transform: none; /* Reset desktop transform */
+}
+
+.tablet-text {
+  text-align: center;
+  max-width: 600px;
+  min-height: 200px;
+}
+
+.tablet-block {
+  text-align: center;
+}
+
+/* ==========================================================================
+   PHONE (Mobile-First Vertical Flow)
+   ========================================================================== */
+.vision-phone-container,
+.vision-reduced-motion-container {
+  padding: 100px 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.phone-header {
+  align-items: center;
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.vision-phone-sequence {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.vision-phone-stage-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 40px;
+}
+
+.mobile-phone {
+  width: 280px;
+  height: 560px;
+  aspect-ratio: auto;
+  border-width: 10px;
+  border-radius: 32px;
+  transform: none; /* Reset desktop transform */
+}
+
+.static-screen {
+  position: relative;
+  border-radius: 22px;
+}
+
+.vision-mobile-text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .vision-standard-render {
+    display: none !important;
+  }
+  .vision-rm-render {
+    display: block !important;
+  }
+}

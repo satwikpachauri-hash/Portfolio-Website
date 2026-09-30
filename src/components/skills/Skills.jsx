@@ -154,6 +154,7 @@ export default function Skills() {
     const SOFTWARE_MARQUEE_SPEED = 45; 
     
     const syncSpeed = () => {
+      if (!softwareGroupRef.current || !designGroupRef.current) return;
       const swWidth = softwareGroupRef.current.getBoundingClientRect().width;
       const dsWidth = designGroupRef.current.getBoundingClientRect().width;
       

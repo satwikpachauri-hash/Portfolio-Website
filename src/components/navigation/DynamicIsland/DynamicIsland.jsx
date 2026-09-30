@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { navigationLinks } from '../../../data/navigation';
 import { useViewportClasses } from '../../../hooks/useMediaQuery';
 import { useTheme } from '../../../hooks/useTheme';
@@ -26,6 +26,8 @@ export default function DynamicIsland() {
   const [viewport, setViewport] = useState('desktop');
   const containerRef = useRef(null);
   const { theme, setTheme } = useTheme();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleResize = () => {
@@ -110,6 +112,26 @@ export default function DynamicIsland() {
     setTimeout(() => {
       setNavState(STATE.CLOSED);
     }, 750); // 600-750: rise to pill
+  };
+
+  // Handle anchor links that must always resolve on the homepage
+  const handleAnchorNav = (e, hash) => {
+    e.preventDefault();
+    handleClose();
+    const sectionId = hash.replace('#', '');
+    if (location.pathname === '/') {
+      // Already on homepage — just scroll
+      const el = document.getElementById(sectionId);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Navigate to homepage first, then scroll after render
+      navigate('/');
+      // Small timeout allows the homepage to mount before scrolling
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
   };
 
   // Dimensions based on viewport
@@ -270,7 +292,11 @@ export default function DynamicIsland() {
                           {link.label}
                         </a>
                       ) : link.path.startsWith('#') ? (
-                        <a href={link.path} className="font-display" onClick={handleClose}>
+                        <a
+                          href={link.path}
+                          className="font-display"
+                          onClick={(e) => handleAnchorNav(e, link.path)}
+                        >
                           {link.label}
                         </a>
                       ) : (

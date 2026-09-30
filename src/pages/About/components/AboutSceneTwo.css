@@ -1,0 +1,268 @@
+/* AboutSceneTwo.css */
+
+/* Layout Constraints */
+.as2-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: clamp(64px, 10vh, 120px) var(--container-padding, 24px) clamp(100px, 15vh, 160px);
+}
+
+.as2-content {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: clamp(48px, 8vw, 120px);
+}
+
+.as2-left-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+}
+
+.as2-right-col {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  /* Required for pinning in GSAP to stay stable */
+  align-self: flex-start; 
+}
+
+/* Header */
+.as2-marker {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  color: var(--about-text-muted);
+  margin-bottom: 24px;
+}
+
+.as2-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--about-text-primary);
+  margin: 0 0 clamp(48px, 8vh, 80px) 0;
+}
+
+/* Principles */
+.as2-principles-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.as2-principle {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 24px 0;
+  border-top: 1px solid var(--about-border);
+}
+
+.as2-principle.last {
+  border-bottom: 1px solid var(--about-border);
+}
+
+.as2-p-num {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--about-text-muted);
+  margin-right: 32px;
+  margin-top: 4px;
+  transition: color 0.3s ease;
+}
+
+.as2-p-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.as2-p-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--about-text-secondary);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.as2-p-desc {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  color: var(--about-text-secondary);
+  line-height: 1.5;
+  margin: 16px 0 0 0;
+  max-width: 460px;
+}
+
+/* Active State */
+.as2-principle.active .as2-p-num {
+  color: var(--about-interaction);
+}
+.as2-principle.active .as2-p-title {
+  color: var(--about-text-primary);
+}
+
+/* Inactive State */
+.as2-principle.inactive {
+  opacity: 0.7; /* Slightly stronger than previous 0.6 */
+}
+.as2-principle.inactive .as2-p-title {
+  font-size: clamp(1.125rem, 1.5vw, 1.25rem);
+}
+
+/* Visual Demonstration */
+.as2-visual-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.as2-demo-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.as2-node {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  background-color: transparent;
+}
+
+.as2-node span {
+  position: absolute;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--about-text-primary); /* Stronger contrast */
+  text-transform: uppercase;
+}
+
+/* Starting Positions (scattered corners) */
+.as2-node.n1 { top: 20%; left: 20%; transform: translate(-50%, -50%); }
+.as2-node.n2 { top: 20%; left: 80%; transform: translate(-50%, -50%); }
+.as2-node.n3 { top: 80%; left: 20%; transform: translate(-50%, -50%); }
+.as2-node.n4 { top: 80%; left: 80%; transform: translate(-50%, -50%); }
+
+/* Restrained structural circle */
+.as2-demo-lines {
+  position: absolute;
+  inset: 28%;
+  border: 1px solid var(--about-border);
+  opacity: 0.6; /* Stronger contrast */
+  border-radius: 50%;
+}
+
+.as2-node-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.as2-center-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--about-interaction);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--about-bg), 0 0 0 4px var(--about-border);
+}
+
+.as2-center-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--about-interaction);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Additional elements for animations */
+.as2-hier-line {
+  position: absolute;
+  border-radius: 2px;
+}
+.as2-hier-line.arrow {
+  height: 2px;
+  background-color: var(--about-border);
+}
+
+/* Visibility toggles for responsive order */
+.as2-mobile-visual {
+  display: none;
+  padding: 48px 0;
+}
+
+.as2-desktop-visual {
+  display: flex;
+}
+
+/* --- RESPONSIVE CHOREOGRAPHY --- */
+
+@media (max-width: 1023px) {
+  /* Tablet */
+  .as2-content {
+    flex-direction: column;
+    gap: 0;
+  }
+  .as2-left-col {
+    max-width: 100%;
+  }
+  .as2-desktop-visual {
+    display: none;
+  }
+  .as2-mobile-visual {
+    display: flex;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Phone */
+  .as2-wrapper {
+    padding-top: 64px;
+    padding-bottom: 80px;
+  }
+  .as2-heading {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+    margin-bottom: 40px;
+  }
+  .as2-p-num {
+    margin-right: 20px;
+  }
+  /* Compress visual demo on phone */
+  .as2-visual-wrapper {
+    max-width: 300px;
+  }
+  .as2-node.n1 { top: 15%; left: 15%; }
+  .as2-node.n2 { top: 15%; left: 85%; }
+  .as2-node.n3 { top: 85%; left: 15%; }
+  .as2-node.n4 { top: 85%; left: 85%; }
+}

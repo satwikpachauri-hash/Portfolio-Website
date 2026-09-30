@@ -1,0 +1,446 @@
+/* ExperiencePage.css — scoped to .exp-page — rebuilt */
+
+/* ─── Animation helpers ──────────────────────────────────────
+   These target elements added for GSAP animation only.
+   All other styles are unchanged from the approved static pass.
+──────────────────────────────────────────────────────────────*/
+
+/*
+  exp-record-rule-anim — a real DOM element GSAP can target for scaleX.
+  Replaces the ::before pseudo-element on primary/secondary entries for
+  the animated rule. Sits at the very top of the article.
+*/
+.exp-primary-entry .exp-record-rule-anim,
+.exp-secondary-entry .exp-record-rule-anim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--exp-accent);
+  opacity: 0.6;
+  transform-origin: left center;
+  /* Will-change for GPU compositing */
+  will-change: transform, opacity;
+}
+
+/* Remove the CSS ::before now that the DOM element exists */
+.exp-primary-entry::before {
+  display: none;
+}
+
+/* Focus accent — toggled by ScrollTrigger class management */
+.exp-entry--focus .exp-entry-num {
+  color: var(--exp-accent);
+  transition: color 0.3s ease;
+}
+
+.exp-entry--focus .exp-record-rule-anim {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+/* Reduced motion — all from states are 'already arrived', content always visible */
+@media (prefers-reduced-motion: reduce) {
+  .exp-primary-entry .exp-record-rule-anim,
+  .exp-secondary-entry .exp-record-rule-anim {
+    will-change: auto;
+  }
+}
+
+
+
+/* ── Theme palette ── */
+.exp-page {
+  --exp-text-primary:   var(--text-primary);
+  --exp-text-secondary: var(--text-secondary);
+  --exp-text-muted:     var(--text-muted);
+  --exp-accent:         var(--accent, #818cf8);
+  --exp-border:         var(--border-color, rgba(0,0,0,0.1));
+  --exp-bg:             var(--bg);
+
+  background-color: var(--exp-bg);
+  color: var(--exp-text-primary);
+  min-height: 100svh;
+  overflow-x: hidden;
+}
+
+[data-theme="dark"] .exp-page {
+  --exp-accent: #a78bfa;
+  --exp-border: rgba(255,255,255,0.1);
+}
+
+/* ── Page wrapper ── */
+.exp-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: clamp(100px, 14vh, 160px) var(--container-padding, 32px) clamp(80px, 12vh, 140px);
+}
+
+/* ─────────────────────────────────────────
+   INTRO
+───────────────────────────────────────── */
+.exp-intro {
+  margin-bottom: clamp(56px, 8vh, 80px);
+  max-width: 640px;
+}
+
+.exp-marker {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  color: var(--exp-text-muted);
+  margin-bottom: 20px;
+}
+
+.exp-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--exp-text-primary);
+  margin: 0 0 18px 0;
+}
+
+.exp-supporting {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--exp-text-secondary);
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────
+   GROUP LABEL
+───────────────────────────────────────── */
+.exp-group-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--exp-text-muted);
+  margin-bottom: 0;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--exp-border);
+}
+
+/* ─────────────────────────────────────────
+   DESIGN EXPERIENCE — RICH ENTRIES
+───────────────────────────────────────── */
+.exp-design-group {
+  margin-bottom: clamp(48px, 8vh, 80px);
+}
+
+/* Primary entry: 1 Artifact Decor — 2 col layout */
+.exp-primary-entry {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0 clamp(40px, 6vw, 80px);
+  padding: clamp(36px, 5vh, 56px) 0;
+  border-bottom: 1px solid var(--exp-border);
+  position: relative;
+}
+
+/* Accent rule on top of primary entry */
+.exp-primary-entry::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--exp-accent);
+  opacity: 0.6;
+}
+
+/* Left meta column */
+.exp-meta-col {
+  display: flex;
+  flex-direction: column;
+  padding-top: 4px;
+}
+
+.exp-entry-num {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--exp-accent);
+  margin-bottom: 16px;
+}
+
+.exp-entry-year {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--exp-text-primary);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.exp-entry-period {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--exp-text-muted);
+  letter-spacing: 0.02em;
+  margin-bottom: 24px;
+}
+
+.exp-entry-location {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--exp-text-muted);
+  line-height: 1.5;
+}
+
+/* Right content column */
+.exp-content-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.exp-entry-org {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--exp-text-primary);
+  margin: 0 0 6px 0;
+  line-height: 1.1;
+}
+
+.exp-entry-role {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--exp-text-muted);
+  margin-bottom: 28px;
+}
+
+.exp-entry-context {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.2vw, 1.075rem);
+  color: var(--exp-text-secondary);
+  line-height: 1.65;
+  margin: 0 0 28px 0;
+  max-width: 520px;
+}
+
+/* Contribution list */
+.exp-contributions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.exp-contribution {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.exp-c-num {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--exp-accent);
+  flex-shrink: 0;
+  padding-top: 3px;
+  min-width: 20px;
+}
+
+.exp-c-text {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--exp-text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────
+   SECONDARY DESIGN ENTRY — GVPS
+   Typographic-only — no image
+───────────────────────────────────────── */
+.exp-secondary-entry {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0 clamp(40px, 6vw, 80px);
+  padding: clamp(28px, 4vh, 44px) 0;
+  border-bottom: 1px solid var(--exp-border);
+}
+
+.exp-secondary-entry .exp-entry-year {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: var(--exp-text-secondary);
+}
+
+.exp-secondary-entry .exp-entry-org {
+  font-size: clamp(1.125rem, 2vw, 1.75rem);
+  color: var(--exp-text-primary);
+}
+
+/* ─────────────────────────────────────────
+   TRANSITION BRIDGE
+───────────────────────────────────────── */
+.exp-bridge {
+  padding: clamp(36px, 5vh, 56px) 0;
+  border-bottom: 1px solid var(--exp-border);
+}
+
+.exp-bridge-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--exp-text-muted);
+  margin-bottom: 10px;
+}
+
+.exp-bridge-statement {
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 1.1vw, 1rem);
+  color: var(--exp-text-muted);
+  font-style: italic;
+  margin: 0;
+  max-width: 480px;
+}
+
+/* ─────────────────────────────────────────
+   EARLIER EXPERIENCE — COMPACT
+───────────────────────────────────────── */
+.exp-earlier-group {
+  margin-top: 0;
+}
+
+.exp-compact-entries {
+  display: flex;
+  flex-direction: column;
+}
+
+.exp-compact-entry {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0 clamp(40px, 6vw, 80px);
+  padding: 20px 0;
+  border-bottom: 1px solid var(--exp-border);
+  align-items: baseline;
+}
+
+.exp-compact-year {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--exp-text-muted);
+}
+
+.exp-compact-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.exp-compact-org {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--exp-text-secondary);
+  margin: 0;
+}
+
+.exp-compact-role {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--exp-text-muted);
+  letter-spacing: 0.03em;
+}
+
+.exp-compact-period {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--exp-text-muted);
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+
+@media (max-width: 1023px) {
+  /* Tablet — tighten grid columns */
+  .exp-primary-entry,
+  .exp-secondary-entry,
+  .exp-compact-entry {
+    grid-template-columns: 140px 1fr;
+    gap: 0 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Phone — collapse all to single column */
+  .exp-wrapper {
+    padding-top: 100px;
+  }
+
+  .exp-primary-entry,
+  .exp-secondary-entry,
+  .exp-compact-entry {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+
+  .exp-meta-col {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .exp-entry-num {
+    margin-bottom: 0;
+  }
+
+  .exp-entry-year {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    margin-bottom: 0;
+  }
+
+  .exp-entry-period {
+    margin-bottom: 0;
+    flex-basis: 100%;
+  }
+
+  .exp-entry-location {
+    flex-basis: 100%;
+  }
+
+  .exp-secondary-entry .exp-meta-col {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .exp-compact-year {
+    font-size: 0.875rem;
+    margin-bottom: 6px;
+  }
+
+  .exp-compact-entry {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .exp-bridge {
+    padding: 28px 0;
+  }
+}

@@ -1,0 +1,37 @@
+﻿.case-study-section-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--chip-bg, rgba(23, 62, 73, 0.04));
+  border: 1px solid var(--chip-border, rgba(23, 62, 73, 0.22));
+  color: var(--chip-text, #526A71);
+  padding: 8px 18px;
+  border-radius: 9999px;
+  margin-bottom: 24px;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  
+}
+
+[data-theme="dark"] .case-study-section-chip {
+  background-color: rgba(140, 180, 200, 0.08);
+  border-color: rgba(140, 180, 200, 0.2);
+  color: #a3c2cf;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.chip-number {
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.chip-separator {
+  opacity: 0.4;
+}
+
+.chip-title {
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+

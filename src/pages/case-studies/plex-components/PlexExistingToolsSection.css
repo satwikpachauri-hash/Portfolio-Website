@@ -1,0 +1,574 @@
+﻿/* PlexExistingToolsSection.css */
+
+.plex-existing-tools-wrapper {
+  width: 100%;
+  height: 350vh; /* scroll distance for the sequence */
+  position: relative;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  /* Generous bottom spacing for transition */
+  margin-bottom: 0;
+}
+
+.plex-tools-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Common Phase Wrapper */
+.plex-tools-phase {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+}
+
+/* Phase 1: Intro */
+.intro-phase {
+  text-align: center;
+  z-index: 5;
+}
+
+.plex-tools-main {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+
+.plex-tools-sub {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Phase 2: Dashboard */
+.dashboard-phase {
+  z-index: 10;
+}
+
+.plex-workspace-scale-wrapper {
+  position: relative;
+  width: 90vw;
+  max-width: 1100px;
+  height: 70vh;
+  max-height: 650px;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.plex-workspace-dashboard {
+  width: 100%;
+  height: 100%;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: 220px 1fr 280px;
+  grid-template-rows: 64px 1fr;
+  grid-template-areas:
+    "top top top"
+    "sidebar main right";
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.08), inset 0 1px 1px var(--glass-highlight);
+  /* Use transform for smooth blur rendering */
+  will-change: filter;
+}
+
+[data-theme="dark"] .plex-workspace-dashboard {
+  background-color: rgba(22, 23, 26, 0.6);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4), inset 0 1px 1px var(--glass-highlight);
+}
+
+/* Top Bar */
+.plex-workspace-topbar {
+  grid-area: top;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.plex-topbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.plex-workspace-logo {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.plex-topbar-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg);
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  width: 280px;
+}
+
+.plex-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.plex-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+
+/* Sidebar */
+.plex-workspace-sidebar {
+  grid-area: sidebar;
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+.plex-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: var(--text-secondary);
+}
+
+.plex-sidebar-item.active {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-weight: 600;
+  border: 1px solid var(--border);
+}
+
+.plex-sidebar-spacer {
+  flex: 1;
+}
+
+/* Main Task Area */
+.plex-workspace-main {
+  grid-area: main;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: var(--bg);
+}
+
+.plex-task-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+[data-theme="dark"] .plex-task-row {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.plex-task-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.plex-task-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.plex-task-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.plex-task-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.plex-task-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.plex-task-status {
+  padding: 6px 12px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  min-width: 80px;
+  text-align: center;
+}
+
+.status-high { background-color: rgba(230, 57, 70, 0.1); color: #e63946; }
+.status-draft { background-color: var(--border); color: var(--text-secondary); }
+.status-medium { background-color: rgba(245, 166, 35, 0.1); color: #f5a623; }
+.status-routine { background-color: rgba(99, 102, 241, 0.1); color: #4f46e5; }
+
+/* Right Panel */
+.plex-workspace-rightpanel {
+  grid-area: right;
+  border-left: 1px solid var(--border);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+.plex-panel-widget h4 {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.plex-month-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.plex-calendar-mock {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.plex-cal-day {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.plex-cal-day.active {
+  background-color: rgba(99, 102, 241, 0.2);
+  border-color: #4f46e5;
+}
+
+.plex-schedule-item {
+  padding: 12px;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  border-left: 3px solid #f5a623;
+}
+
+.plex-reminder-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Friction Layer */
+.plex-friction-layer {
+  position: absolute;
+  inset: -100px; /* Allow items to float slightly outside the dashboard if needed */
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* Friction Visual Variables */
+:root {
+  --friction-bg: rgba(255, 255, 255, 0.8);
+  --friction-border: rgba(0, 0, 0, 0.1);
+  --friction-text: #1a1a1a;
+  --friction-icon: #666;
+  --friction-accent: #4f46e5;
+}
+
+[data-theme="dark"] {
+  --friction-bg: rgba(35, 35, 40, 0.85);
+  --friction-border: rgba(255, 255, 255, 0.15);
+  --friction-text: #ffffff;
+  --friction-icon: #a0a0a0;
+  --friction-accent: #818cf8;
+}
+
+.plex-friction-wrapper {
+  position: absolute;
+  top: var(--t);
+  left: var(--l);
+  transform: translate(-50%, -50%);
+}
+
+.plex-friction-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--friction-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--friction-border);
+  border-radius: 8px;
+  padding: 10px 16px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  color: var(--friction-text);
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+[data-theme="dark"] .plex-friction-item {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.friction-icon {
+  color: var(--friction-icon);
+}
+
+.friction-icon.trailing {
+  margin-left: 4px;
+}
+
+.friction-icon.accent {
+  color: var(--friction-accent);
+}
+
+.friction-color-indicator {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #e63946;
+  margin-left: 4px;
+}
+
+.type-input {
+  border: 1px solid var(--friction-accent);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+/* Friction Desktop Positions */
+.f-0 { --t: 20%; --l: 25%; }
+.f-1 { --t: 28%; --l: 65%; }
+.f-2 { --t: 40%; --l: 40%; }
+.f-3 { --t: 15%; --l: 50%; }
+.f-4 { --t: 45%; --l: 75%; }
+.f-5 { --t: 60%; --l: 30%; }
+.f-6 { --t: 10%; --l: 80%; }
+.f-7 { --t: 70%; --l: 60%; }
+.f-8 { --t: 80%; --l: 40%; }
+.f-9 { --t: 50%; --l: 15%; }
+
+/* Phase 3: Conclusion */
+.conclusion-phase {
+  text-align: center;
+  z-index: 30;
+}
+
+.plex-tools-conclusion {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+
+.plex-tools-conclusion-sub {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: var(--text-muted);
+  line-height: 1.5;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+
+/* RESPONSIVE DESIGN */
+
+/* Laptop */
+@media (max-width: 1200px) {
+  .plex-workspace-dashboard {
+    grid-template-columns: 200px 1fr 240px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .plex-workspace-scale-wrapper {
+    width: 95vw;
+  }
+  
+  .plex-workspace-dashboard {
+    grid-template-columns: 64px 1fr 200px;
+  }
+  
+  .sidebar-label {
+    display: none;
+  }
+  
+  .plex-sidebar-item {
+    justify-content: center;
+    padding: 12px;
+  }
+  
+  .plex-topbar-search {
+    width: 200px;
+  }
+  
+  .f-0 { --t: 18%; --l: 20%; }
+  .f-1 { --t: 25%; --l: 75%; }
+  .f-2 { --t: 42%; --l: 35%; }
+  .f-3 { --t: 12%; --l: 50%; }
+  .f-4 { --t: 48%; --l: 80%; }
+  .f-5 { --t: 65%; --l: 25%; }
+  .f-6 { --t: 10%; --l: 85%; }
+  .f-7 { --t: 75%; --l: 65%; }
+  .f-8 { --t: 85%; --l: 45%; }
+  .f-9 { --t: 50%; --l: 15%; }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .plex-workspace-scale-wrapper {
+    width: 100vw;
+    height: 100svh;
+    max-height: none;
+    border-radius: 0;
+  }
+  
+  .plex-workspace-dashboard {
+    border-radius: 0;
+    border: none;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    grid-template-columns: 1fr;
+    grid-template-rows: 56px 64px 1fr auto;
+    grid-template-areas:
+      "top"
+      "sidebar"
+      "main"
+      "right";
+    overflow-y: auto; /* Let the content sit internally if it overflows */
+  }
+
+  .plex-workspace-topbar {
+    padding: 0 16px;
+  }
+
+  .plex-topbar-search {
+    display: none; /* Hide search on mobile to save space */
+  }
+
+  .plex-workspace-sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    flex-direction: row;
+    padding: 8px 16px;
+    gap: 16px;
+    overflow-x: auto;
+    align-items: center;
+  }
+  
+  .plex-sidebar-spacer {
+    display: none;
+  }
+
+  .plex-workspace-main {
+    padding: 24px 16px;
+  }
+
+  .plex-task-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .plex-task-right {
+    width: 100%;
+    justify-content: space-between;
+    padding-left: 32px; /* align with text */
+  }
+
+  .plex-workspace-rightpanel {
+    border-left: none;
+    border-top: 1px solid var(--border);
+    flex-direction: row;
+    padding: 24px 16px;
+    gap: 24px;
+    overflow-x: auto;
+  }
+  
+  .plex-panel-widget {
+    min-width: 200px;
+  }
+
+  .plex-friction-item {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+  }
+
+  .f-0 { --t: 22%; --l: 25%; }
+  .f-1 { --t: 28%; --l: 75%; }
+  .f-2 { --t: 40%; --l: 30%; }
+  .f-3 { --t: 12%; --l: 60%; }
+  .f-4 { --t: 55%; --l: 75%; }
+  .f-5 { --t: 65%; --l: 25%; }
+  .f-6 { --t: 15%; --l: 85%; }
+  .f-7 { --t: 80%; --l: 70%; }
+  .f-8 { --t: 90%; --l: 40%; }
+  .f-9 { --t: 50%; --l: 15%; }
+}
+
+
+
+
+
+
+
+
+
+
+@media (prefers-reduced-motion: reduce) { .plex-existing-tools-wrapper { height: auto !important; padding: 40px 0; } .plex-tools-sticky { position: relative !important; height: auto !important; display: flex; flex-direction: column; gap: 80px; } .plex-tools-phase { position: relative !important; visibility: visible !important; pointer-events: auto !important; opacity: 1 !important; transform: none !important; } .plex-workspace-dashboard { filter: none !important; } .plex-friction-item { opacity: 1 !important; transform: none !important; } }
+
+
+

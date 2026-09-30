@@ -1,0 +1,431 @@
+/* ProjectsPage.css — Scoped to .projects-page */
+
+.projects-page {
+  --proj-text-primary: var(--text-primary);
+  --proj-text-secondary: var(--text-secondary);
+  --proj-text-muted: var(--text-muted);
+  --proj-accent: var(--accent, #818cf8);
+  --proj-border: var(--border-color, rgba(0, 0, 0, 0.1));
+  --proj-bg: var(--bg);
+  --proj-radius: var(--border-radius, 12px);
+
+  background-color: var(--proj-bg);
+  color: var(--proj-text-primary);
+  min-height: 100svh;
+  overflow-x: hidden;
+}
+
+[data-theme="dark"] .projects-page {
+  --proj-accent: #a78bfa;
+  --proj-border: rgba(255, 255, 255, 0.1);
+}
+
+/* ─── PAGE WRAPPER ───────────────────────────────────────────── */
+
+.pj-wrapper {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: clamp(100px, 14vh, 160px) var(--container-padding, 32px) clamp(80px, 12vh, 140px);
+}
+
+/* ─── HEADER ─────────────────────────────────────────────────── */
+
+.pj-header {
+  /* REFINEMENT 04: slightly tighter spacing intro→index */
+  margin-bottom: clamp(32px, 5vh, 56px);
+  max-width: 700px;
+}
+
+.pj-marker {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  color: var(--proj-text-muted);
+  margin-bottom: 20px;
+}
+
+.pj-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin: 0 0 20px 0;
+  color: var(--proj-text-primary);
+}
+
+.pj-supporting {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--proj-text-secondary);
+  margin: 0;
+}
+
+/* ─── MAIN BODY ──────────────────────────────────────────────── */
+
+.pj-body {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  /* REFINEMENT 02: smaller gap between index and preview */
+  gap: clamp(32px, 4vw, 64px);
+}
+
+/* ─── INDEX (LEFT) ───────────────────────────────────────────── */
+
+.pj-index {
+  flex: 1;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Each project row */
+.pj-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 28px 0;
+  border-top: 1px solid var(--proj-border);
+  text-decoration: none;
+  color: inherit;
+  gap: 24px;
+  position: relative;
+  /* Smooth text-color transitions, not whole-row opacity */
+  transition: none;
+  cursor: pointer;
+}
+
+.pj-row:last-child {
+  border-bottom: 1px solid var(--proj-border);
+}
+
+/* ── Active state ── */
+.pj-row.active .pj-row-num {
+  color: var(--proj-accent);
+  transition: color 0.25s ease;
+}
+
+.pj-row.active .pj-row-name {
+  color: var(--proj-text-primary);
+  transition: color 0.25s ease;
+}
+
+.pj-row.active .pj-row-territory {
+  color: var(--proj-text-secondary);
+  transition: color 0.25s ease;
+}
+
+.pj-row.active .pj-row-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--proj-accent);
+  transition: opacity 0.25s ease, transform 0.25s ease, color 0.25s ease;
+}
+
+/* ── Inactive state: use explicit colours, NOT row-level opacity ── */
+/* REFINEMENT 01: better readability — explicit secondary colours */
+.pj-row.inactive .pj-row-num {
+  color: var(--proj-text-muted);
+  transition: color 0.25s ease;
+}
+
+.pj-row.inactive .pj-row-name {
+  /* Use text-secondary instead of muted — more readable */
+  color: var(--proj-text-secondary);
+  transition: color 0.25s ease;
+}
+
+.pj-row.inactive .pj-row-territory {
+  color: var(--proj-text-muted);
+  transition: color 0.25s ease;
+}
+
+.pj-row.inactive .pj-row-meta {
+  color: var(--proj-text-muted);
+  transition: color 0.25s ease;
+}
+
+.pj-row.inactive .pj-row-arrow {
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Row Number */
+.pj-row-num {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--proj-text-muted);
+  padding-top: 5px;
+  flex-shrink: 0;
+  min-width: 24px;
+}
+
+/* Row Content */
+.pj-row-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pj-row-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--proj-text-secondary);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.pj-row-territory {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--proj-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.pj-row-meta {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--proj-text-muted);
+  letter-spacing: 0.03em;
+}
+
+/* Arrow — active project shifts it 5px */
+.pj-row-arrow {
+  flex-shrink: 0;
+  align-self: center;
+  color: var(--proj-text-muted);
+  opacity: 0;
+  transform: translateX(-4px);
+  font-size: 1rem;
+}
+
+/* Keyboard focus ring — visible beyond colour */
+.pj-row:focus-visible {
+  outline: 2px solid var(--proj-accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* ─── PREVIEW (RIGHT) ────────────────────────────────────────── */
+
+.pj-preview {
+  /* REFINEMENT 02: slightly wider to feel more connected */
+  width: clamp(320px, 44vw, 580px);
+  flex-shrink: 0;
+  position: sticky;
+  top: clamp(80px, 12vh, 120px);
+  padding-top: 4px; /* very subtle vertical offset vs headline */
+}
+
+.pj-preview-frame {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--proj-radius);
+  overflow: hidden;
+  border: 1px solid var(--proj-border);
+  background-color: var(--proj-border);
+  position: relative;
+}
+
+/* ── All preview images stacked; only active one is visible ── */
+.pj-preview-images {
+  position: absolute;
+  inset: 0;
+}
+
+.pj-preview-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* Outgoing: fade + very subtle scale-down */
+  opacity: 0;
+  transform: scale(0.985);
+  transition: opacity 0.42s ease, transform 0.42s ease;
+  will-change: opacity, transform;
+}
+
+.pj-preview-img.visible {
+  /* Incoming: fade in + scale to 1 */
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* REFINEMENT 03: stronger preview metadata */
+.pj-preview-caption {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.pj-preview-name {
+  font-family: var(--font-display);
+  font-size: 1.125rem; /* up from 1rem */
+  font-weight: 500;
+  color: var(--proj-text-primary);
+  transition: opacity 0.25s ease;
+}
+
+.pj-preview-status {
+  font-family: var(--font-body);
+  font-size: 0.875rem; /* up from 0.8rem */
+  color: var(--proj-text-secondary); /* stronger than muted */
+  letter-spacing: 0.03em;
+  transition: opacity 0.25s ease;
+}
+
+/* ─── PHONE ──────────────────────────────────────────────────── */
+
+.pj-phone-list {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pj-phone-entry {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 0;
+  border-top: 1px solid var(--proj-border);
+  text-decoration: none;
+  color: inherit;
+}
+
+.pj-phone-entry:last-child {
+  border-bottom: 1px solid var(--proj-border);
+}
+
+.pj-phone-entry-top {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.pj-phone-num {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--proj-text-muted);
+}
+
+.pj-phone-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 7vw, 2.25rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--proj-text-primary);
+  margin: 0;
+}
+
+.pj-phone-territory {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--proj-text-muted);
+  margin-bottom: 24px;
+}
+
+.pj-phone-img-frame {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--proj-radius);
+  overflow: hidden;
+  border: 1px solid var(--proj-border);
+  background-color: var(--proj-border);
+  margin-bottom: 16px;
+}
+
+.pj-phone-img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.pj-phone-meta-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pj-phone-status {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--proj-text-muted);
+}
+
+.pj-phone-link {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--proj-accent);
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+
+@media (max-width: 1023px) {
+  .pj-body {
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .pj-preview {
+    width: 100%;
+    max-width: 600px;
+    position: static;
+    padding-top: 0;
+  }
+
+  .pj-index {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .pj-body {
+    display: none;
+  }
+
+  .pj-phone-list {
+    display: flex;
+  }
+
+  .pj-wrapper {
+    padding-top: 100px;
+  }
+}
+
+/* ─── HOVER-ONLY STYLES (pointer: fine) ──────────────────────── */
+/* Ensures tablet/touch devices don't get hover-only behaviours */
+@media (hover: none) {
+  /* On touch devices, show all arrows so the rows feel tappable */
+  .pj-row.inactive .pj-row-arrow {
+    opacity: 0.4;
+    transform: translateX(0);
+  }
+}
+
+/* ─── REDUCED MOTION ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .pj-preview-img {
+    transition: opacity 0.15s ease;
+    transform: none !important;
+  }
+
+  .pj-row-num,
+  .pj-row-name,
+  .pj-row-territory,
+  .pj-row-meta,
+  .pj-row-arrow {
+    transition: none;
+  }
+}

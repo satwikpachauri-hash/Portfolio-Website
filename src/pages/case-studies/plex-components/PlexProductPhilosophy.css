@@ -1,0 +1,122 @@
+﻿/* PlexProductPhilosophy.css */
+
+:root {
+  --philosophy-primary: var(--text-primary);
+  --philosophy-muted: var(--text-secondary);
+}
+
+.plex-product-philosophy-wrapper {
+  width: 100%;
+  height: 230vh; /* Deliberate scroll distance for a slow, editorial reveal */
+  position: relative;
+  background-color: var(--bg);
+  color: var(--philosophy-primary);
+}
+
+.plex-phil-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.plex-phil-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
+  gap: clamp(2rem, 5vw, 4rem);
+  max-width: 1600px;
+}
+
+.plex-phil-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.8rem, 2vw, 1.5rem);
+}
+
+/* Clipping mask for the upward reveal */
+.plex-phil-mask {
+  display: inline-flex;
+  overflow: hidden;
+  padding-bottom: 0.1em; /* Accommodate descenders */
+  margin-bottom: -0.1em;
+}
+
+.plex-phil-text {
+  position: relative;
+  display: inline-block;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--philosophy-primary);
+  will-change: transform, color;
+  transition: color 0.4s ease;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) { .plex-product-philosophy-wrapper { height: auto !important; padding: 100px 0; } .plex-phil-sticky { position: relative !important; height: auto !important; }
+  
+  .plex-phil-text {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+  }
+  
+  /* 'less time' */
+  .plex-phil-line:nth-child(1) .plex-phil-mask:nth-child(2) .plex-phil-text {
+    color: var(--philosophy-muted) !important;
+  }
+  
+  /* 'planning.' */
+  .plex-phil-line:nth-child(1) .plex-phil-mask:nth-child(3) .plex-phil-text {
+    color: var(--philosophy-muted) !important;
+  }
+}
+
+/* Laptop Height Optimisation */
+@media (max-height: 800px) and (min-width: 1024px) {
+  .plex-phil-text {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+  }
+}
+
+/* Tablet Optimisation */
+@media (max-width: 1023px) {
+  .plex-phil-text {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+  }
+}
+
+/* Phone Optimisation */
+@media (max-width: 767px) {
+  .plex-phil-container {
+    gap: 24px; /* More space between the two lines when stacked */
+  }
+
+  .plex-phil-text {
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+.plex-phil-text.muted-state {
+  color: var(--philosophy-muted);
+}

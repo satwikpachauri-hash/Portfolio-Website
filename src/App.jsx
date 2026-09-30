@@ -13,12 +13,23 @@ import About from './pages/About';
 import Projects from './pages/Projects';
 import Experience from './pages/Experience';
 import Education from './pages/Education';
+import Contact from './pages/Contact';
+import Plex from './pages/case-studies/Plex';
 
 // Components
 import DynamicIsland from './components/navigation/DynamicIsland/DynamicIsland';
+import ScrollManager from './components/navigation/ScrollManager';
+import GoogleAnalytics from './components/GoogleAnalytics';
 
 function App() {
   useTheme(); // Initialize theme
+
+  // Disable native scroll restoration to prevent conflicts with Lenis
+  useEffect(() => {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+  }, []);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -31,6 +42,8 @@ function App() {
       smoothTouch: false,
       touchMultiplier: 2,
     });
+
+    window.lenis = lenis;
 
     const updateScrollTrigger = () => ScrollTrigger.update();
     lenis.on('scroll', updateScrollTrigger);
@@ -51,6 +64,8 @@ function App() {
 
   return (
     <Router>
+      <GoogleAnalytics />
+      <ScrollManager />
       <DynamicIsland />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -58,9 +73,14 @@ function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/experience" element={<Experience />} />
         <Route path="/education" element={<Education />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/projects/plex" element={<Plex />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
+
+
+

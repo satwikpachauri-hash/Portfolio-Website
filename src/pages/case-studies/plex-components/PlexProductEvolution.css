@@ -1,0 +1,277 @@
+/* PlexProductEvolution.css */
+
+.plex-product-evolution {
+  width: 100%;
+  padding: 160px 5vw;
+  background-color: var(--bg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==========================================================================
+   INTRODUCTION
+   ========================================================================== */
+.evolution-intro {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto 120px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.evolution-intro h2 {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-top: 24px;
+  margin-bottom: 64px;
+  color: var(--text-primary);
+}
+
+.evolution-statement {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 40px;
+}
+
+.statement-quiet {
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.statement-loud {
+  color: var(--text-primary); 
+  font-weight: 600;
+}
+
+.evolution-description {
+  max-width: 680px;
+  font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   ROADMAP TIMELINE
+   ========================================================================== */
+.evolution-roadmap-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.evolution-roadmap {
+  position: relative;
+  width: 100%;
+  padding-left: 64px;
+  padding-bottom: 24px;
+}
+
+/* Rails */
+.roadmap-timeline-base {
+  position: absolute;
+  top: 16px;
+  bottom: 0;
+  left: 15px; /* Centers the 2px line in a 32px node */
+  width: 2px;
+  background: var(--border);
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.roadmap-timeline-progress {
+  position: absolute;
+  top: 16px;
+  left: 15px;
+  width: 2px;
+  background: var(--accent);
+  z-index: 1;
+  transform-origin: top;
+  /* height will be controlled by Framer Motion inline styles */
+}
+
+/* Stage Blocks */
+.roadmap-stage {
+  position: relative;
+  padding-bottom: 120px;
+  z-index: 2;
+  transition: opacity 0.4s ease;
+}
+
+.roadmap-stage:last-child {
+  padding-bottom: 0;
+}
+
+/* Timeline Node */
+.stage-node {
+  position: absolute;
+  left: -64px;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--bg);
+  border: 3px solid var(--border);
+  transition: border-color 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Visual Hierarchy per stage */
+
+/* Active Stage */
+.stage-active .stage-node {
+  border-color: var(--accent);
+  background-color: var(--bg);
+  box-shadow: 0 0 0 4px rgba(var(--accent-rgb, 59, 130, 246), 0.15);
+}
+.stage-active .stage-content {
+  opacity: 1;
+}
+.stage-active .stage-label {
+  color: var(--accent);
+}
+.stage-active .capability-icon {
+  color: var(--accent);
+}
+
+/* Future Stage */
+.stage-future .stage-node {
+  border-color: var(--border);
+}
+.stage-future .stage-content {
+  opacity: 0.4;
+}
+
+/* Past Stage (Keep readable, but quiet) */
+.stage-past .stage-node {
+  border-color: var(--accent);
+  background-color: var(--accent);
+}
+.stage-past .stage-content {
+  opacity: 0.6;
+}
+
+/* Stage Content */
+.stage-content {
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.4s ease;
+}
+
+.stage-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  color: var(--text-secondary);
+  transition: color 0.4s ease;
+}
+
+.stage-title {
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+  color: var(--text-primary);
+}
+
+.stage-capabilities {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stage-capabilities li {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.capability-icon {
+  margin-top: 2px;
+  flex-shrink: 0;
+  color: var(--text-muted);
+  transition: color 0.4s ease;
+}
+
+.stage-description {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .plex-product-evolution {
+    padding: 120px 5vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .plex-product-evolution {
+    padding: 80px 5vw;
+  }
+  
+  .evolution-intro {
+    margin-bottom: 80px;
+  }
+  
+  .evolution-statement {
+    font-size: 2rem;
+  }
+  
+  .roadmap-stage {
+    padding-bottom: 80px;
+  }
+
+  .evolution-roadmap {
+    padding-left: 48px;
+  }
+
+  .stage-node {
+    left: -48px;
+    width: 24px;
+    height: 24px;
+    border-width: 3px;
+  }
+
+  .roadmap-timeline-base,
+  .roadmap-timeline-progress {
+    left: 11px; /* (24/2) - 1 */
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .roadmap-timeline-progress {
+    height: 100% !important; /* Always show full progress */
+    transition: none !important;
+  }
+  
+  .stage-future .stage-content,
+  .stage-past .stage-content {
+    opacity: 1; /* Keep everything fully readable */
+  }
+  
+  .stage-future .stage-node,
+  .stage-past .stage-node {
+    border-color: var(--accent);
+  }
+}

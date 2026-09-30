@@ -1,0 +1,200 @@
+/* AboutSceneThree.css */
+
+/* Layout Constraints */
+.as3-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: clamp(80px, 12vh, 160px) var(--container-padding, 24px) clamp(100px, 15vh, 160px);
+}
+
+.as3-content {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.as3-header {
+  margin-bottom: clamp(64px, 10vh, 100px);
+  max-width: 650px;
+}
+
+.as3-marker {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  color: var(--about-text-muted);
+  margin-bottom: 24px;
+}
+
+.as3-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--about-text-primary);
+  margin: 0 0 24px 0;
+}
+
+.as3-supporting-statement {
+  font-family: var(--font-body);
+  font-size: clamp(1.125rem, 1.5vw, 1.25rem);
+  color: var(--about-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Layers Field */
+.as3-layers-field {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(48px, 6vh, 80px); /* Vertical spacing between staggered rows */
+  padding-left: 5%; /* Slight global inset */
+}
+
+/* Layer Base */
+.as3-layer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  /* Allow text to sit over the background line cleanly */
+  background-color: transparent; 
+}
+
+/* Add a very subtle text shadow to ensure the text remains crisp when the thin line passes behind it */
+.as3-layer-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--about-text-primary);
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  text-shadow: 0 0 12px var(--about-bg), 0 0 24px var(--about-bg);
+}
+
+.as3-layer-desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 1vw, 1rem);
+  color: var(--about-text-secondary);
+  letter-spacing: 0.02em;
+  margin: 0;
+  text-shadow: 0 0 8px var(--about-bg);
+}
+
+/* Primary Highlight */
+.as3-layer.primary .as3-layer-title {
+  color: var(--about-interaction);
+}
+
+/* Desktop Offsets (Controlled Misalignment) */
+.as3-layer.l-understand { align-self: flex-start; margin-left: 0%; }
+.as3-layer.l-structure  { align-self: flex-start; margin-left: 30%; }
+.as3-layer.l-interact   { align-self: flex-start; margin-left: 10%; }
+.as3-layer.l-visualize  { align-self: flex-start; margin-left: 45%; }
+.as3-layer.l-build      { align-self: flex-start; margin-left: 20%; }
+
+/* Connections */
+.as3-connection-desktop {
+  position: absolute;
+  top: 40px; /* Start roughly at the center of the first layer title */
+  bottom: 40px; /* End roughly at the center of the last layer title */
+  left: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.as3-line-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.as3-line-svg path {
+  fill: none;
+  stroke: var(--about-border);
+  stroke-width: 1px;
+  opacity: 0.6;
+}
+
+.as3-connection-phone {
+  display: none; /* Hidden on desktop */
+}
+
+/* --- RESPONSIVE CHOREOGRAPHY --- */
+
+@media (max-width: 1023px) {
+  /* Tablet */
+  .as3-layers-field {
+    gap: 48px;
+    padding-left: 0;
+  }
+  
+  /* Reduce offsets to prevent horizontal overflow */
+  .as3-layer.l-understand { margin-left: 0%; }
+  .as3-layer.l-structure  { margin-left: 15%; }
+  .as3-layer.l-interact   { margin-left: 5%; }
+  .as3-layer.l-visualize  { margin-left: 25%; }
+  .as3-layer.l-build      { margin-left: 10%; }
+  
+  /* Update SVG path for new tablet layout (0, 15, 5, 25, 10 approx) */
+  .as3-line-svg path {
+    d: path("M 8 0 L 23 25 L 13 50 L 33 75 L 18 100");
+  }
+}
+
+@media (max-width: 767px) {
+  /* Phone */
+  .as3-wrapper {
+    padding-top: 64px;
+    padding-bottom: 80px;
+  }
+  
+  .as3-header {
+    margin-bottom: 64px;
+  }
+
+  .as3-layers-field {
+    gap: 48px;
+    padding-left: 32px; /* Make room for the vertical line on the left */
+  }
+
+  /* Remove all horizontal staggering */
+  .as3-layer { margin-left: 0 !important; }
+
+  /* Switch Connections */
+  .as3-connection-desktop {
+    display: none;
+  }
+
+  .as3-connection-phone {
+    display: block;
+    position: absolute;
+    top: 24px;
+    bottom: 24px;
+    left: 8px;
+    width: 1px;
+    z-index: 0;
+  }
+
+  .as3-vertical-line {
+    width: 100%;
+    height: 100%;
+    background-color: var(--about-border);
+    opacity: 0.6;
+  }
+  
+  .as3-layer-title {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+}

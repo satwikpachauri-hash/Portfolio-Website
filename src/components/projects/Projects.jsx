@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import './Projects.css';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const PROJECTS_DATA = [
   {
@@ -18,7 +19,7 @@ const PROJECTS_DATA = [
     heroImage: '/case-studies/plex/assets/hero/Hero Page.png',
     accent: '#7C7BFF', // Authentic Plex Indigo
     objectPosition: 'center 20%',
-    href: 'https://plex-case-study.netlify.app/'
+    href: '/projects/plex'
   },
   {
     id: 'cubicon',
@@ -55,22 +56,24 @@ const PROJECTS_DATA = [
 ];
 
 // Extracted into a memoized component to prevent any unnecessary re-renders
+const MotionLink = motion(Link);
+
 const ProjectCard = React.memo(({ project, index }) => {
   const destination = project.href || '#pending-netlify-url';
+  const isInternal = destination.startsWith('/');
   
-  return (
-    <motion.a
-      id={project.id}
-      href={destination}
-      target={project.href ? "_blank" : undefined}
-      rel={project.href ? "noopener noreferrer" : undefined}
-      className="project-card"
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10%" }}
-      transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-      aria-label={`View ${project.title} case study`}
-    >
+  const cardProps = {
+    id: project.id,
+    className: "project-card",
+    initial: { opacity: 0, y: 18 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-10%" },
+    transition: { duration: 0.5, delay: 0.1, ease: "easeOut" },
+    "aria-label": `View ${project.title} case study`
+  };
+
+  const innerContent = (
+    <>
       <div className="pc-visual-area">
         <img 
           src={project.heroImage} 
@@ -120,6 +123,25 @@ const ProjectCard = React.memo(({ project, index }) => {
           Read Case Study <ArrowRight size={18} className="pc-cta-icon" />
         </div>
       </div>
+    </>
+  );
+
+  if (isInternal) {
+    return (
+      <MotionLink to={destination} {...cardProps}>
+        {innerContent}
+      </MotionLink>
+    );
+  }
+
+  return (
+    <motion.a
+      href={destination}
+      target="_blank"
+      rel="noopener noreferrer"
+      {...cardProps}
+    >
+      {innerContent}
     </motion.a>
   );
 });
@@ -164,3 +186,5 @@ export default function Projects() {
     </section>
   );
 }
+
+
