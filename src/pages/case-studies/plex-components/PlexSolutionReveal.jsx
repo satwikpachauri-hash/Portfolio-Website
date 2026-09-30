@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import CaseStudySectionChip from './CaseStudySectionChip';
 import './PlexSolutionReveal.css';
+import mobileVideo from '../../../assets/plex/plex-phone-tablet.mp4';
+import desktopVideo from '../../../assets/plex/plex-laptop-desktop.mp4';
 
 export default function PlexSolutionReveal() {
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
@@ -15,9 +17,7 @@ export default function PlexSolutionReveal() {
     return () => mediaQuery.removeEventListener('change', handler);
   }, []);
 
-  const videoSrc = isMobileOrTablet 
-    ? "/case-studies/plex/assets/Plex/Introducing Plex Phone & Tablet.mp4"
-    : "/case-studies/plex/assets/Plex/Introducing Plex Laptop & Desktop.mp4";
+  const videoSrc = isMobileOrTablet ? mobileVideo : desktopVideo;
 
   return (
     <section className="plex-solution-reveal-wrapper">
