@@ -12,8 +12,8 @@ export default function AboutSceneTwo() {
     let ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
-      // Desktop / Laptop / Tablet Animation
-      mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      // Desktop / Laptop Animation
+      mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: wrapperRef.current,
@@ -103,35 +103,41 @@ export default function AboutSceneTwo() {
         tl.to({}, { duration: 0.6 }); // Final hold
       });
 
-      // Phone Animation (Shorter scroll, no pinning if it feels cramped, but we'll pin for a shorter distance to preserve the effect)
-      mm.add("(max-width: 767px) and (prefers-reduced-motion: no-preference)", () => {
+      // Phone & Tablet Animation (Normal flow, no pinning, no height collapsing)
+      mm.add("(max-width: 1023px) and (prefers-reduced-motion: no-preference)", () => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: wrapperRef.current,
-            start: 'top 10%',
-            end: '+=150%', // Shorter scroll on phone
+            start: 'top 50%',
+            end: 'bottom 50%', // Scrub evenly through the unpinned height
             scrub: 1,
-            pin: true,
+            pin: false, // DO NOT PIN
           }
         });
 
         gsap.set('.as2-hier-line', { autoAlpha: 0 });
-        gsap.set('.as2-p-desc', { height: 0, autoAlpha: 0, overflow: 'hidden' });
-        gsap.set('.as2-p1-desc', { height: 'auto', autoAlpha: 1 });
+        // Clear any previous inline styles on descriptions to keep them normally flowing
+        gsap.set('.as2-p-desc', { clearProps: 'all' }); 
 
-        // Identical timeline logic, but tuned for mobile view
+        // Set initial emphasis state
+        gsap.set('.as2-p1', { opacity: 1 });
+        gsap.set('.as2-p1 .as2-p-num', { color: 'var(--about-interaction)' });
+        gsap.set('.as2-p1 .as2-p-title', { color: 'var(--about-text-primary)' });
+        
+        gsap.set('.as2-p2, .as2-p3, .as2-p4', { opacity: 0.65 });
+        gsap.set('.as2-p2 .as2-p-num, .as2-p3 .as2-p-num, .as2-p4 .as2-p-num', { color: 'var(--about-text-muted)' });
+        gsap.set('.as2-p2 .as2-p-title, .as2-p3 .as2-p-title, .as2-p4 .as2-p-title', { color: 'var(--about-text-secondary)' });
+
         tl.to({}, { duration: 0.3 }); 
         
-        // 01 -> 02
+        // 01 -> 02 (Only animate emphasis and visual demo)
         tl.addLabel('trans01_02')
-          .to('.as2-p1-desc', { height: 0, autoAlpha: 0, duration: 0.4 }, 'trans01_02')
           .to('.as2-p1', { opacity: 0.65 }, 'trans01_02')
           .to('.as2-p1 .as2-p-num', { color: 'var(--about-text-muted)' }, 'trans01_02')
           .to('.as2-p1 .as2-p-title', { color: 'var(--about-text-secondary)' }, 'trans01_02')
           .to('.as2-p2', { opacity: 1 }, 'trans01_02')
           .to('.as2-p2 .as2-p-num', { color: 'var(--about-interaction)' }, 'trans01_02')
           .to('.as2-p2 .as2-p-title', { color: 'var(--about-text-primary)' }, 'trans01_02')
-          .to('.as2-p2-desc', { height: 'auto', autoAlpha: 1, duration: 0.4 }, 'trans01_02')
           
           .to('.as2-node span', { autoAlpha: 0, duration: 0.2 }, 'trans01_02')
           .to('.as2-center-label, .as2-center-dot, .as2-demo-lines', { autoAlpha: 0, duration: 0.3 }, 'trans01_02')
@@ -144,14 +150,12 @@ export default function AboutSceneTwo() {
 
         // 02 -> 03
         tl.addLabel('trans02_03')
-          .to('.as2-p2-desc', { height: 0, autoAlpha: 0, duration: 0.4 }, 'trans02_03')
           .to('.as2-p2', { opacity: 0.65 }, 'trans02_03')
           .to('.as2-p2 .as2-p-num', { color: 'var(--about-text-muted)' }, 'trans02_03')
           .to('.as2-p2 .as2-p-title', { color: 'var(--about-text-secondary)' }, 'trans02_03')
           .to('.as2-p3', { opacity: 1 }, 'trans02_03')
           .to('.as2-p3 .as2-p-num', { color: 'var(--about-interaction)' }, 'trans02_03')
           .to('.as2-p3 .as2-p-title', { color: 'var(--about-text-primary)' }, 'trans02_03')
-          .to('.as2-p3-desc', { height: 'auto', autoAlpha: 1, duration: 0.4 }, 'trans02_03')
 
           .to('.as2-node.n3, .as2-node.n4', { autoAlpha: 0, duration: 0.3 }, 'trans02_03')
           .to('.as2-node.n1', { top: '50%', left: '30%', backgroundColor: 'var(--about-border)', borderRadius: '50%', duration: 0.5 }, 'trans02_03')
@@ -162,14 +166,12 @@ export default function AboutSceneTwo() {
 
         // 03 -> 04
         tl.addLabel('trans03_04')
-          .to('.as2-p3-desc', { height: 0, autoAlpha: 0, duration: 0.4 }, 'trans03_04')
           .to('.as2-p3', { opacity: 0.65 }, 'trans03_04')
           .to('.as2-p3 .as2-p-num', { color: 'var(--about-text-muted)' }, 'trans03_04')
           .to('.as2-p3 .as2-p-title', { color: 'var(--about-text-secondary)' }, 'trans03_04')
           .to('.as2-p4', { opacity: 1 }, 'trans03_04')
           .to('.as2-p4 .as2-p-num', { color: 'var(--about-interaction)' }, 'trans03_04')
           .to('.as2-p4 .as2-p-title', { color: 'var(--about-text-primary)' }, 'trans03_04')
-          .to('.as2-p4-desc', { height: 'auto', autoAlpha: 1, duration: 0.4 }, 'trans03_04')
 
           .to('.as2-node.n1, .as2-node.n2, .as2-hier-line.arrow', { autoAlpha: 0, duration: 0.3 }, 'trans03_04')
           .fromTo('.as2-hier-line.hl1', { autoAlpha: 0, top: '40%', left: '25%', width: '50%', height: '8px', backgroundColor: 'var(--about-border)' }, { autoAlpha: 1, duration: 0.2 }, 'trans03_04')
@@ -185,7 +187,7 @@ export default function AboutSceneTwo() {
       // Reduced Motion
       mm.add("(prefers-reduced-motion: reduce)", () => {
         // Expand all descriptions, keep all fully visible
-        gsap.set('.as2-p-desc', { height: 'auto', autoAlpha: 1 });
+        gsap.set('.as2-p-desc', { clearProps: 'all' });
         gsap.set('.as2-principle', { opacity: 1 });
         gsap.set('.as2-p-num', { color: 'var(--about-interaction)' });
         gsap.set('.as2-p-title', { color: 'var(--about-text-primary)' });
