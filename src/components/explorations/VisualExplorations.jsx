@@ -37,28 +37,6 @@ export default function VisualExplorations() {
   const [viewerPhotoId, setViewerPhotoId] = useState(null);
   const [isGraphicViewerOpen, setIsGraphicViewerOpen] = useState(false);
   const viewportRef = useRef(null);
-  const sectionRef = useRef(null);
-
-  // Tilt progressive enhancement states & refs
-  const [showTiltButton, setShowTiltButton] = useState(false);
-  const [isTiltActive, setIsTiltActive] = useState(false);
-  const isTiltActiveRef = useRef(false);
-  const photoTiltRefs = useRef([]);
-  const graphicTiltRef = useRef(null);
-  const isSectionVisible = useRef(true);
-
-  // Sensor & Interpolation Refs (no React state renders on 60fps sensor loop)
-  const neutralBetaRef = useRef(null);
-  const neutralGammaRef = useRef(null);
-  const targetRotX = useRef(0);
-  const targetRotY = useRef(0);
-  const currentRotX = useRef(0);
-  const currentRotY = useRef(0);
-  const targetPosterRotX = useRef(0);
-  const targetPosterRotY = useRef(0);
-  const currentPosterRotX = useRef(0);
-  const currentPosterRotY = useRef(0);
-  const rafId = useRef(null);
   
   // Drag suppression state
   const isDragging = useRef(false);
@@ -72,179 +50,6 @@ export default function VisualExplorations() {
 
   // Graphic Design Pendulum Drag
   const graphicRotation = useSpring(1, { damping: 15, stiffness: 150 });
-
-  // 1. Mobile / Tablet capability detection
-  useEffect(() => {
-    const isTouchOrCoarse =
-      window.matchMedia('(pointer: coarse)').matches ||
-      'ontouchstart' in window ||
-      (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0);
-    const hasDeviceOrientation = typeof window !== 'undefined' && 'DeviceOrientationEvent' in window;
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (isTouchOrCoarse && hasDeviceOrientation && !prefersReducedMotion) {
-      setShowTiltButton(true);
-    }
-  }, []);
-
-  // 2. IntersectionObserver & Visibility API to pause loop when off-screen
-  useEffect(() => {
-    if (!sectionRef.current) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        isSectionVisible.current = entry.isIntersecting;
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(sectionRef.current);
-
-    const handleVisChange = () => {
-      if (document.hidden) {
-        isSectionVisible.current = false;
-      }
-    };
-    document.addEventListener('visibilitychange', handleVisChange);
-
-    return () => {
-      observer.disconnect();
-      document.removeEventListener('visibilitychange', handleVisChange);
-    };
-  }, []);
-
-  // Clamp helper
-  const clamp = (val, min, max) => Math.max(min, Math.min(max, val));
-
-  // 3. rAF Smoothing Loop
-  const updateTilt = () => {
-    if (!isTiltActiveRef.current) return;
-
-    if (isSectionVisible.current && !document.hidden) {
-      // Smooth Lerp toward target
-      currentRotX.current += (targetRotX.current - currentRotX.current) * 0.1;
-      currentRotY.current += (targetRotY.current - currentRotY.current) * 0.1;
-      currentPosterRotX.current += (targetPosterRotX.current - currentPosterRotX.current) * 0.1;
-      currentPosterRotY.current += (targetPosterRotY.current - currentPosterRotY.current) * 0.1;
-
-      // Apply to Photo Cards
-      photoTiltRefs.current.forEach((el, index) => {
-        if (el) {
-          const factor = 0.85 + (index % 5) * 0.075; // Subtle depth variance
-          const rx = (currentRotX.current * factor).toFixed(2);
-          const ry = (currentRotY.current * factor).toFixed(2);
-          el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
-        }
-      });
-
-      // Apply to Ethos Share Poster (More restrained)
-      if (graphicTiltRef.current) {
-        const rx = currentPosterRotX.current.toFixed(2);
-        const ry = currentPosterRotY.current.toFixed(2);
-        graphicTiltRef.current.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
-      }
-    }
-
-    rafId.current = requestAnimationFrame(updateTilt);
-  };
-
-  // 4. Sensor Event Handler
-  const handleOrientation = (e) => {
-    if (!isTiltActiveRef.current) return;
-    const beta = e.beta; // X axis [-180, 180]
-    const gamma = e.gamma; // Y axis [-90, 90]
-
-    if (beta === null || gamma === null) return;
-
-    if (neutralBetaRef.current === null || neutralGammaRef.current === null) {
-      neutralBetaRef.current = beta;
-      neutralGammaRef.current = gamma;
-      return;
-    }
-
-    let dBeta = beta - neutralBetaRef.current;
-    let dGamma = gamma - neutralGammaRef.current;
-
-    // Deadzone ±0.5°
-    if (Math.abs(dBeta) < 0.5) dBeta = 0;
-    if (Math.abs(dGamma) < 0.5) dGamma = 0;
-
-    // Photography clamp: max ±3° X, ±4° Y
-    targetRotX.current = clamp(-dBeta * 0.2, -3, 3);
-    targetRotY.current = clamp(dGamma * 0.25, -4, 4);
-
-    // Poster clamp: max ±2° X, ±2.5° Y
-    targetPosterRotX.current = clamp(-dBeta * 0.12, -2, 2);
-    targetPosterRotY.current = clamp(dGamma * 0.15, -2.5, 2.5);
-  };
-
-  // Reset transforms
-  const resetCardTransforms = () => {
-    photoTiltRefs.current.forEach((el) => {
-      if (el) el.style.transform = 'rotateX(0deg) rotateY(0deg)';
-    });
-    if (graphicTiltRef.current) {
-      graphicTiltRef.current.style.transform = 'rotateX(0deg) rotateY(0deg)';
-    }
-    targetRotX.current = 0;
-    targetRotY.current = 0;
-    currentRotX.current = 0;
-    currentRotY.current = 0;
-    targetPosterRotX.current = 0;
-    targetPosterRotY.current = 0;
-    currentPosterRotX.current = 0;
-    currentPosterRotY.current = 0;
-  };
-
-  // Toggle button click handler with iOS permission check
-  const handleToggleTilt = async () => {
-    if (isTiltActive) {
-      // Disable
-      isTiltActiveRef.current = false;
-      setIsTiltActive(false);
-      window.removeEventListener('deviceorientation', handleOrientation);
-      if (rafId.current) cancelAnimationFrame(rafId.current);
-      resetCardTransforms();
-      return;
-    }
-
-    // Check iOS permission requirement
-    if (
-      typeof DeviceOrientationEvent !== 'undefined' &&
-      typeof DeviceOrientationEvent.requestPermission === 'function'
-    ) {
-      try {
-        const permissionState = await DeviceOrientationEvent.requestPermission();
-        if (permissionState !== 'granted') {
-          return; // Permission denied, stay resting
-        }
-      } catch {
-        return;
-      }
-    }
-
-    // Start tilt
-    neutralBetaRef.current = null;
-    neutralGammaRef.current = null;
-    isTiltActiveRef.current = true;
-    setIsTiltActive(true);
-
-    window.addEventListener('deviceorientation', handleOrientation, true);
-    if (rafId.current) cancelAnimationFrame(rafId.current);
-    rafId.current = requestAnimationFrame(updateTilt);
-  };
-
-  // Recalibrate on screen orientation change
-  useEffect(() => {
-    const handleOrientChange = () => {
-      neutralBetaRef.current = null;
-      neutralGammaRef.current = null;
-    };
-    window.addEventListener('orientationchange', handleOrientChange);
-    return () => {
-      window.removeEventListener('orientationchange', handleOrientChange);
-      window.removeEventListener('deviceorientation', handleOrientation);
-      if (rafId.current) cancelAnimationFrame(rafId.current);
-    };
-  }, []);
 
   const handleGraphicPan = (e, info) => {
     if (Math.abs(info.offset.x) > 3) {
@@ -314,13 +119,11 @@ export default function VisualExplorations() {
           className="drag-tilt-layer" 
           style={{ rotate: dragTilt, transformOrigin: '50% 4px' }}
         >
-          <div className="device-tilt-layer" ref={(el) => (photoTiltRefs.current[index] = el)}>
-            <div className="base-tilt-layer" style={{ transform: `rotate(${baseRot}deg)` }}>
-              <div className="card-pin"></div>
-              <div className={`contact-card sway-${index % 3}`}>
-                <div className="contact-card-frame">
-                  <img src={item.src} alt={item.alt} loading="lazy" draggable={false} />
-                </div>
+          <div className="base-tilt-layer" style={{ transform: `rotate(${baseRot}deg)` }}>
+            <div className="card-pin"></div>
+            <div className={`contact-card sway-${index % 3}`}>
+              <div className="contact-card-frame">
+                <img src={item.src} alt={item.alt} loading="lazy" draggable={false} />
               </div>
             </div>
           </div>
@@ -333,7 +136,7 @@ export default function VisualExplorations() {
   const activePhoto = activePhotoIndex !== -1 ? photoData[activePhotoIndex] : null;
 
   return (
-    <section className="explorations-section" id="explorations" ref={sectionRef}>
+    <section className="explorations-section" id="explorations">
       <div className="explorations-container">
         <div className="explorations-header">
           <h2 className="explorations-title font-display">EXPLORATIONS</h2>
@@ -347,20 +150,7 @@ export default function VisualExplorations() {
           </div>
 
           <div className="contact-sheet-wrapper">
-            <div className="tilt-control-bar">
-              <div className="drag-signifier font-body">&larr; DRAG TO EXPLORE &rarr;</div>
-              {showTiltButton && (
-                <button
-                  type="button"
-                  className={`tilt-toggle-btn ${isTiltActive ? 'is-active' : ''}`}
-                  onClick={handleToggleTilt}
-                  aria-pressed={isTiltActive}
-                  aria-label="Toggle device orientation tilt effect"
-                >
-                  {isTiltActive ? 'TILT ON' : 'ENABLE TILT'}
-                </button>
-              )}
-            </div>
+            <div className="drag-signifier font-body">&larr; DRAG TO EXPLORE &rarr;</div>
             
             <div className="drag-viewport" ref={viewportRef}>
               <motion.div 
@@ -399,18 +189,16 @@ export default function VisualExplorations() {
               >
                 <div className="card-pin" style={{ zIndex: 10, position: "absolute", top: "4px", left: "50%", transform: "translateX(-50%)" }}></div>
                 
-                <div className="device-tilt-layer" ref={graphicTiltRef}>
-                  <motion.div 
-                    className="base-tilt-layer"
-                    style={{ rotate: graphicRotation, originX: 0.5, originY: 0 }}
-                    onPan={handleGraphicPan}
-                    onPanEnd={handleGraphicPanEnd}
-                  >
-                    <div className="graphic-poster-card">
-                      <img src={graphicWorks[0].image} alt={graphicWorks[0].alt} loading="lazy" />
-                    </div>
-                  </motion.div>
-                </div>
+                <motion.div 
+                  className="base-tilt-layer"
+                  style={{ rotate: graphicRotation, originX: 0.5, originY: 0 }}
+                  onPan={handleGraphicPan}
+                  onPanEnd={handleGraphicPanEnd}
+                >
+                  <div className="graphic-poster-card">
+                    <img src={graphicWorks[0].image} alt={graphicWorks[0].alt} loading="lazy" />
+                  </div>
+                </motion.div>
               </div>
 
             <div className="graphic-metadata">
