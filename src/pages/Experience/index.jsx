@@ -47,6 +47,10 @@ const EARLIER_ENTRIES = [
     role: 'Retail Sales Lead',
     location: 'Pragati Maidan, New Delhi',
     context: 'Led an assigned trade-fair stall, managing product selection, pricing, negotiation, and promotional offers.',
+    metrics: [
+      { value: '₹3.10L', label: 'SALES' },
+      { value: '14', label: 'DAYS' }
+    ]
   },
   {
     id: 'merchandiser-2022',
@@ -56,7 +60,7 @@ const EARLIER_ENTRIES = [
     org: '1 Artifact Decor',
     role: 'Merchandiser',
     location: 'Greater Noida, Uttar Pradesh, India',
-    context: 'Represented 1 Artifact Décor at the IHGF Delhi Fair, handling international client enquiries and coordinating product requirements between two exhibition stalls.',
+    context: 'Represented 1 Artifact DAccor at the IHGF Delhi Fair, handling international client enquiries and coordinating product requirements between two exhibition stalls.',
   },
   {
     id: 'retail-2021',
@@ -67,6 +71,10 @@ const EARLIER_ENTRIES = [
     role: 'Retail Sales Lead',
     location: 'Pragati Maidan, New Delhi',
     context: 'Led an assigned trade-fair stall, managing product selection, pricing, negotiation, and promotional offers.',
+    metrics: [
+      { value: '₹2.97L', label: 'SALES' },
+      { value: '14', label: 'DAYS' }
+    ]
   },
 ];
 
@@ -392,6 +400,16 @@ export default function Experience() {
                   <h2 className="exp-entry-org">{e.org}</h2>
                   <p className="exp-entry-role">{e.role}</p>
                   <p className="exp-entry-context">{e.context}</p>
+                  {e.metrics && e.metrics.length > 0 && (
+                    <div className="exp-entry-metrics">
+                      {e.metrics.map((metric, i) => (
+                        <div className="exp-metric" key={i}>
+                          <span className="exp-metric-val">{metric.value}</span>
+                          <span className="exp-metric-label">{metric.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </article>
             ))}

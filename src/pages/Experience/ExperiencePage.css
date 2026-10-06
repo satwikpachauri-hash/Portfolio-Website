@@ -444,3 +444,34 @@
     padding: 28px 0;
   }
 }
+
+/* Metrics Row */
+.exp-entry-metrics {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: clamp(32px, 4vw, 48px);
+  margin-top: 24px;
+}
+
+.exp-metric {
+  display: flex;
+  flex-direction: column;
+}
+
+.exp-metric-val {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--exp-text-primary);
+  margin-bottom: 4px;
+}
+
+.exp-metric-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--exp-text-muted);
+  text-transform: uppercase;
+}

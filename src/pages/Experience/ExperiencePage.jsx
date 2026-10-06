@@ -44,7 +44,11 @@ const EARLIER_RECORDS = [
     year: '2022',
     period: 'November 2022',
     location: 'Pragati Maidan, New Delhi',
-    context: 'Led an assigned trade-fair stall, managing product selection, pricing, negotiation, and promotional offers. Generated ₹3.10L in sales over 14 days.',
+    context: 'Led an assigned trade-fair stall, managing product selection, pricing, negotiation, and promotional offers.',
+    metrics: [
+      { value: '₹3.10L', label: 'SALES' },
+      { value: '14', label: 'DAYS' }
+    ],
     contributions: null,
     isActive: false,
   },
@@ -56,7 +60,7 @@ const EARLIER_RECORDS = [
     year: '2022',
     period: 'October 2022',
     location: 'Greater Noida, Uttar Pradesh, India',
-    context: 'Represented 1 Artifact Décor at the IHGF Delhi Fair, handling international client enquiries and coordinating product requirements between two exhibition stalls.',
+    context: 'Represented 1 Artifact DAccor at the IHGF Delhi Fair, handling international client enquiries and coordinating product requirements between two exhibition stalls.',
     contributions: null,
     isActive: false,
   },
@@ -68,7 +72,11 @@ const EARLIER_RECORDS = [
     year: '2021',
     period: 'November 2021',
     location: 'Pragati Maidan, New Delhi',
-    context: 'Led an assigned trade-fair stall, managing product selection, pricing, negotiation, and promotional offers. Generated ₹2.97L in sales over 14 days.',
+    context: 'Led an assigned trade-fair stall, managing product selection, pricing, negotiation, and promotional offers.',
+    metrics: [
+      { value: '₹2.97L', label: 'SALES' },
+      { value: '14', label: 'DAYS' }
+    ],
     contributions: null,
     isActive: false,
   },
@@ -96,6 +104,16 @@ function ExperienceRecord({ record }) {
           {/* Expanded content — active record only (phone shows all via CSS override) */}
           <div className="exp-record-expanded">
             <p className="exp-record-context">{record.context}</p>
+            {record.metrics && record.metrics.length > 0 && (
+              <div className="exp-entry-metrics">
+                {record.metrics.map((metric, i) => (
+                  <div className="exp-metric" key={i}>
+                    <span className="exp-metric-val">{metric.value}</span>
+                    <span className="exp-metric-label">{metric.label}</span>
+                  </div>
+                ))}
+              </div>
+            )}
 
             {record.contributions && (
               <ul className="exp-contributions" aria-label="Contributions">
