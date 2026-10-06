@@ -227,27 +227,22 @@
 /* --- RESPONSIVE CHOREOGRAPHY --- */
 
 @media (max-width: 1023px) {
+  .as2-principle.inactive { opacity: 1; } .as2-p-desc { margin-top: 12px; }
+  .as2-principle.inactive .as2-p-title { color: var(--about-text-primary); font-size: clamp(1.25rem, 2vw, 1.75rem); }
+  .as2-principle.inactive .as2-p-num { color: var(--about-interaction); }
   /* Tablet */
   .as2-content {
     flex-direction: column;
     gap: 0;
   }
   .as2-left-col { 
-    padding-bottom: 60vh;
+    padding-bottom: 8vh;
     max-width: 100%;
   }
   .as2-desktop-visual {
     display: none;
   }
-  .as2-mobile-visual { 
-    position: sticky; 
-    top: calc(var(--nav-height, 80px) + 30vh); 
-    z-index: 5; 
-    background-color: var(--bg); 
-    margin-bottom: 40px; 
-    padding: 24px 0;
-    display: flex;
-  }
+  .as2-mobile-visual { display: flex; justify-content: center; margin: 40px 0 80px 0; width: 100%; border-bottom: 1px solid var(--about-border); padding-bottom: 64px; } .as2-principle { border-top: none; } .as2-principle.last { border-bottom: none; }
 }
 
 @media (max-width: 767px) {
@@ -272,3 +267,4 @@
   .as2-node.n3 { top: 85%; left: 15%; }
   .as2-node.n4 { top: 85%; left: 85%; }
 }
+
