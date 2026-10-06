@@ -8,13 +8,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 /* ─── Asset paths ─────────────────────────────────────────── */
 const ASSETS = {
-  homepage:    '/case-studies/plex/assets/mockups/Homepage.png',
-  schedule:    '/case-studies/plex/assets/mockups/Schedule Page.png',
-  futureGoals: '/case-studies/plex/assets/mockups/Future Goals Page.png',
-  analytics1:  '/case-studies/plex/assets/mockups/Analytics Page 1.png',
-  analytics2:  '/case-studies/plex/assets/mockups/Analytics Page 2.png',
-  sleep:       '/case-studies/plex/assets/mockups/Sleep Schedule Page.png',
-  privacy:     '/case-studies/plex/assets/mockups/Privacy Page.png',
+  homepage:    '/case-studies/plex/assets/mockups/Homepage.webp',
+  schedule:    '/case-studies/plex/assets/mockups/Schedule Page.webp',
+  futureGoals: '/case-studies/plex/assets/mockups/Future Goals Page.webp',
+  analytics1:  '/case-studies/plex/assets/mockups/Analytics Page 1.webp',
+  analytics2:  '/case-studies/plex/assets/mockups/Analytics Page 2.webp',
+  sleep:       '/case-studies/plex/assets/mockups/Sleep Schedule Page.webp',
+  privacy:     '/case-studies/plex/assets/mockups/Privacy Page.webp',
 };
 
 /* ─── Typed lines for Brain Dump ──────────────────────────── */

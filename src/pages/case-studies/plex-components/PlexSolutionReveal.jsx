@@ -86,7 +86,7 @@ export default function PlexSolutionReveal() {
               muted 
               loop 
               playsInline
-              preload="auto"
+              preload="metadata"
               aria-label="Plex product introduction"
             />
           )}

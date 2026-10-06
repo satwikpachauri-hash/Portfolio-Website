@@ -18,8 +18,8 @@ const comparisons = [
   {
     id: "homepage",
     title: "Homepage",
-    initialImage: "/case-studies/plex/assets/wireframes/Iteration 1.png",
-    finalImage: "/case-studies/plex/assets/wireframes/Iteration 1 Fixed.png",
+    initialImage: "/case-studies/plex/assets/wireframes/Iteration 1.webp",
+    finalImage: "/case-studies/plex/assets/wireframes/Iteration 1 Fixed.webp",
     initialAlt: "Homepage initial design",
     finalAlt: "Homepage final design",
     problems: [
@@ -34,8 +34,8 @@ const comparisons = [
   {
     id: "schedule",
     title: "Schedule",
-    initialImage: "/case-studies/plex/assets/wireframes/Iteration 2.png",
-    finalImage: "/case-studies/plex/assets/wireframes/Iteration 2 Fixed.png",
+    initialImage: "/case-studies/plex/assets/wireframes/Iteration 2.webp",
+    finalImage: "/case-studies/plex/assets/wireframes/Iteration 2 Fixed.webp",
     initialAlt: "Schedule initial design",
     finalAlt: "Schedule final design",
     problems: [
@@ -50,8 +50,8 @@ const comparisons = [
   {
     id: "analytics",
     title: "Analytics",
-    initialImage: "/case-studies/plex/assets/wireframes/Iteration 3.png",
-    finalImage: "/case-studies/plex/assets/wireframes/Iteration 3 Fixed.png",
+    initialImage: "/case-studies/plex/assets/wireframes/Iteration 3.webp",
+    finalImage: "/case-studies/plex/assets/wireframes/Iteration 3 Fixed.webp",
     initialAlt: "Analytics initial design",
     finalAlt: "Analytics final design",
     problems: [
@@ -66,8 +66,8 @@ const comparisons = [
   {
     id: "profile",
     title: "Profile",
-    initialImage: "/case-studies/plex/assets/wireframes/Iteration 4.png",
-    finalImage: "/case-studies/plex/assets/wireframes/Iteration 4 Fixed.png",
+    initialImage: "/case-studies/plex/assets/wireframes/Iteration 4.webp",
+    finalImage: "/case-studies/plex/assets/wireframes/Iteration 4 Fixed.webp",
     initialAlt: "Profile initial design",
     finalAlt: "Profile final design",
     problems: [

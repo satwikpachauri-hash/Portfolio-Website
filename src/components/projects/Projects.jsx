@@ -16,7 +16,7 @@ const PROJECTS_DATA = [
       { value: '58%', label: 'WORK ABOUT WORK' },
       { value: '4.9h', label: 'RECOVERED TIME' },
     ],
-    heroImage: '/case-studies/plex/assets/hero/Hero Page.png',
+    heroImage: '/case-studies/plex/assets/hero/Hero Page.webp',
     accent: '#7C7BFF', // Authentic Plex Indigo
     objectPosition: 'center 20%',
     href: '/projects/plex'
@@ -32,7 +32,7 @@ const PROJECTS_DATA = [
       { value: '72.5', label: 'SUS SCORE' },
       { value: '3', label: 'ITERATIONS' },
     ],
-    heroImage: '/case-studies/cubicon/assets/hero/Hero Section.png',
+    heroImage: '/case-studies/cubicon/assets/hero/Hero Section.webp',
     accent: '#a78bfa', // Authentic Cubicon Violet
     objectPosition: 'center center',
     href: 'https://amazing-marshmallow-e2b6ac.netlify.app/'
@@ -48,7 +48,7 @@ const PROJECTS_DATA = [
       { value: '+22%', label: 'ESTIMATED CTR' },
       { value: '+15%', label: 'ESTIMATED WATCH TIME' },
     ],
-    heroImage: '/case-studies/youtube-watchlater/Hero Section.png',
+    heroImage: '/case-studies/youtube-watchlater/Hero Section.webp',
     accent: '#ff0000', // Authentic YouTube Red
     objectPosition: 'center top',
     href: 'https://youtube-case-study.netlify.app/'

@@ -109,7 +109,7 @@ export default function Hero() {
           <p className="hero-body">I design the part where things start to make sense.</p>
         </div>
         <div className="hero-simple-portrait">
-          <img src="/assets/portrait/main-portrait.jpg" alt="Satwik Pachauri" />
+          <img src="/assets/portrait/main-portrait.webp" alt="Satwik Pachauri" />
         </div>
       </div>
     );

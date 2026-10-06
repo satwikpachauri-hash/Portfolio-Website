@@ -14,7 +14,7 @@ export default function HeroVisualField({ showPortrait = true }) {
       <div className="project-visuals">
         {showPortrait && (
           <div className="visual main-portrait-visual">
-            <img src="/assets/portrait/main-portrait.jpg" alt="Satwik Pachauri" />
+            <img src="/assets/portrait/main-portrait.webp" alt="Satwik Pachauri" fetchPriority="high" decoding="sync" />
           </div>
         )}
       </div>

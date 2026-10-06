@@ -42,7 +42,7 @@ export default function AboutSceneOne() {
         <div className="as1-right-col">
           <div className="as1-portrait-frame">
             <img 
-              src="/images/about/satwik-portrait.jpg" 
+              src="/images/about/satwik-portrait.webp" 
               alt="Portrait of Satwik Pachauri" 
               className="as1-portrait-img"
             />

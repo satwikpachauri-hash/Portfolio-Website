@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis';
 import { useTheme } from './hooks/useTheme';
@@ -7,14 +7,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Pages
-import Home from './pages/Home';
-import About from './pages/About';
-import Projects from './pages/Projects';
-import Experience from './pages/Experience';
-import Education from './pages/Education';
-import Contact from './pages/Contact';
-import Plex from './pages/case-studies/Plex';
+// Pages (Lazy loaded)
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const Projects = lazy(() => import('./pages/Projects'));
+const Experience = lazy(() => import('./pages/Experience'));
+const Education = lazy(() => import('./pages/Education'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Plex = lazy(() => import('./pages/case-studies/Plex'));
 
 // Components
 import DynamicIsland from './components/navigation/DynamicIsland/DynamicIsland';
@@ -67,15 +67,17 @@ function App() {
       <GoogleAnalytics />
       <ScrollManager />
       <DynamicIsland />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/experience" element={<Experience />} />
-        <Route path="/education" element={<Education />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/projects/plex" element={<Plex />} />
-      </Routes>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/education" element={<Education />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/projects/plex" element={<Plex />} />
+        </Routes>
+      </Suspense>
     </Router>
   );
 }

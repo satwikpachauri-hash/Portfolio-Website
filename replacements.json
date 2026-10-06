@@ -1,0 +1,314 @@
+[
+  {
+    "oldRef": "/assets/graphic-design/EIPF Poster.jpg",
+    "newRef": "/assets/graphic-design/EIPF Poster.webp",
+    "oldName": "EIPF Poster.jpg",
+    "newName": "EIPF Poster.webp"
+  },
+  {
+    "oldRef": "/assets/portrait/main-portrait.jpg",
+    "newRef": "/assets/portrait/main-portrait.webp",
+    "oldName": "main-portrait.jpg",
+    "newName": "main-portrait.webp"
+  },
+  {
+    "oldRef": "/assets/portrait/satwik.jpg",
+    "newRef": "/assets/portrait/satwik.webp",
+    "oldName": "satwik.jpg",
+    "newName": "satwik.webp"
+  },
+  {
+    "oldRef": "/assets/projects/cubicon-hero.png",
+    "newRef": "/assets/projects/cubicon-hero.webp",
+    "oldName": "cubicon-hero.png",
+    "newName": "cubicon-hero.webp"
+  },
+  {
+    "oldRef": "/assets/projects/plex-hero.png",
+    "newRef": "/assets/projects/plex-hero.webp",
+    "oldName": "plex-hero.png",
+    "newName": "plex-hero.webp"
+  },
+  {
+    "oldRef": "/assets/projects/youtube-hero.png",
+    "newRef": "/assets/projects/youtube-hero.webp",
+    "oldName": "youtube-hero.png",
+    "newName": "youtube-hero.webp"
+  },
+  {
+    "oldRef": "/case-studies/cubicon/assets/hero/Hero Section.png",
+    "newRef": "/case-studies/cubicon/assets/hero/Hero Section.webp",
+    "oldName": "Hero Section.png",
+    "newName": "Hero Section.webp"
+  },
+  {
+    "oldRef": "/case-studies/cubicon/assets/material/owl/owl2.png",
+    "newRef": "/case-studies/cubicon/assets/material/owl/owl2.webp",
+    "oldName": "owl2.png",
+    "newName": "owl2.webp"
+  },
+  {
+    "oldRef": "/case-studies/cubicon/assets/mockups/iteration2/iter2_home.png",
+    "newRef": "/case-studies/cubicon/assets/mockups/iteration2/iter2_home.webp",
+    "oldName": "iter2_home.png",
+    "newName": "iter2_home.webp"
+  },
+  {
+    "oldRef": "/case-studies/cubicon/assets/mockups/iteration2/iter2_product.png",
+    "newRef": "/case-studies/cubicon/assets/mockups/iteration2/iter2_product.webp",
+    "oldName": "iter2_product.png",
+    "newName": "iter2_product.webp"
+  },
+  {
+    "oldRef": "/case-studies/cubicon/assets/mockups/iteration3/Image 1 (Home page).png",
+    "newRef": "/case-studies/cubicon/assets/mockups/iteration3/Image 1 (Home page).webp",
+    "oldName": "Image 1 (Home page).png",
+    "newName": "Image 1 (Home page).webp"
+  },
+  {
+    "oldRef": "/case-studies/cubicon/assets/mockups/iteration3/Image 2 (3x3 category page).png",
+    "newRef": "/case-studies/cubicon/assets/mockups/iteration3/Image 2 (3x3 category page).webp",
+    "oldName": "Image 2 (3x3 category page).png",
+    "newName": "Image 2 (3x3 category page).webp"
+  },
+  {
+    "oldRef": "/case-studies/cubicon/assets/mockups/iteration3/Image 3 (Search page).png",
+    "newRef": "/case-studies/cubicon/assets/mockups/iteration3/Image 3 (Search page).webp",
+    "oldName": "Image 3 (Search page).png",
+    "newName": "Image 3 (Search page).webp"
+  },
+  {
+    "oldRef": "/case-studies/cubicon/assets/mockups/iteration3/Image 4 (Product detail page).png",
+    "newRef": "/case-studies/cubicon/assets/mockups/iteration3/Image 4 (Product detail page).webp",
+    "oldName": "Image 4 (Product detail page).png",
+    "newName": "Image 4 (Product detail page).webp"
+  },
+  {
+    "oldRef": "/case-studies/cubicon/assets/mockups/iteration3/Image 4 scrolled down (Product description section).png",
+    "newRef": "/case-studies/cubicon/assets/mockups/iteration3/Image 4 scrolled down (Product description section).webp",
+    "oldName": "Image 4 scrolled down (Product description section).png",
+    "newName": "Image 4 scrolled down (Product description section).webp"
+  },
+  {
+    "oldRef": "/case-studies/cubicon/assets/mockups/iteration3/Image 4 scrolled down (specification section).png",
+    "newRef": "/case-studies/cubicon/assets/mockups/iteration3/Image 4 scrolled down (specification section).webp",
+    "oldName": "Image 4 scrolled down (specification section).png",
+    "newName": "Image 4 scrolled down (specification section).webp"
+  },
+  {
+    "oldRef": "/case-studies/cubicon/assets/mockups/iteration3/Image 5 (Product added to cart notification screen).png",
+    "newRef": "/case-studies/cubicon/assets/mockups/iteration3/Image 5 (Product added to cart notification screen).webp",
+    "oldName": "Image 5 (Product added to cart notification screen).png",
+    "newName": "Image 5 (Product added to cart notification screen).webp"
+  },
+  {
+    "oldRef": "/case-studies/cubicon/assets/mockups/iteration3/Image 6 (Cart page).png",
+    "newRef": "/case-studies/cubicon/assets/mockups/iteration3/Image 6 (Cart page).webp",
+    "oldName": "Image 6 (Cart page).png",
+    "newName": "Image 6 (Cart page).webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/hero/Hero Page.png",
+    "newRef": "/case-studies/plex/assets/hero/Hero Page.webp",
+    "oldName": "Hero Page.png",
+    "newName": "Hero Page.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/mockups/Analytics Page 1.png",
+    "newRef": "/case-studies/plex/assets/mockups/Analytics Page 1.webp",
+    "oldName": "Analytics Page 1.png",
+    "newName": "Analytics Page 1.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/mockups/Analytics Page 2.png",
+    "newRef": "/case-studies/plex/assets/mockups/Analytics Page 2.webp",
+    "oldName": "Analytics Page 2.png",
+    "newName": "Analytics Page 2.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/mockups/Automation Without Losing Control.png",
+    "newRef": "/case-studies/plex/assets/mockups/Automation Without Losing Control.webp",
+    "oldName": "Automation Without Losing Control.png",
+    "newName": "Automation Without Losing Control.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/mockups/Future Goals Page.png",
+    "newRef": "/case-studies/plex/assets/mockups/Future Goals Page.webp",
+    "oldName": "Future Goals Page.png",
+    "newName": "Future Goals Page.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/mockups/Homepage.png",
+    "newRef": "/case-studies/plex/assets/mockups/Homepage.webp",
+    "oldName": "Homepage.png",
+    "newName": "Homepage.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/mockups/Local Intelligence.png",
+    "newRef": "/case-studies/plex/assets/mockups/Local Intelligence.webp",
+    "oldName": "Local Intelligence.png",
+    "newName": "Local Intelligence.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/mockups/Privacy Page.png",
+    "newRef": "/case-studies/plex/assets/mockups/Privacy Page.webp",
+    "oldName": "Privacy Page.png",
+    "newName": "Privacy Page.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/mockups/Profile Page.png",
+    "newRef": "/case-studies/plex/assets/mockups/Profile Page.webp",
+    "oldName": "Profile Page.png",
+    "newName": "Profile Page.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/mockups/Schedule Page.png",
+    "newRef": "/case-studies/plex/assets/mockups/Schedule Page.webp",
+    "oldName": "Schedule Page.png",
+    "newName": "Schedule Page.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/mockups/Sleep Schedule Page.png",
+    "newRef": "/case-studies/plex/assets/mockups/Sleep Schedule Page.webp",
+    "oldName": "Sleep Schedule Page.png",
+    "newName": "Sleep Schedule Page.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/mockups/Travel Time Page.png",
+    "newRef": "/case-studies/plex/assets/mockups/Travel Time Page.webp",
+    "oldName": "Travel Time Page.png",
+    "newName": "Travel Time Page.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/mockups/Work Time Page.png",
+    "newRef": "/case-studies/plex/assets/mockups/Work Time Page.webp",
+    "oldName": "Work Time Page.png",
+    "newName": "Work Time Page.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/wireframes/image 5.png",
+    "newRef": "/case-studies/plex/assets/wireframes/image 5.webp",
+    "oldName": "image 5.png",
+    "newName": "image 5.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/wireframes/image 6.png",
+    "newRef": "/case-studies/plex/assets/wireframes/image 6.webp",
+    "oldName": "image 6.png",
+    "newName": "image 6.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/wireframes/Iteration 1 Fixed.png",
+    "newRef": "/case-studies/plex/assets/wireframes/Iteration 1 Fixed.webp",
+    "oldName": "Iteration 1 Fixed.png",
+    "newName": "Iteration 1 Fixed.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/wireframes/Iteration 1.png",
+    "newRef": "/case-studies/plex/assets/wireframes/Iteration 1.webp",
+    "oldName": "Iteration 1.png",
+    "newName": "Iteration 1.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/wireframes/Iteration 2 Fixed.png",
+    "newRef": "/case-studies/plex/assets/wireframes/Iteration 2 Fixed.webp",
+    "oldName": "Iteration 2 Fixed.png",
+    "newName": "Iteration 2 Fixed.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/wireframes/Iteration 2.png",
+    "newRef": "/case-studies/plex/assets/wireframes/Iteration 2.webp",
+    "oldName": "Iteration 2.png",
+    "newName": "Iteration 2.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/wireframes/Iteration 3 Fixed.png",
+    "newRef": "/case-studies/plex/assets/wireframes/Iteration 3 Fixed.webp",
+    "oldName": "Iteration 3 Fixed.png",
+    "newName": "Iteration 3 Fixed.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/wireframes/Iteration 3.png",
+    "newRef": "/case-studies/plex/assets/wireframes/Iteration 3.webp",
+    "oldName": "Iteration 3.png",
+    "newName": "Iteration 3.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/wireframes/Iteration 4 Fixed.png",
+    "newRef": "/case-studies/plex/assets/wireframes/Iteration 4 Fixed.webp",
+    "oldName": "Iteration 4 Fixed.png",
+    "newName": "Iteration 4 Fixed.webp"
+  },
+  {
+    "oldRef": "/case-studies/plex/assets/wireframes/Iteration 4.png",
+    "newRef": "/case-studies/plex/assets/wireframes/Iteration 4.webp",
+    "oldName": "Iteration 4.png",
+    "newName": "Iteration 4.webp"
+  },
+  {
+    "oldRef": "/case-studies/youtube-watchlater/Hero Section.png",
+    "newRef": "/case-studies/youtube-watchlater/Hero Section.webp",
+    "oldName": "Hero Section.png",
+    "newName": "Hero Section.webp"
+  },
+  {
+    "oldRef": "/case-studies/youtube-watchlater/Mockup 1 homepage.png",
+    "newRef": "/case-studies/youtube-watchlater/Mockup 1 homepage.webp",
+    "oldName": "Mockup 1 homepage.png",
+    "newName": "Mockup 1 homepage.webp"
+  },
+  {
+    "oldRef": "/case-studies/youtube-watchlater/Mockup 2.png",
+    "newRef": "/case-studies/youtube-watchlater/Mockup 2.webp",
+    "oldName": "Mockup 2.png",
+    "newName": "Mockup 2.webp"
+  },
+  {
+    "oldRef": "/case-studies/youtube-watchlater/Mockup 3.png",
+    "newRef": "/case-studies/youtube-watchlater/Mockup 3.webp",
+    "oldName": "Mockup 3.png",
+    "newName": "Mockup 3.webp"
+  },
+  {
+    "oldRef": "/case-studies/youtube-watchlater/Mockup 4.png",
+    "newRef": "/case-studies/youtube-watchlater/Mockup 4.webp",
+    "oldName": "Mockup 4.png",
+    "newName": "Mockup 4.webp"
+  },
+  {
+    "oldRef": "/Favicon.jpg",
+    "newRef": "/Favicon.webp",
+    "oldName": "Favicon.jpg",
+    "newName": "Favicon.webp"
+  },
+  {
+    "oldRef": "/images/about/satwik-portrait.jpg",
+    "newRef": "/images/about/satwik-portrait.webp",
+    "oldName": "satwik-portrait.jpg",
+    "newName": "satwik-portrait.webp"
+  },
+  {
+    "oldRef": "/assets/cubicon-hero.png",
+    "newRef": "/assets/cubicon-hero.webp",
+    "oldName": "cubicon-hero.png",
+    "newName": "cubicon-hero.webp"
+  },
+  {
+    "oldRef": "/assets/plex-hero.png",
+    "newRef": "/assets/plex-hero.webp",
+    "oldName": "plex-hero.png",
+    "newName": "plex-hero.webp"
+  },
+  {
+    "oldRef": "/assets/satwik-portrait.jpg",
+    "newRef": "/assets/satwik-portrait.webp",
+    "oldName": "satwik-portrait.jpg",
+    "newName": "satwik-portrait.webp"
+  },
+  {
+    "oldRef": "/assets/youtube-hero.png",
+    "newRef": "/assets/youtube-hero.webp",
+    "oldName": "youtube-hero.png",
+    "newName": "youtube-hero.webp"
+  }
+]

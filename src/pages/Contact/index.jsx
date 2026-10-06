@@ -193,7 +193,7 @@ export default function Contact() {
 
                   <div className="cp-front-main">
                     <img
-                      src="/images/about/satwik-portrait.jpg"
+                      src="/images/about/satwik-portrait.webp"
                       alt="Portrait of Satwik Pachauri"
                       className="cp-portrait"
                     />

@@ -2,10 +2,10 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useMotionTemplate } from 'motion/react';
 import styles from './Hero.module.css';
 
-import plexImg from '../assets/plex-hero.png';
-import cubiconImg from '../assets/cubicon-hero.png';
-import youtubeImg from '../assets/youtube-hero.png';
-import portraitImg from '../assets/satwik-portrait.jpg';
+import plexImg from '../assets/plex-hero.webp';
+import cubiconImg from '../assets/cubicon-hero.webp';
+import youtubeImg from '../assets/youtube-hero.webp';
+import portraitImg from '../assets/satwik-portrait.webp';
 
 const VisualField = ({ isReveal }) => (
   <div className={`${styles.visualField} ${isReveal ? styles.revealField : styles.subduedField}`}>

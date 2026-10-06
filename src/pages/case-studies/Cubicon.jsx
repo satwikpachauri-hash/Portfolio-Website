@@ -70,7 +70,7 @@ export default function CubiconCaseStudy() {
       {/* HERO */}
       <section className="hero">
         <div className="hero-image-wrapper">
-          <img src="/case-studies/cubicon/assets/hero/Hero Section.png" alt="Cubicon Hero" />
+          <img src="/case-studies/cubicon/assets/hero/Hero Section.webp" alt="Cubicon Hero" />
         </div>
         
         <FadeIn className="hero-content-overlay">
@@ -285,7 +285,7 @@ export default function CubiconCaseStudy() {
                 </div>
               </div>
               <div>
-                <div className="mockup-phone" style={{ margin: '0 auto 24px auto' }}><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration2/iter2_home.png" alt="V2 Home" /></div>
+                <div className="mockup-phone" style={{ margin: '0 auto 24px auto' }}><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration2/iter2_home.webp" alt="V2 Home" /></div>
                 <div className="ps-content" style={{ textAlign: 'center' }}>
                   <span className="ps-badge improvement icon-badge"><CheckCircle size={16} /> Phase 2: Solution</span>
                   <h3 style={{ textAlign: 'center', marginBottom: '16px' }}>Restructured Homepage</h3>
@@ -343,7 +343,7 @@ export default function CubiconCaseStudy() {
                 </div>
               </div>
               <div>
-                <div className="mockup-phone" style={{ margin: '0 auto 24px auto' }}><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration2/iter2_product.png" alt="V2 Product" /></div>
+                <div className="mockup-phone" style={{ margin: '0 auto 24px auto' }}><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration2/iter2_product.webp" alt="V2 Product" /></div>
                 <div className="ps-content" style={{ textAlign: 'center' }}>
                   <span className="ps-badge improvement icon-badge"><CheckCircle size={16} /> Phase 2: Solution</span>
                   <h3 style={{ textAlign: 'center', marginBottom: '16px' }}>Stronger CTA</h3>
@@ -398,7 +398,7 @@ export default function CubiconCaseStudy() {
           {/* Bell vs Badge */}
           <FadeIn className="problem-solution">
             <div className="mockup-phone has-signifier">
-              <img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration2/iter2_home.png" alt="V2 Home" />
+              <img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration2/iter2_home.webp" alt="V2 Home" />
               <div className="signifier-dot" style={{ top: '9%', right: '5%' }}></div>
             </div>
             <div className="ps-content">
@@ -420,7 +420,7 @@ export default function CubiconCaseStudy() {
           {/* Add vs Buy */}
           <FadeIn className="problem-solution reverse">
             <div className="mockup-phone has-signifier">
-              <img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration2/iter2_product.png" alt="V2 Product" />
+              <img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration2/iter2_product.webp" alt="V2 Product" />
               <div className="signifier-dot" style={{ bottom: '14%', left: '10%' }}></div>
             </div>
             <div className="ps-content">
@@ -500,7 +500,7 @@ export default function CubiconCaseStudy() {
             {/* Left Column: Home Page */}
             <div className="friction-col">
               <div className="mockup-phone">
-                <img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration2/iter2_home.png" alt="V2 Home — friction points" />
+                <img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration2/iter2_home.webp" alt="V2 Home — friction points" />
               </div>
               <div className="friction-issues">
                 <div className="glass-card tilt-card" style={{ marginBottom: '24px', padding: '40px' }}>
@@ -525,7 +525,7 @@ export default function CubiconCaseStudy() {
             {/* Right Column: Product Detail Page */}
             <div className="friction-col">
               <div className="mockup-phone">
-                <img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration2/iter2_product.png" alt="V2 Product — friction points" />
+                <img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration2/iter2_product.webp" alt="V2 Product — friction points" />
               </div>
               <div className="friction-issues">
                 <div className="glass-card tilt-card" style={{ marginBottom: '24px', padding: '40px' }}>
@@ -727,18 +727,18 @@ export default function CubiconCaseStudy() {
           </FadeIn>
 
           <FadeIn className="mockup-row">
-            <div className="mockup-phone mockup-phone-lg tilt-card"><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration3/Image 1 (Home page).png" alt="Final Home" /></div>
-            <div className="mockup-phone mockup-phone-lg tilt-card"><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration3/Image 2 (3x3 category page).png" alt="Final Category" /></div>
-            <div className="mockup-phone mockup-phone-lg tilt-card"><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration3/Image 3 (Search page).png" alt="Final Search" /></div>
+            <div className="mockup-phone mockup-phone-lg tilt-card"><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration3/Image 1 (Home page).webp" alt="Final Home" /></div>
+            <div className="mockup-phone mockup-phone-lg tilt-card"><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration3/Image 2 (3x3 category page).webp" alt="Final Category" /></div>
+            <div className="mockup-phone mockup-phone-lg tilt-card"><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration3/Image 3 (Search page).webp" alt="Final Search" /></div>
           </FadeIn>
           <FadeIn className="mockup-row">
-            <div className="mockup-phone mockup-phone-lg tilt-card"><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration3/Image 4 (Product detail page).png" alt="Final Product" /></div>
-            <div className="mockup-phone mockup-phone-lg tilt-card"><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration3/Image 4 scrolled down (Product description section).png" alt="Product Description" /></div>
-            <div className="mockup-phone mockup-phone-lg tilt-card"><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration3/Image 4 scrolled down (specification section).png" alt="Product Specs" /></div>
+            <div className="mockup-phone mockup-phone-lg tilt-card"><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration3/Image 4 (Product detail page).webp" alt="Final Product" /></div>
+            <div className="mockup-phone mockup-phone-lg tilt-card"><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration3/Image 4 scrolled down (Product description section).webp" alt="Product Description" /></div>
+            <div className="mockup-phone mockup-phone-lg tilt-card"><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration3/Image 4 scrolled down (specification section).webp" alt="Product Specs" /></div>
           </FadeIn>
           <FadeIn className="mockup-row">
-            <div className="mockup-phone mockup-phone-lg tilt-card"><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration3/Image 5 (Product added to cart notification screen).png" alt="Cart Notification" /></div>
-            <div className="mockup-phone mockup-phone-lg tilt-card"><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration3/Image 6 (Cart page).png" alt="Final Cart" /></div>
+            <div className="mockup-phone mockup-phone-lg tilt-card"><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration3/Image 5 (Product added to cart notification screen).webp" alt="Cart Notification" /></div>
+            <div className="mockup-phone mockup-phone-lg tilt-card"><img loading="lazy" src="/case-studies/cubicon/assets/mockups/iteration3/Image 6 (Cart page).webp" alt="Final Cart" /></div>
           </FadeIn>
         </div>
       </section>

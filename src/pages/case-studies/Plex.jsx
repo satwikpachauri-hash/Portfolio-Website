@@ -35,7 +35,7 @@ export default function Plex() {
           style={{ scale: bgScale }}
         >
           <motion.img 
-            src="/case-studies/plex/assets/hero/Hero Page.png" 
+            src="/case-studies/plex/assets/hero/Hero Page.webp" 
             alt="Plex application environment"
             className="plex-cinematic-bg"
             initial={{ opacity: 0 }}

@@ -103,85 +103,86 @@ export default function AboutSceneTwo() {
         tl.to({}, { duration: 0.6 }); // Final hold
       });
 
-      // Phone & Tablet Animation (Normal flow, no pinning, no height collapsing)
+      // Phone & Tablet Animation (Normal flow, principle-driven triggers)
       mm.add("(max-width: 1023px) and (prefers-reduced-motion: no-preference)", () => {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: wrapperRef.current,
-            start: 'top 50%',
-            end: 'bottom 50%', // Scrub evenly through the unpinned height
-            scrub: 1,
-            pin: false, // DO NOT PIN
-          }
-        });
-
         gsap.set('.as2-hier-line', { autoAlpha: 0 });
-        // Clear any previous inline styles on descriptions to keep them normally flowing
         gsap.set('.as2-p-desc', { clearProps: 'all' }); 
 
-        // Set initial emphasis state
-        gsap.set('.as2-p1', { opacity: 1 });
-        gsap.set('.as2-p1 .as2-p-num', { color: 'var(--about-interaction)' });
-        gsap.set('.as2-p1 .as2-p-title', { color: 'var(--about-text-primary)' });
-        
-        gsap.set('.as2-p2, .as2-p3, .as2-p4', { opacity: 0.65 });
-        gsap.set('.as2-p2 .as2-p-num, .as2-p3 .as2-p-num, .as2-p4 .as2-p-num', { color: 'var(--about-text-muted)' });
-        gsap.set('.as2-p2 .as2-p-title, .as2-p3 .as2-p-title, .as2-p4 .as2-p-title', { color: 'var(--about-text-secondary)' });
+        const resetEmphasis = () => {
+          gsap.to('.as2-p1, .as2-p2, .as2-p3, .as2-p4', { opacity: 0.65, duration: 0.3 });
+          gsap.to('.as2-p-num', { color: 'var(--about-text-muted)', duration: 0.3 });
+          gsap.to('.as2-p-title', { color: 'var(--about-text-secondary)', duration: 0.3 });
+        };
 
-        tl.to({}, { duration: 0.3 }); 
-        
-        // 01 -> 02 (Only animate emphasis and visual demo)
-        tl.addLabel('trans01_02')
-          .to('.as2-p1', { opacity: 0.65 }, 'trans01_02')
-          .to('.as2-p1 .as2-p-num', { color: 'var(--about-text-muted)' }, 'trans01_02')
-          .to('.as2-p1 .as2-p-title', { color: 'var(--about-text-secondary)' }, 'trans01_02')
-          .to('.as2-p2', { opacity: 1 }, 'trans01_02')
-          .to('.as2-p2 .as2-p-num', { color: 'var(--about-interaction)' }, 'trans01_02')
-          .to('.as2-p2 .as2-p-title', { color: 'var(--about-text-primary)' }, 'trans01_02')
+        const highlight = (pSelector) => {
+          gsap.to(pSelector, { opacity: 1, duration: 0.3 });
+          gsap.to(`${pSelector} .as2-p-num`, { color: 'var(--about-interaction)', duration: 0.3 });
+          gsap.to(`${pSelector} .as2-p-title`, { color: 'var(--about-text-primary)', duration: 0.3 });
+        };
+
+        const killTweens = () => {
+          gsap.killTweensOf('.as2-p1, .as2-p2, .as2-p3, .as2-p4, .as2-p-num, .as2-p-title, .as2-node, .as2-node span, .as2-hier-line, .as2-center-label, .as2-center-dot, .as2-demo-lines');
+        };
+
+        const state1 = () => {
+          killTweens();
+          resetEmphasis();
+          highlight('.as2-p1');
           
-          .to('.as2-node span', { autoAlpha: 0, duration: 0.2 }, 'trans01_02')
-          .to('.as2-center-label, .as2-center-dot, .as2-demo-lines', { autoAlpha: 0, duration: 0.3 }, 'trans01_02')
-          .to('.as2-node.n1', { top: '45%', left: '45%', borderRadius: '2px', backgroundColor: 'var(--about-interaction)', duration: 0.5 }, 'trans01_02')
-          .to('.as2-node.n2', { top: '45%', left: '55%', borderRadius: '2px', duration: 0.5 }, 'trans01_02')
-          .to('.as2-node.n3', { top: '55%', left: '45%', borderRadius: '2px', duration: 0.5 }, 'trans01_02')
-          .to('.as2-node.n4', { top: '55%', left: '55%', borderRadius: '2px', backgroundColor: 'var(--about-interaction)', duration: 0.5 }, 'trans01_02');
+          gsap.to('.as2-hier-line', { autoAlpha: 0, duration: 0.3 });
+          gsap.to('.as2-node span', { autoAlpha: 1, duration: 0.3 });
+          gsap.to('.as2-center-label, .as2-center-dot, .as2-demo-lines', { autoAlpha: 1, duration: 0.3 });
+          gsap.to('.as2-node.n1', { top: '15%', left: '15%', borderRadius: '50%', backgroundColor: 'var(--about-border)', scale: 1, duration: 0.5 });
+          gsap.to('.as2-node.n2', { top: '15%', left: '85%', borderRadius: '50%', backgroundColor: 'var(--about-border)', scale: 1, duration: 0.5 });
+          gsap.to('.as2-node.n3', { top: '85%', left: '15%', borderRadius: '50%', backgroundColor: 'var(--about-border)', scale: 1, autoAlpha: 1, duration: 0.5 });
+          gsap.to('.as2-node.n4', { top: '85%', left: '85%', borderRadius: '50%', backgroundColor: 'var(--about-border)', scale: 1, autoAlpha: 1, duration: 0.5 });
+        };
 
-        tl.to({}, { duration: 0.4 });
+        const state2 = () => {
+          killTweens();
+          resetEmphasis();
+          highlight('.as2-p2');
+          
+          gsap.to('.as2-hier-line', { autoAlpha: 0, duration: 0.3 });
+          gsap.to('.as2-node span', { autoAlpha: 0, duration: 0.2 });
+          gsap.to('.as2-center-label, .as2-center-dot, .as2-demo-lines', { autoAlpha: 0, duration: 0.3 });
+          gsap.to('.as2-node.n1', { top: '45%', left: '45%', borderRadius: '2px', backgroundColor: 'var(--about-interaction)', scale: 1, duration: 0.5 });
+          gsap.to('.as2-node.n2', { top: '45%', left: '55%', borderRadius: '2px', backgroundColor: 'var(--about-border)', scale: 1, autoAlpha: 1, duration: 0.5 });
+          gsap.to('.as2-node.n3', { top: '55%', left: '45%', borderRadius: '2px', backgroundColor: 'var(--about-border)', scale: 1, autoAlpha: 1, duration: 0.5 });
+          gsap.to('.as2-node.n4', { top: '55%', left: '55%', borderRadius: '2px', backgroundColor: 'var(--about-interaction)', scale: 1, autoAlpha: 1, duration: 0.5 });
+        };
 
-        // 02 -> 03
-        tl.addLabel('trans02_03')
-          .to('.as2-p2', { opacity: 0.65 }, 'trans02_03')
-          .to('.as2-p2 .as2-p-num', { color: 'var(--about-text-muted)' }, 'trans02_03')
-          .to('.as2-p2 .as2-p-title', { color: 'var(--about-text-secondary)' }, 'trans02_03')
-          .to('.as2-p3', { opacity: 1 }, 'trans02_03')
-          .to('.as2-p3 .as2-p-num', { color: 'var(--about-interaction)' }, 'trans02_03')
-          .to('.as2-p3 .as2-p-title', { color: 'var(--about-text-primary)' }, 'trans02_03')
+        const state3 = () => {
+          killTweens();
+          resetEmphasis();
+          highlight('.as2-p3');
+          
+          gsap.to('.as2-hier-line', { autoAlpha: 0, duration: 0.3 });
+          gsap.to('.as2-node.n3, .as2-node.n4', { autoAlpha: 0, duration: 0.3 });
+          gsap.to('.as2-node.n1', { top: '50%', left: '30%', backgroundColor: 'var(--about-border)', borderRadius: '50%', scale: 1, autoAlpha: 1, duration: 0.5 });
+          gsap.to('.as2-node.n2', { top: '50%', left: '70%', backgroundColor: 'var(--about-interaction)', borderRadius: '8px', scale: 1.5, autoAlpha: 1, duration: 0.5 });
+          gsap.to('.as2-hier-line.arrow', { autoAlpha: 1, width: '16%', top: '50%', left: '42%', duration: 0.4 });
+        };
 
-          .to('.as2-node.n3, .as2-node.n4', { autoAlpha: 0, duration: 0.3 }, 'trans02_03')
-          .to('.as2-node.n1', { top: '50%', left: '30%', backgroundColor: 'var(--about-border)', borderRadius: '50%', duration: 0.5 }, 'trans02_03')
-          .to('.as2-node.n2', { top: '50%', left: '70%', backgroundColor: 'var(--about-interaction)', borderRadius: '8px', scale: 1.5, duration: 0.5 }, 'trans02_03')
-          .fromTo('.as2-hier-line.arrow', { autoAlpha: 0, width: 0, top: '50%', left: '42%' }, { autoAlpha: 1, width: '16%', duration: 0.4 }, 'trans02_03+=0.2');
+        const state4 = () => {
+          killTweens();
+          resetEmphasis();
+          highlight('.as2-p4');
+          
+          gsap.to('.as2-node.n1, .as2-node.n2, .as2-hier-line.arrow', { autoAlpha: 0, duration: 0.3 });
+          gsap.to('.as2-hier-line.hl1', { autoAlpha: 1, top: '35%', left: '15%', width: '70%', height: '16px', backgroundColor: 'var(--about-interaction)', duration: 0.5 });
+          gsap.to('.as2-hier-line.hl2', { autoAlpha: 1, top: '52%', left: '15%', width: '50%', height: '8px', backgroundColor: 'var(--about-border)', duration: 0.5 });
+          gsap.to('.as2-hier-line.hl3', { autoAlpha: 0.5, top: '64%', left: '15%', width: '35%', height: '8px', backgroundColor: 'var(--about-border)', duration: 0.5 });
+        };
 
-        tl.to({}, { duration: 0.4 });
+        // Initialize state 1 instantly so it's ready
+        gsap.set('.as2-node.n1, .as2-node.n2, .as2-node.n3, .as2-node.n4', { scale: 1, autoAlpha: 1 });
+        state1();
 
-        // 03 -> 04
-        tl.addLabel('trans03_04')
-          .to('.as2-p3', { opacity: 0.65 }, 'trans03_04')
-          .to('.as2-p3 .as2-p-num', { color: 'var(--about-text-muted)' }, 'trans03_04')
-          .to('.as2-p3 .as2-p-title', { color: 'var(--about-text-secondary)' }, 'trans03_04')
-          .to('.as2-p4', { opacity: 1 }, 'trans03_04')
-          .to('.as2-p4 .as2-p-num', { color: 'var(--about-interaction)' }, 'trans03_04')
-          .to('.as2-p4 .as2-p-title', { color: 'var(--about-text-primary)' }, 'trans03_04')
-
-          .to('.as2-node.n1, .as2-node.n2, .as2-hier-line.arrow', { autoAlpha: 0, duration: 0.3 }, 'trans03_04')
-          .fromTo('.as2-hier-line.hl1', { autoAlpha: 0, top: '40%', left: '25%', width: '50%', height: '8px', backgroundColor: 'var(--about-border)' }, { autoAlpha: 1, duration: 0.2 }, 'trans03_04')
-          .fromTo('.as2-hier-line.hl2', { autoAlpha: 0, top: '50%', left: '25%', width: '50%', height: '8px', backgroundColor: 'var(--about-border)' }, { autoAlpha: 1, duration: 0.2 }, 'trans03_04')
-          .fromTo('.as2-hier-line.hl3', { autoAlpha: 0, top: '60%', left: '25%', width: '50%', height: '8px', backgroundColor: 'var(--about-border)' }, { autoAlpha: 1, duration: 0.2 }, 'trans03_04')
-          .to('.as2-hier-line.hl1', { top: '35%', left: '15%', width: '70%', height: '16px', backgroundColor: 'var(--about-interaction)', duration: 0.5 }, 'trans03_04+=0.3')
-          .to('.as2-hier-line.hl2', { top: '52%', left: '15%', width: '50%', height: '8px', duration: 0.5 }, 'trans03_04+=0.3')
-          .to('.as2-hier-line.hl3', { top: '64%', left: '15%', width: '35%', height: '8px', opacity: 0.5, duration: 0.5 }, 'trans03_04+=0.3');
-
-        tl.to({}, { duration: 0.4 });
+        ScrollTrigger.create({ trigger: '.as2-p1', start: 'top 80%', end: 'bottom 50%', onEnter: state1, onEnterBack: state1 });
+        ScrollTrigger.create({ trigger: '.as2-p2', start: 'top 50%', end: 'bottom 50%', onEnter: state2, onEnterBack: state2 });
+        ScrollTrigger.create({ trigger: '.as2-p3', start: 'top 50%', end: 'bottom 50%', onEnter: state3, onEnterBack: state3 });
+        ScrollTrigger.create({ trigger: '.as2-p4', start: 'top 50%', end: 'bottom 0%', onEnter: state4, onEnterBack: state4 });
       });
 
       // Reduced Motion

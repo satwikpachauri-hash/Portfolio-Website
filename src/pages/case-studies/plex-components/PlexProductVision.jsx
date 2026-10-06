@@ -9,7 +9,7 @@ const principles = [
     number: "01",
     title: "Reduce\nCognitive Load",
     description: "Minimal interfaces that only show what matters right now.",
-    image: "/case-studies/plex/assets/mockups/Homepage.png",
+    image: "/case-studies/plex/assets/mockups/Homepage.webp",
     imageAlt: "Plex homepage interface"
   },
   {
@@ -17,7 +17,7 @@ const principles = [
     number: "02",
     title: "Automation\nWithout\nLosing Control",
     description: "AI handles complexity while the user remains in control.",
-    image: "/case-studies/plex/assets/mockups/Automation Without Losing Control.png",
+    image: "/case-studies/plex/assets/mockups/Automation Without Losing Control.webp",
     imageAlt: "Plex automation interface"
   },
   {
@@ -25,7 +25,7 @@ const principles = [
     number: "03",
     title: "Support\nInstead of\nPressure",
     description: "Guidance instead of guilt.",
-    image: "/case-studies/plex/assets/mockups/Analytics Page 1.png",
+    image: "/case-studies/plex/assets/mockups/Analytics Page 1.webp",
     imageAlt: "Plex analytics interface"
   },
   {
@@ -33,7 +33,7 @@ const principles = [
     number: "04",
     title: "Realistic\nPlanning",
     description: "Schedules adapt to real life.",
-    image: "/case-studies/plex/assets/mockups/Schedule Page.png",
+    image: "/case-studies/plex/assets/mockups/Schedule Page.webp",
     imageAlt: "Plex schedule interface"
   },
   {
@@ -41,7 +41,7 @@ const principles = [
     number: "05",
     title: "Local\nProcessing",
     description: "Your information stays on your device.",
-    image: "/case-studies/plex/assets/mockups/Privacy Page.png",
+    image: "/case-studies/plex/assets/mockups/Privacy Page.webp",
     imageAlt: "Plex privacy interface"
   },
   {
@@ -49,7 +49,7 @@ const principles = [
     number: "06",
     title: "Intelligent\nPlanning",
     description: "Plex turns your tasks, goals, and time into a plan that works around your day.",
-    image: "/case-studies/plex/assets/mockups/Local Intelligence.png",
+    image: "/case-studies/plex/assets/mockups/Local Intelligence.webp",
     imageAlt: "Plex local intelligence interface"
   }
 ];

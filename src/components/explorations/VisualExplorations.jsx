@@ -26,7 +26,7 @@ const photoData = [
 const graphicWorks = [
   {
     id: 1,
-    image: '/assets/graphic-design/EIPF Poster.jpg',
+    image: '/assets/graphic-design/EIPF Poster.webp',
     title: 'Ethos Share',
     observation: 'Poster submission · Emirates International Poster Festival',
     alt: 'Ethos Share - Emirates International Poster Festival'

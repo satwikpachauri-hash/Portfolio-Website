@@ -11,7 +11,7 @@
   padding: clamp(64px, 10vh, 120px) var(--container-padding, 24px) clamp(100px, 15vh, 160px);
 }
 
-.as2-content {
+ .as2-content {
   position: relative;
   width: 100%;
   max-width: 1200px;
@@ -218,7 +218,6 @@
 /* Visibility toggles for responsive order */
 .as2-mobile-visual {
   display: none;
-  padding: 48px 0;
 }
 
 .as2-desktop-visual {
@@ -233,13 +232,20 @@
     flex-direction: column;
     gap: 0;
   }
-  .as2-left-col {
+  .as2-left-col { 
+    padding-bottom: 60vh;
     max-width: 100%;
   }
   .as2-desktop-visual {
     display: none;
   }
-  .as2-mobile-visual {
+  .as2-mobile-visual { 
+    position: sticky; 
+    top: calc(var(--nav-height, 80px) + 30vh); 
+    z-index: 5; 
+    background-color: var(--bg); 
+    margin-bottom: 40px; 
+    padding: 24px 0;
     display: flex;
   }
 }
@@ -248,7 +254,7 @@
   /* Phone */
   .as2-wrapper {
     padding-top: 64px;
-    padding-bottom: 80px;
+    padding-bottom: 0;
   }
   .as2-heading {
     font-size: clamp(2rem, 8vw, 2.5rem);

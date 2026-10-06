@@ -137,7 +137,7 @@ export default function YouTubeCaseStudy() {
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <img src="/case-studies/youtube-watchlater/Hero Section.png" alt="YouTube Mockups" loading="lazy" />
+              <img src="/case-studies/youtube-watchlater/Hero Section.webp" alt="YouTube Mockups" loading="lazy" />
             </motion.div>
           </div>
         </div>
@@ -316,7 +316,7 @@ export default function YouTubeCaseStudy() {
               </ul>
             </div>
             <div className="mock-wrap">
-              <div className="phone"><img src="/case-studies/youtube-watchlater/Mockup 1 homepage.png" alt="Homepage" loading="lazy" /></div>
+              <div className="phone"><img src="/case-studies/youtube-watchlater/Mockup 1 homepage.webp" alt="Homepage" loading="lazy" /></div>
               <div className="tag" style={{ top: '20%', right: '-20%' }}>One-Tap Save</div>
             </div>
           </motion.div>
@@ -337,8 +337,8 @@ export default function YouTubeCaseStudy() {
             </div>
             <div className="mock-wrap">
               <div className="multi-mockup-flex" style={{ display: 'flex', gap: '20px' }}>
-                <div className="phone" style={{ maxWidth: '240px', transform: 'rotate(-5deg)' }}><img src="/case-studies/youtube-watchlater/Mockup 2.png" alt="Mockup" loading="lazy" /></div>
-                <div className="phone" style={{ maxWidth: '240px', transform: 'rotate(5deg)' }}><img src="/case-studies/youtube-watchlater/Mockup 3.png" alt="Mockup" loading="lazy" /></div>
+                <div className="phone" style={{ maxWidth: '240px', transform: 'rotate(-5deg)' }}><img src="/case-studies/youtube-watchlater/Mockup 2.webp" alt="Mockup" loading="lazy" /></div>
+                <div className="phone" style={{ maxWidth: '240px', transform: 'rotate(5deg)' }}><img src="/case-studies/youtube-watchlater/Mockup 3.webp" alt="Mockup" loading="lazy" /></div>
               </div>
               <div className="tag" style={{ bottom: '0%', left: '-20%' }}>Smart Sorting</div>
             </div>
@@ -359,7 +359,7 @@ export default function YouTubeCaseStudy() {
               <p>When you search for a topic, the app reminds you about relevant videos you already saved, placing them right at the top of the search results.</p>
             </div>
             <div className="mock-wrap">
-              <div className="phone"><img src="/case-studies/youtube-watchlater/Mockup 4.png" alt="Mockup" loading="lazy" /></div>
+              <div className="phone"><img src="/case-studies/youtube-watchlater/Mockup 4.webp" alt="Mockup" loading="lazy" /></div>
               <div className="tag" style={{ top: '15%', right: '-20%' }}>Search Nudge</div>
             </div>
           </motion.div>

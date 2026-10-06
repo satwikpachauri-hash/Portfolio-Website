@@ -261,7 +261,7 @@
   margin: 0 auto;
   /* Lock the aspect ratio of the Plex Homepage mockup so the
      browser reserves the exact height before image loads.
-     The Homepage.png is a phone screen: roughly 9:19.5 */
+     The Homepage.webp is a phone screen: roughly 9:19.5 */
   aspect-ratio: 9 / 19.5;
   border-radius: 20px;
   overflow: hidden;

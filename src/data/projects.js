@@ -8,7 +8,7 @@ export const projects = [
     role: 'Product Designer',
     tags: ['UI/UX', 'Interaction', 'Entertainment'],
     metrics: [],
-    image: '/assets/projects/plex-hero.png',
+    image: '/assets/projects/plex-hero.webp',
     caseStudyUrl: '/case-studies/plex/index.html',
     accent: '#B8A8FF'
   },
@@ -24,7 +24,7 @@ export const projects = [
       { label: 'SUS Score', value: '72.5' },
       { label: 'Iterations', value: '3' }
     ],
-    image: '/assets/projects/cubicon-hero.png',
+    image: '/assets/projects/cubicon-hero.webp',
     caseStudyUrl: '/case-studies/cubicon/index.html',
     accent: '#8be9fd'
   },
@@ -39,7 +39,7 @@ export const projects = [
     metrics: [
       { label: 'Users Researched', value: '52' }
     ],
-    image: '/assets/projects/youtube-hero.png',
+    image: '/assets/projects/youtube-hero.webp',
     caseStudyUrl: '/case-studies/youtube-watchlater/index.html',
     accent: '#ff5555'
   }
