@@ -1,4 +1,5 @@
-{
+const fs = require('fs');
+const content = {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
@@ -6,4 +7,5 @@
       "destination": "/index.html"
     }
   ]
-}
+};
+fs.writeFileSync('vercel.json', JSON.stringify(content, null, 2));
