@@ -14,6 +14,7 @@ import PlexArchitecture from './plex-components/PlexArchitecture';
 import PlexCollaboration from './plex-components/PlexCollaboration';
 import PlexReflection from './plex-components/PlexReflection';
 import PlexFooter from './plex-components/PlexFooter';
+import RelatedProjects from '../../components/projects/RelatedProjects';
 import './Plex.css';
 
 export default function Plex() {
@@ -129,6 +130,7 @@ export default function Plex() {
         <PlexArchitecture />
         <PlexCollaboration />
         <PlexReflection />
+        <RelatedProjects currentProject="plex" />
         <PlexFooter />
       </div>
     </div>

@@ -12,6 +12,7 @@ import CubiconIndustryInsight from './components/CubiconIndustryInsight';
 import CubiconUsabilityTesting from './components/CubiconUsabilityTesting';
 import CubiconFinalIteration from './components/CubiconFinalIteration';
 import CubiconFooter from './components/CubiconFooter';
+import RelatedProjects from '../../../components/projects/RelatedProjects';
 import './Cubicon.css';
 
 export default function Cubicon() {
@@ -124,6 +125,7 @@ export default function Cubicon() {
         <CubiconIndustryInsight />
         <CubiconUsabilityTesting />
         <CubiconFinalIteration />
+        <RelatedProjects currentProject="cubicon" />
         <CubiconFooter />
       </div>
     </div>

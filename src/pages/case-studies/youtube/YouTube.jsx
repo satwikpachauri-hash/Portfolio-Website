@@ -9,6 +9,7 @@ import YouTubeSolutions from './components/YouTubeSolutions';
 import YouTubeProjectedImpact from './components/YouTubeProjectedImpact';
 import YouTubeFinalImpact from './components/YouTubeFinalImpact';
 import YouTubeFooter from './components/YouTubeFooter';
+import RelatedProjects from '../../../components/projects/RelatedProjects';
 import './YouTube.css';
 
 export default function YouTube() {
@@ -51,6 +52,9 @@ export default function YouTube() {
 
       {/* 07. Final Impact */}
       <YouTubeFinalImpact />
+
+      {/* Related Projects */}
+      <RelatedProjects currentProject="youtube" />
 
       {/* Case Study Footer */}
       <YouTubeFooter />
