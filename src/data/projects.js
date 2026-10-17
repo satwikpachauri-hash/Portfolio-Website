@@ -1,4 +1,4 @@
-export const projects = [
+﻿export const projects = [
   {
     id: 'plex',
     title: 'Plex',
@@ -25,7 +25,7 @@ export const projects = [
       { label: 'Iterations', value: '3' }
     ],
     image: '/assets/projects/cubicon-hero.webp',
-    caseStudyUrl: '/case-studies/cubicon/index.html',
+    caseStudyUrl: ''
     accent: '#8be9fd'
   },
   {
@@ -44,3 +44,4 @@ export const projects = [
     accent: '#ff5555'
   }
 ];
+

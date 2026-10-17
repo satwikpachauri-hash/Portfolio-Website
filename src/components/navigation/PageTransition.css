@@ -1,0 +1,22 @@
+/* PageTransition.css — Pure Opacity Route Entry Transition */
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.page-transition-wrapper {
+  width: 100%;
+  animation: pageFadeIn 220ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition-wrapper {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}

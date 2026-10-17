@@ -1,0 +1,1201 @@
+/* CubiconExploring.css */
+
+.cubicon-exploring-section {
+  width: 100%;
+  background-color: var(--bg);
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 120px 0;
+}
+
+.ce-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+
+/* ==========================================================================
+   SECTION HEADER (CENTER ALIGNED)
+   ========================================================================== */
+.ce-header-block {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto 64px auto;
+  padding: 0 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ce-header-block .case-study-section-chip {
+  margin-bottom: 24px;
+}
+
+.ce-header-block .ce-story-title {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  line-height: 1.1;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.ce-header-block .ce-story-body {
+  font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ==========================================================================
+   LEFT COLUMN: CONTROLS
+   ========================================================================== */
+.ce-text-column {
+  flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ce-story-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  display: block;
+  text-transform: uppercase;
+}
+
+.ce-story-title {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  line-height: 1.1;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.ce-story-body {
+  font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 48px;
+  max-width: 480px;
+  text-align: center;
+}
+
+/* Segmented Controls */
+.ce-system-toggles {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Tablet Adjustments (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .cubicon-exploring-section {
+    padding: 64px 0 40px;
+  }
+
+  .ce-header-block {
+    margin: 0 auto 40px auto;
+  }
+
+  .ce-container {
+    gap: 36px;
+  }
+
+  .ce-text-column {
+    flex: none;
+    width: 100%;
+    align-items: center;
+  }
+
+  .ce-system-toggles {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    padding-bottom: 0;
+    overflow-x: visible;
+  }
+
+  .ce-toggle-btn {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 14px 20px;
+    min-height: 54px;
+    font-size: 1.05rem;
+  }
+
+  .ce-comparison-heading {
+    margin-bottom: 20px;
+  }
+
+  .ce-closing-text {
+    padding: 48px 5vw 24px;
+  }
+}
+
+/* Phone Adjustments (< 768px) */
+@media (max-width: 767px) {
+  .cubicon-exploring-section {
+    padding: 48px 0 32px;
+  }
+
+  .ce-header-block {
+    margin: 0 auto 32px auto;
+  }
+
+  .ce-container {
+    gap: 28px;
+  }
+
+  .ce-text-column {
+    flex: none;
+    width: 100%;
+  }
+
+  .ce-system-toggles {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding-bottom: 0;
+    overflow-x: visible;
+  }
+
+  .ce-toggle-btn {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 14px 18px;
+    min-height: 52px;
+    font-size: 1rem;
+  }
+
+  .ce-comparison-heading {
+    margin-bottom: 16px;
+    font-size: 1.15rem;
+  }
+
+  .ce-closing-text {
+    padding: 36px 5vw 16px;
+  }
+}
+
+.ce-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  white-space: nowrap;
+}
+
+.ce-toggle-btn:hover {
+  border-color: var(--text-muted);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+[data-theme="light"] .ce-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.ce-toggle-btn[data-active="true"] {
+  background: var(--text-primary);
+  color: var(--bg);
+  border-color: var(--text-primary);
+}
+
+.ce-toggle-logo-slot {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 6px;
+}
+
+/* Neutral surface for the dark-filled Apple logo to guarantee legibility across all themes */
+.ce-apple-slot {
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.ce-system-logo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: block;
+}
+
+.ce-apple-logo {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==========================================================================
+   RIGHT COLUMN: CANVAS & ACTIONS
+   ========================================================================== */
+.ce-visual-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 680px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.ce-comparison-heading {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.ce-canvas {
+  width: 100%;
+  min-height: auto;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 32px 32px 36px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.03);
+  transition: background-color 0.3s ease;
+  gap: 28px;
+}
+
+[data-theme="dark"] .ce-canvas {
+  background-color: #121212;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* Canvas Header */
+.ce-canvas-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.ce-canvas-system-tag {
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.ce-canvas-component-tag {
+  color: var(--text-secondary);
+}
+
+/* Interaction Actions (Error/Anatomy) */
+.ce-canvas-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 28px;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.ce-action-btn {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.2s ease;
+}
+
+.ce-action-btn:hover,
+.ce-action-btn[data-active="true"] {
+  color: var(--text-primary);
+}
+
+.ce-toggle-switch {
+  width: 36px;
+  height: 20px;
+  border-radius: 100px;
+  background: var(--border);
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.ce-action-btn[data-active="true"] .ce-toggle-switch {
+  background: var(--text-primary);
+}
+
+.ce-toggle-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg);
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.ce-action-btn[data-active="true"] .ce-toggle-thumb {
+  transform: translateX(16px);
+}
+
+/* ==========================================================================
+   SYSTEM REPLICAS (Typography resets & Wrapper)
+   ========================================================================== */
+.sys-wrapper {
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dedicated top clearance when technical measurement badges are rendered above the container */
+.sys-wrapper.has-anatomy-overlay {
+  margin-top: 20px;
+}
+
+/* ==========================================================================
+   LAYER 01: TECHNICAL MEASUREMENT PILL BADGES (POINTER-EVENTS: NONE)
+   ========================================================================== */
+.ce-measurement-tag {
+  position: absolute;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 4px;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 25;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  animation: ceFadeIn 0.2s ease;
+}
+
+/* ==========================================================================
+   MATERIAL DESIGN 3 REPLICA & TECHNICAL OVERLAY (LOCKED & PRESERVED)
+   ========================================================================== */
+.sys-material {
+  font-family: Roboto, system-ui, sans-serif;
+}
+
+.sys-material-input-container {
+  position: relative;
+  width: 100%;
+  height: 56px;
+  border: 1px solid #79747E;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, border-width 0.15s ease;
+  background: transparent;
+}
+
+[data-theme="dark"] .sys-material-input-container {
+  border-color: #938F99;
+}
+
+.sys-material-input-container.focused {
+  border: 2px solid #6750A4;
+}
+
+[data-theme="dark"] .sys-material-input-container.focused {
+  border: 2px solid #D0BCFF;
+}
+
+.sys-material-input-container.error {
+  border: 2px solid #B3261E;
+}
+
+[data-theme="dark"] .sys-material-input-container.error {
+  border: 2px solid #F2B8B5;
+}
+
+/* M3 Technical Boundaries */
+.anatomy-target-m3-container {
+  outline: 1.25px dashed #3b82f6 !important;
+  outline-offset: 4px;
+  border-radius: 4px;
+  transition: outline 0.2s ease;
+}
+
+[data-theme="dark"] .anatomy-target-m3-container {
+  outline-color: #60a5fa !important;
+}
+
+/* M3 Container Measurement: Pinned top-right outside container */
+.tag-m3-container {
+  top: -28px;
+  right: 0;
+  background: rgba(59, 130, 246, 0.12);
+  color: #1d4ed8;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+}
+
+[data-theme="dark"] .tag-m3-container {
+  background: rgba(30, 58, 138, 0.5);
+  color: #93c5fd;
+  border-color: rgba(96, 165, 250, 0.4);
+}
+
+/* M3 Label Measurement: Pinned top-left outside container (opposite side from container tag) */
+.tag-m3-label {
+  top: -28px;
+  left: 0;
+  background: rgba(168, 85, 247, 0.12);
+  color: #7e22ce;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+}
+
+[data-theme="dark"] .tag-m3-label {
+  background: rgba(88, 28, 135, 0.5);
+  color: #d8b4fe;
+  border-color: rgba(192, 132, 252, 0.4);
+}
+
+/* M3 Floating Label: Direct child of container, strictly single-line, floats to notch on focus/value */
+.sys-material-label {
+  position: absolute;
+  left: 12px;
+  top: 16px;
+  padding: 0 4px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #49454F;
+  pointer-events: none;
+  background: #ffffff;
+  transition: all 0.15s cubic-bezier(0.2, 0, 0, 1);
+  transform-origin: left top;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+[data-theme="dark"] .sys-material-label {
+  color: #CAC4D0;
+  background: #121212;
+}
+
+.sys-material-input-container.focused .sys-material-label,
+.sys-material-input-container.has-value .sys-material-label {
+  transform: translateY(-25px) scale(0.75);
+}
+
+.sys-material-input-container.focused .sys-material-label {
+  color: #6750A4;
+}
+
+[data-theme="dark"] .sys-material-input-container.focused .sys-material-label {
+  color: #D0BCFF;
+}
+
+.sys-material-input-container.error .sys-material-label {
+  color: #B3261E !important;
+}
+
+[data-theme="dark"] .sys-material-input-container.error .sys-material-label {
+  color: #F2B8B5 !important;
+}
+
+/* M3 Label Technical Boundary: Outlines label directly, follows resting or notch position */
+.anatomy-target-m3-label {
+  outline: 1.25px dashed #a855f7 !important;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+[data-theme="dark"] .anatomy-target-m3-label {
+  outline-color: #c084fc !important;
+}
+
+/* M3 Input Text Entry: Single-line email field */
+.sys-material-input {
+  width: 100%;
+  height: 100%;
+  padding: 0 16px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #1C1B1F;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+[data-theme="dark"] .sys-material-input {
+  color: #E6E1E5;
+}
+
+/* M3 Supporting Text Wrapper: Clear vertical margin from container outline */
+.sys-material-support-wrapper {
+  position: relative;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.sys-material-support-wrapper.anatomy-target-m3-support {
+  margin-top: 14px;
+  outline: 1.25px dashed #10b981 !important;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+[data-theme="dark"] .sys-material-support-wrapper.anatomy-target-m3-support {
+  outline-color: #34d399 !important;
+}
+
+.tag-m3-support {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+[data-theme="dark"] .tag-m3-support {
+  background: rgba(6, 78, 59, 0.5);
+  color: #6ee7b7;
+  border-color: rgba(52, 211, 153, 0.4);
+}
+
+.sys-material-support {
+  font-size: 12px;
+  color: #49454F;
+  padding: 2px 150px 2px 4px;
+  min-height: 16px;
+  line-height: 16px;
+}
+
+[data-theme="dark"] .sys-material-support {
+  color: #CAC4D0;
+}
+
+.sys-material-support.error {
+  color: #B3261E;
+}
+
+[data-theme="dark"] .sys-material-support.error {
+  color: #F2B8B5;
+}
+
+/* ==========================================================================
+   APPLE HIG REPLICA & TECHNICAL OVERLAY (LOCKED & PRESERVED)
+   ========================================================================== */
+.sys-apple {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+
+/* Apple External Label Row: Label & Label Measurement on the LEFT */
+.sys-apple-label-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.has-anatomy-overlay .sys-apple-label-row {
+  margin-bottom: 14px;
+}
+
+.sys-apple-label-box {
+  display: inline-block;
+}
+
+.anatomy-target-apple-label {
+  outline: 1.25px dashed #a855f7 !important;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+[data-theme="dark"] .anatomy-target-apple-label {
+  outline-color: #c084fc !important;
+}
+
+.sys-apple-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #000000;
+  display: block;
+}
+
+[data-theme="dark"] .sys-apple-label {
+  color: #FFFFFF;
+}
+
+/* Apple Label Measurement: Flows directly beside external label on LEFT */
+.tag-apple-label {
+  position: static;
+  background: rgba(168, 85, 247, 0.12);
+  color: #7e22ce;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+}
+
+[data-theme="dark"] .tag-apple-label {
+  background: rgba(88, 28, 135, 0.5);
+  color: #d8b4fe;
+  border-color: rgba(192, 132, 252, 0.4);
+}
+
+/* Apple Input Container: 44pt touch target */
+.sys-apple-input-container {
+  width: 100%;
+  height: 44px;
+  background: rgba(118, 118, 128, 0.12);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  position: relative;
+}
+
+[data-theme="dark"] .sys-apple-input-container {
+  background: rgba(118, 118, 128, 0.24);
+}
+
+.anatomy-target-apple-container {
+  outline: 1.25px dashed #3b82f6 !important;
+  outline-offset: 4px;
+  border-radius: 10px;
+}
+
+[data-theme="dark"] .anatomy-target-apple-container {
+  outline-color: #60a5fa !important;
+}
+
+/* Apple Container Measurement: Positioned top-right (separated by >200px from tag-apple-label on left) */
+.tag-apple-container {
+  top: -26px;
+  right: 0;
+  background: rgba(59, 130, 246, 0.12);
+  color: #1d4ed8;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+}
+
+[data-theme="dark"] .tag-apple-container {
+  background: rgba(30, 58, 138, 0.5);
+  color: #93c5fd;
+  border-color: rgba(96, 165, 250, 0.4);
+}
+
+.sys-apple-input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  color: #000000;
+  padding-right: 28px;
+}
+
+[data-theme="dark"] .sys-apple-input {
+  color: #FFFFFF;
+}
+
+.sys-apple-input::placeholder {
+  color: rgba(60, 60, 67, 0.3);
+}
+
+[data-theme="dark"] .sys-apple-input::placeholder {
+  color: rgba(235, 235, 245, 0.3);
+}
+
+.sys-apple-clear {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: rgba(60, 60, 67, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-theme="dark"] .sys-apple-clear {
+  color: rgba(235, 235, 245, 0.3);
+}
+
+/* Apple Inline Feedback Wrapper */
+.sys-apple-support-wrapper {
+  position: relative;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.sys-apple-support-wrapper.anatomy-target-apple-support {
+  margin-top: 14px;
+  outline: 1.25px dashed #10b981 !important;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+[data-theme="dark"] .sys-apple-support-wrapper.anatomy-target-apple-support {
+  outline-color: #34d399 !important;
+}
+
+.tag-apple-support {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+[data-theme="dark"] .tag-apple-support {
+  background: rgba(6, 78, 59, 0.5);
+  color: #6ee7b7;
+  border-color: rgba(52, 211, 153, 0.4);
+}
+
+.sys-apple-support {
+  font-size: 13px;
+  color: rgba(60, 60, 67, 0.6);
+  min-height: 16px;
+  padding-right: 150px;
+}
+
+[data-theme="dark"] .sys-apple-support {
+  color: rgba(235, 235, 245, 0.6);
+}
+
+.sys-apple-support.error {
+  color: #FF3B30;
+}
+
+[data-theme="dark"] .sys-apple-support.error {
+  color: #FF453A;
+}
+
+/* ==========================================================================
+   SHOPIFY POLARIS REPLICA & TECHNICAL OVERLAY
+   ========================================================================== */
+.sys-polaris {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", sans-serif;
+}
+
+/* Polaris External Label Row: Label & Label Measurement on the LEFT */
+.sys-polaris-label-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.has-anatomy-overlay .sys-polaris-label-row {
+  margin-bottom: 14px;
+}
+
+.sys-polaris-label-box {
+  display: inline-block;
+}
+
+.anatomy-target-polaris-label {
+  outline: 1.25px dashed #a855f7 !important;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+[data-theme="dark"] .anatomy-target-polaris-label {
+  outline-color: #c084fc !important;
+}
+
+.sys-polaris-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #202223;
+  display: block;
+}
+
+[data-theme="dark"] .sys-polaris-label {
+  color: #E3E5E7;
+}
+
+/* Polaris Label Measurement: Flows directly beside external label on LEFT */
+.tag-polaris-label {
+  position: static;
+  background: rgba(168, 85, 247, 0.12);
+  color: #7e22ce;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+}
+
+[data-theme="dark"] .tag-polaris-label {
+  background: rgba(88, 28, 135, 0.5);
+  color: #d8b4fe;
+  border-color: rgba(192, 132, 252, 0.4);
+}
+
+/* Polaris Input Container: 36px merchant input */
+.sys-polaris-input-container {
+  width: 100%;
+  height: 36px;
+  border: 1px solid #8C9196;
+  border-radius: 4px;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  position: relative;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-theme="dark"] .sys-polaris-input-container {
+  background: #202123;
+  border-color: #505356;
+}
+
+.sys-polaris-input-container.focused {
+  border-color: #005BD3;
+  box-shadow: 0 0 0 1px #005BD3;
+  outline: none;
+}
+
+[data-theme="dark"] .sys-polaris-input-container.focused {
+  border-color: #2C6ECB;
+  box-shadow: 0 0 0 1px #2C6ECB;
+}
+
+.sys-polaris-input-container.error {
+  border-color: #D82C0D;
+  background: #FFF4F4;
+}
+
+[data-theme="dark"] .sys-polaris-input-container.error {
+  border-color: #E2482E;
+  background: #3B1B1B;
+}
+
+.sys-polaris-input-container.error.focused {
+  box-shadow: 0 0 0 1px #D82C0D;
+}
+
+[data-theme="dark"] .sys-polaris-input-container.error.focused {
+  box-shadow: 0 0 0 1px #E2482E;
+}
+
+.anatomy-target-polaris-container {
+  outline: 1.25px dashed #3b82f6 !important;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+[data-theme="dark"] .anatomy-target-polaris-container {
+  outline-color: #60a5fa !important;
+}
+
+/* Polaris Container Measurement: Positioned top-right (separated by >200px from tag-polaris-label on left) */
+.tag-polaris-container {
+  top: -26px;
+  right: 0;
+  background: rgba(59, 130, 246, 0.12);
+  color: #1d4ed8;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+}
+
+[data-theme="dark"] .tag-polaris-container {
+  background: rgba(30, 58, 138, 0.5);
+  color: #93c5fd;
+  border-color: rgba(96, 165, 250, 0.4);
+}
+
+.sys-polaris-input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #202223;
+}
+
+[data-theme="dark"] .sys-polaris-input {
+  color: #E3E5E7;
+}
+
+/* Polaris Support / Error Wrapper */
+.sys-polaris-support-wrapper {
+  position: relative;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.sys-polaris-support-wrapper.anatomy-target-polaris-support {
+  margin-top: 14px;
+  outline: 1.25px dashed #10b981 !important;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+[data-theme="dark"] .sys-polaris-support-wrapper.anatomy-target-polaris-support {
+  outline-color: #34d399 !important;
+}
+
+.tag-polaris-support {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+[data-theme="dark"] .tag-polaris-support {
+  background: rgba(6, 78, 59, 0.5);
+  color: #6ee7b7;
+  border-color: rgba(52, 211, 153, 0.4);
+}
+
+.sys-polaris-support {
+  font-size: 13px;
+  color: #6D7175;
+  min-height: 18px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-right: 140px;
+}
+
+[data-theme="dark"] .sys-polaris-support {
+  color: #999EA4;
+}
+
+.sys-polaris-support.error {
+  color: #D82C0D;
+}
+
+[data-theme="dark"] .sys-polaris-support.error {
+  color: #E2482E;
+}
+
+.sys-polaris-error-icon {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+/* ==========================================================================
+   LAYER 02: APPROVED ANATOMY EXPLANATION ROWS (BELOW INPUT)
+   ========================================================================== */
+.ce-anatomy-container {
+  width: 100%;
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  animation: ceFadeIn 0.25s ease;
+}
+
+@keyframes ceFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ce-anatomy-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.ce-anatomy-icon-wrap {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(125, 125, 125, 0.08);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .ce-anatomy-icon-wrap {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.ce-anatomy-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ce-anatomy-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.ce-anatomy-desc {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+/* Tablet & Mobile Responsiveness for Anatomy */
+@media (max-width: 1023px) {
+  .ce-anatomy-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ce-canvas {
+    padding: 24px 20px 28px;
+    gap: 20px;
+  }
+
+  .ce-anatomy-container {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding-top: 20px;
+  }
+
+  .ce-anatomy-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ce-anatomy-icon-wrap {
+    flex-shrink: 0;
+  }
+
+  .ce-measurement-tag {
+    font-size: 0.62rem;
+    padding: 2px 5px;
+  }
+
+  /* Prevent overflow on small mobile screens */
+  .tag-m3-container,
+  .tag-apple-container,
+  .tag-polaris-container {
+    font-size: 0.62rem;
+    padding: 2px 5px;
+  }
+}
+
+/* Closing Statement */
+.ce-closing-text {
+  width: 100%;
+  text-align: center;
+  padding: 100px 5vw 40px;
+}
+
+.ce-closing-text h4 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   LAPTOP & DESKTOP ALIGNMENT: VERTICALLY CENTER SELECTOR GROUP TO CANVAS
+   ========================================================================== */
+@media (min-width: 1024px) {
+  .ce-container {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 680px);
+    justify-content: space-between;
+    align-items: start;
+    column-gap: 64px;
+    row-gap: 0;
+  }
+
+  .ce-text-column {
+    display: contents;
+  }
+
+  .ce-visual-column {
+    display: contents;
+  }
+
+  .ce-system-toggles {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: center;
+    width: 300px;
+  }
+
+  .ce-comparison-heading {
+    grid-column: 2;
+    grid-row: 1;
+    margin-bottom: 24px;
+    text-align: center;
+    width: 100%;
+    max-width: 680px;
+  }
+
+  .ce-canvas {
+    grid-column: 2;
+    grid-row: 2;
+    width: 100%;
+    max-width: 680px;
+  }
+
+  .ce-canvas-actions {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: 28px;
+    width: 100%;
+    max-width: 680px;
+  }
+}
+

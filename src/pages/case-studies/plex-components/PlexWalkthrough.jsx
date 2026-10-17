@@ -588,7 +588,7 @@ function BrainDumpMobile() {
         <div className="wt-bd-dash-wrapper" ref={dashRef}>
           <img
             src={ASSETS.homepage}
-            alt="Plex Homepage — the result of Brain Dump"
+            alt="Plex Homepage, the result of Brain Dump"
             className="wt-mob-img"
             draggable={false}
             loading="eager"

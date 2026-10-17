@@ -1,0 +1,144 @@
+/* ==========================================================================
+   PLEX FINAL FOOTER
+   Exact 1:1 recreation of the Cubicon Case Study footer for Plex
+   ========================================================================== */
+
+.plex-case-study-footer {
+  width: 100%;
+  background-color: var(--bg);
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.pf-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Logo Container (Rounded Square 80px x 80px, border-radius 20px) */
+.pf-logo-container {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px auto;
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  overflow: hidden;
+}
+
+[data-theme="light"] .pf-logo-container {
+  background: #ffffff;
+  border: 1px solid rgba(23, 62, 73, 0.12);
+  box-shadow:
+    0 8px 24px rgba(23, 62, 73, 0.08),
+    0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.pf-logo-container:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+/* Clash Display PLEX Wordmark inside Logo Square */
+.pf-logo-text {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0a0b0d;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1;
+  user-select: none;
+}
+
+/* Heading: Plex. */
+.pf-heading {
+  font-size: clamp(2rem, 3.2vw, 2.5rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 12px 0;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+/* Closing statement */
+.pf-statement {
+  font-size: clamp(0.98rem, 1.25vw, 1.08rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+  text-wrap: balance;
+}
+
+[data-theme="dark"] .pf-statement {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Designer credit */
+.pf-credit {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 40px auto 0 auto;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+[data-theme="dark"] .pf-credit {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .plex-case-study-footer {
+    padding: 60px 20px;
+  }
+
+  .pf-logo-container {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    margin-bottom: 20px;
+  }
+
+  .pf-logo-text {
+    font-size: 1.1rem;
+  }
+
+  .pf-heading {
+    font-size: 1.85rem;
+  }
+
+  .pf-statement {
+    font-size: 0.95rem;
+  }
+
+  .pf-credit {
+    margin-top: 32px;
+    font-size: 0.82rem;
+  }
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .pf-logo-container {
+    transition: none !important;
+    transform: none !important;
+  }
+}

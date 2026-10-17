@@ -1,0 +1,292 @@
+﻿/* CubiconBrief.css */
+
+:root {
+  --brief-line: rgba(0, 0, 0, 0.15); /* Slightly more visible */
+  --brief-module: rgba(0, 0, 0, 0.8);
+  --brief-module-muted: rgba(0, 0, 0, 0.04);
+  --brief-border: rgba(0, 0, 0, 0.08);
+  
+  --brief-accent-red: #E63946;
+  --brief-accent-yellow: #F4A261;
+  --brief-accent-blue: #457B9D;
+  --brief-accent-green: #2A9D8F;
+}
+
+[data-theme="dark"] {
+  --brief-line: rgba(255, 255, 255, 0.15); /* Slightly more visible */
+  --brief-module: rgba(255, 255, 255, 0.9);
+  --brief-module-muted: rgba(255, 255, 255, 0.04);
+  --brief-border: rgba(255, 255, 255, 0.1);
+  
+  --brief-accent-red: #EF476F;
+  --brief-accent-yellow: #FFD166;
+  --brief-accent-blue: #4CC9F0;
+  --brief-accent-green: #06D6A0;
+}
+
+.cubicon-brief-section {
+  width: 100%;
+  padding: 120px 24px 160px;
+  display: flex;
+  justify-content: center;
+  background-color: var(--bg);
+  transition: background-color 0.4s ease;
+}
+
+.cubicon-brief-container {
+  width: 100%;
+  max-width: 1080px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header Text Styles */
+.cubicon-brief-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 40px; /* Moved up by 40px */
+}
+
+.cubicon-brief-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+}
+
+.cubicon-brief-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.1;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 32px;
+  letter-spacing: -0.02em;
+}
+
+.cubicon-brief-body {
+  font-size: clamp(1.15rem, 2.1vw, 1.45rem); /* Increased ~5-8% */
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* Visual Section */
+.cubicon-brief-visual {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 24px;
+}
+
+.cubicon-brief-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  flex: 1;
+  max-width: 240px;
+}
+
+.cubicon-brief-stage-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+}
+
+.cubicon-brief-connector {
+  height: 1px;
+  width: 64px;
+  background-color: var(--brief-line);
+  margin-bottom: 56px; /* Offset to center with geometry */
+  position: relative;
+}
+.cubicon-brief-connector::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 4px solid var(--brief-line);
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+}
+
+/* Geometry */
+.cubicon-brief-geo-group {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  display: flex;
+}
+
+.geo-module {
+  border-radius: 6px;
+  transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* UNDERSTAND: Scattered pieces */
+.understand-geo {
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 10px; /* Slightly tighter cluster */
+}
+.understand-geo .geo-module {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+}
+.geo-rotate-1 { transform: translate(-4px, 4px) rotate(15deg); }
+.geo-rotate-2 { transform: translate(6px, -8px) rotate(-10deg); }
+.geo-rotate-3 { transform: translate(-2px, -4px) rotate(5deg); }
+.geo-rotate-4 { transform: translate(8px, 6px) rotate(-15deg); }
+.geo-rotate-5 { transform: translate(-6px, -2px) rotate(20deg); }
+
+/* SELECT: Three alternatives */
+.select-geo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.select-candidate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease;
+}
+
+.candidate-alt {
+  opacity: 0.5;
+  transform: scale(0.9);
+}
+
+.candidate-active {
+  opacity: 1;
+  transform: scale(1.15);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  border-radius: 4px;
+}
+[data-theme="dark"] .candidate-active {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+/* Candidate Structures */
+.struct-h {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 20px;
+}
+.struct-h .geo-module {
+  width: 100%;
+  height: 5px;
+  border-radius: 2px;
+}
+
+.struct-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  background-color: var(--surface);
+}
+.struct-grid .geo-module {
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+}
+
+.struct-v {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+  height: 20px;
+}
+.struct-v .geo-module {
+  width: 5px;
+  height: 100%;
+  border-radius: 2px;
+}
+
+/* APPLY: Organized grid */
+.apply-geo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 8px;
+  padding: 16px;
+}
+.apply-geo .geo-module {
+  width: 100%;
+  height: 100%;
+}
+
+/* Colors */
+.geo-blue { background-color: var(--brief-accent-blue); }
+.geo-yellow { background-color: var(--brief-accent-yellow); }
+.geo-red { background-color: var(--brief-accent-red); }
+.geo-green { background-color: var(--brief-accent-green); }
+.geo-fade { 
+  background-color: var(--brief-module-muted); 
+  border: 1px solid var(--brief-border); 
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .cubicon-brief-section {
+    padding: 80px 24px 100px;
+  }
+  
+  .cubicon-brief-header {
+    margin-bottom: 48px;
+  }
+  
+  .cubicon-brief-visual {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .cubicon-brief-stage {
+    gap: 24px;
+  }
+  
+  .cubicon-brief-connector {
+    width: 1px;
+    height: 40px;
+    margin-bottom: 0;
+  }
+  .cubicon-brief-connector::after {
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: 0;
+    transform: translateX(-50%);
+    border-top: 4px solid var(--brief-line);
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-bottom: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cubicon-brief-header, .cubicon-brief-visual {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

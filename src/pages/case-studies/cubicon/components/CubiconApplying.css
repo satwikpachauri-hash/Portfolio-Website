@@ -1,0 +1,459 @@
+/* ==========================================================================
+   CUBICON SECTION 04 · INTERFACE ITERATIONS
+   Exact Legacy Mockup Showcase Presentation
+   ========================================================================== */
+
+.cubicon-applying-section {
+  width: 100%;
+  background-color: var(--bg);
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 120px 0;
+}
+
+.ca-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 88px;
+}
+
+/* ==========================================================================
+   SECTION HEADER
+   ========================================================================== */
+.ca-header-block {
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto 16px auto;
+}
+
+.ca-section-title {
+  font-size: clamp(2.4rem, 4.2vw, 3.5rem);
+  line-height: 1.15;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  text-align: center;
+}
+
+.ca-section-intro {
+  max-width: 780px;
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0 auto;
+  text-wrap: balance;
+}
+
+/* ==========================================================================
+   COMPARISON BLOCKS (HOME, SEARCH, PRODUCT, CHECKOUT)
+   ========================================================================== */
+.ca-comparison-block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.ca-comparison-title {
+  font-size: clamp(1.35rem, 2vw, 1.65rem);
+  color: var(--accent, #a78bfa);
+  text-align: center;
+  margin-bottom: 36px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="light"] .ca-comparison-title {
+  color: #7c3aed;
+}
+
+.ca-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(32px, 5vw, 64px);
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+  align-items: start;
+}
+
+/* Column Structure */
+.ca-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* ==========================================================================
+   MOCKUP PHONE DISPLAY (FAITHFUL LEGACY RECREATION)
+   ========================================================================== */
+.ca-mockup-phone {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto 24px auto;
+  border-radius: 28px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+  flex-shrink: 0;
+}
+
+.ca-mockup-phone:hover {
+  transform: translateY(-4px);
+  box-shadow: none;
+}
+
+.ca-mockup-img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  display: block;
+  object-fit: contain;
+}
+
+/* Light Theme Phone Styling */
+[data-theme="light"] .ca-mockup-phone {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: none;
+}
+
+[data-theme="light"] .ca-mockup-phone:hover {
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   EXPLANATORY CONTENT (UNDERNEATH THE MOCKUPS)
+   ========================================================================== */
+.ca-ps-content {
+  text-align: center;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Badges */
+.ca-ps-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  width: fit-content;
+  letter-spacing: 0.02em;
+}
+
+.ca-badge-icon {
+  flex-shrink: 0;
+  display: inline-block;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Phase Badge Icon pop upward on hover (matching legacy interaction, no glow) */
+.ca-ps-badge:hover .ca-badge-icon,
+.ca-badge-icon:hover {
+  transform: perspective(400px) translateZ(20px) rotate(-5deg) scale(1.15);
+}
+
+.ca-badge-problem {
+  background: rgba(248, 113, 113, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(248, 113, 113, 0.22);
+}
+
+.ca-badge-solution {
+  background: rgba(167, 139, 250, 0.12);
+  color: #a78bfa;
+  border: 1px solid rgba(167, 139, 250, 0.25);
+}
+
+[data-theme="light"] .ca-badge-solution {
+  background: rgba(124, 58, 237, 0.08);
+  color: #7c3aed;
+  border-color: rgba(124, 58, 237, 0.2);
+}
+
+/* Titles */
+.ca-ps-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   ICON BULLET ISSUE LIST (RESTORED EXACT LEGACY TREATMENT)
+   ========================================================================== */
+.ca-issue-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+/* Explanation Card: Base Light Theme (default portfolio surface & border) */
+.ca-issue-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  padding: 11px 15px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(23, 62, 73, 0.12);
+  cursor: default;
+}
+
+/* Explicit Light Theme (when data-theme="light" is present) */
+[data-theme="light"] .ca-issue-list li {
+  background: #ffffff;
+  border: 1px solid rgba(23, 62, 73, 0.12);
+  color: var(--text-secondary);
+}
+
+/* Dark Theme (when data-theme="dark" is present) */
+[data-theme="dark"] .ca-issue-list li {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+}
+
+/* Card container remains completely stationary on hover */
+.ca-issue-list li:hover {
+  /* No card movement */
+}
+
+/* Icon normal state and smooth return */
+.ca-list-icon {
+  margin-top: 3px;
+  flex-shrink: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Pop-and-Twist Animation triggered by card hover (no glow) */
+.ca-issue-list li:hover .ca-list-icon {
+  transform: perspective(400px) translateZ(20px) rotate(-5deg) scale(1.15);
+}
+
+.ca-icon-danger {
+  color: #ef4444;
+}
+
+.ca-icon-success {
+  color: #10b981;
+}
+
+/* ==========================================================================
+   CHECKOUT FLOW (PHASE 1 LIMITATION BOX & CENTERED V2 CART)
+   ========================================================================== */
+.ca-limitation-box {
+  max-width: 480px;
+  margin: 0 auto 44px auto;
+  background: #ffffff;
+  border: 1px solid rgba(23, 62, 73, 0.12);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+[data-theme="light"] .ca-limitation-box {
+  background: #ffffff;
+  border-color: rgba(23, 62, 73, 0.12);
+}
+
+[data-theme="dark"] .ca-limitation-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ca-limitation-list li {
+  background: rgba(23, 62, 73, 0.03);
+  border: 1px solid rgba(23, 62, 73, 0.08);
+}
+
+[data-theme="light"] .ca-limitation-list li {
+  background: rgba(23, 62, 73, 0.03);
+  border-color: rgba(23, 62, 73, 0.08);
+}
+
+[data-theme="dark"] .ca-limitation-list li {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ca-limitation-header {
+  display: flex;
+  justify-content: center;
+}
+
+.ca-limitation-list {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.ca-single-mockup-wrap {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (PHONE, TABLET, LAPTOP, DESKTOP)
+   ========================================================================== */
+
+/* Laptop (1024px to 1366px) */
+@media (max-width: 1366px) {
+  .ca-container {
+    gap: 76px;
+  }
+  .ca-comparison-grid {
+    gap: 40px;
+    max-width: 860px;
+  }
+  .ca-mockup-phone {
+    max-width: 260px;
+    padding: 7px;
+    border-radius: 26px;
+  }
+  .ca-mockup-img {
+    border-radius: 18px;
+  }
+  .ca-ps-content {
+    max-width: 290px;
+  }
+}
+
+/* Tablet (768px to 1023px) */
+@media (max-width: 1023px) {
+  .cubicon-applying-section {
+    padding: 96px 0;
+  }
+  .ca-container {
+    gap: 68px;
+    padding: 0 6vw;
+  }
+  .ca-comparison-grid {
+    gap: 32px;
+    max-width: 720px;
+  }
+  .ca-mockup-phone {
+    max-width: 240px;
+    padding: 7px;
+    border-radius: 24px;
+  }
+  .ca-mockup-img {
+    border-radius: 17px;
+  }
+  .ca-ps-title {
+    font-size: 1.15rem;
+  }
+  .ca-issue-list {
+    max-width: 270px;
+  }
+  .ca-issue-list li {
+    font-size: 0.88rem;
+    padding: 8px 11px;
+  }
+}
+
+/* Phone (<= 767px / 390x844 target) */
+@media (max-width: 767px) {
+  .cubicon-applying-section {
+    padding: 80px 0;
+  }
+  .ca-container {
+    gap: 56px;
+    padding: 0 20px;
+  }
+  .ca-comparison-block {
+    margin-bottom: 24px;
+  }
+  .ca-comparison-title {
+    margin-bottom: 28px;
+  }
+  .ca-comparison-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+    max-width: 320px;
+  }
+  .ca-mockup-phone {
+    max-width: 260px;
+    margin-bottom: 20px;
+  }
+  .ca-ps-content {
+    max-width: 280px;
+  }
+  .ca-issue-list {
+    max-width: 280px;
+  }
+  .ca-limitation-box {
+    padding: 20px 16px;
+    margin-bottom: 32px;
+  }
+  .ca-limitation-list {
+    max-width: 280px;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .ca-mockup-phone {
+    transition: none !important;
+  }
+  .ca-mockup-phone:hover {
+    transform: none !important;
+  }
+  .ca-list-icon,
+  .ca-badge-icon {
+    transition: none !important;
+  }
+  .ca-issue-list li:hover .ca-list-icon,
+  .ca-ps-badge:hover .ca-badge-icon,
+  .ca-badge-icon:hover {
+    transform: none !important;
+  }
+}

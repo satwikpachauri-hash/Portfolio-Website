@@ -1,0 +1,172 @@
+.yt-process-section {
+  width: 100%;
+  padding: 80px 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.yt-process-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.yt-process-heading {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  margin: 0 0 40px 0;
+}
+
+/* Reference A Process Timeline Box */
+.yt-process-box {
+  position: relative;
+  padding-left: 48px;
+  margin-top: 32px;
+}
+
+.yt-process-line {
+  position: absolute;
+  top: 6px;
+  bottom: 24px;
+  left: 20px;
+  width: 2px;
+  background: var(--border);
+}
+
+.yt-process-fill {
+  position: absolute;
+  top: 6px;
+  bottom: 24px;
+  left: 20px;
+  width: 2px;
+  background: #ff0000;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+}
+
+[data-theme="light"] .yt-process-fill {
+  background: #cc0000;
+  box-shadow: none;
+}
+
+.yt-process-step {
+  position: relative;
+  padding-bottom: 56px;
+}
+
+.yt-process-step:last-child {
+  padding-bottom: 0;
+}
+
+.yt-process-dot {
+  position: absolute;
+  left: -34px;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2.5px solid #ff0000;
+  z-index: 2;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+[data-theme="light"] .yt-process-dot {
+  border-color: #cc0000;
+}
+
+.yt-process-step:hover .yt-process-dot {
+  transform: scale(1.3);
+  background: #ff0000;
+}
+
+[data-theme="light"] .yt-process-step:hover .yt-process-dot {
+  background: #cc0000;
+}
+
+.yt-step-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 10px 0;
+}
+
+.yt-step-desc {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 680px;
+}
+
+/* Tablet (max-width: 768px) */
+@media (max-width: 768px) {
+  .yt-process-section {
+    padding: 60px 20px;
+  }
+
+  .yt-process-box {
+    padding-left: 36px;
+  }
+
+  .yt-process-line,
+  .yt-process-fill {
+    left: 14px;
+  }
+
+  .yt-process-dot {
+    left: -28px;
+    width: 12px;
+    height: 12px;
+  }
+
+  .yt-step-title {
+    font-size: 1.2rem;
+  }
+
+  .yt-step-desc {
+    font-size: 0.98rem;
+  }
+}
+
+/* Mobile (max-width: 600px) */
+@media (max-width: 600px) {
+  .yt-process-section {
+    padding: 50px 18px;
+  }
+
+  .yt-process-heading {
+    font-size: 2rem;
+    margin-bottom: 28px;
+  }
+
+  .yt-process-box {
+    padding-left: 28px;
+  }
+
+  .yt-process-line,
+  .yt-process-fill {
+    left: 8px;
+  }
+
+  .yt-process-dot {
+    left: -24px;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+  }
+
+  .yt-process-step {
+    padding-bottom: 40px;
+  }
+
+  .yt-step-title {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+  }
+
+  .yt-step-desc {
+    font-size: 0.92rem;
+  }
+}

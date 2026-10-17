@@ -35,7 +35,7 @@ const PROJECTS_DATA = [
     heroImage: '/case-studies/cubicon/assets/hero/Hero Section.webp',
     accent: '#a78bfa', // Authentic Cubicon Violet
     objectPosition: 'center center',
-    href: 'https://amazing-marshmallow-e2b6ac.netlify.app/'
+    href: '/projects/cubicon'
   },
   {
     id: 'youtube',
@@ -51,7 +51,7 @@ const PROJECTS_DATA = [
     heroImage: '/case-studies/youtube-watchlater/Hero Section.webp',
     accent: '#ff0000', // Authentic YouTube Red
     objectPosition: 'center top',
-    href: 'https://youtube-case-study.netlify.app/'
+    href: '/projects/youtube-watchlater'
   }
 ];
 
@@ -59,8 +59,8 @@ const PROJECTS_DATA = [
 const MotionLink = motion(Link);
 
 const ProjectCard = React.memo(({ project, index }) => {
-  const destination = project.href || '#pending-netlify-url';
-  const isInternal = destination.startsWith('/');
+  const destination = project.href;
+  
   
   const cardProps = {
     id: project.id,
@@ -126,6 +126,16 @@ const ProjectCard = React.memo(({ project, index }) => {
     </>
   );
 
+  if (!destination) {
+    return (
+      <motion.div {...cardProps} style={{ cursor: 'default' }}>
+        {innerContent}
+      </motion.div>
+    );
+  }
+
+  const isInternal = destination.startsWith('/');
+  
   if (isInternal) {
     return (
       <MotionLink to={destination} {...cardProps}>
@@ -186,5 +196,6 @@ export default function Projects() {
     </section>
   );
 }
+
 
 

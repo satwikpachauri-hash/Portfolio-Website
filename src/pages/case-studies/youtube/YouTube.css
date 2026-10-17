@@ -1,0 +1,38 @@
+/* ==========================================================================
+   YOUTUBE WATCH LATER CASE STUDY
+   Current portfolio design system integration
+   ========================================================================== */
+
+.youtube-case-study {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  position: relative;
+  overflow-x: hidden;
+  font-family: var(--font-body);
+}
+
+.youtube-case-study * {
+  box-sizing: border-box;
+}
+
+/* Ensure no unwanted focus rings on container */
+.youtube-case-study:focus {
+  outline: none;
+}
+
+/* Smooth transitions for theme switching */
+.youtube-case-study section,
+.youtube-case-study footer {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .youtube-case-study * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

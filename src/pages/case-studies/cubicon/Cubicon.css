@@ -1,0 +1,275 @@
+/* Cubicon Case Study Global/Theme Setup */
+.cubicon-case-study { 
+  display: flex; flex-direction: column; 
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Full Viewport Cinematic Hero */
+.cubicon-hero-cinematic {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 100svh;
+  overflow: hidden;
+  background-color: var(--bg);
+}
+
+/* Background Image Layer */
+.cubicon-cinematic-bg-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  will-change: transform;
+}
+
+.cubicon-cinematic-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Bias towards the right so the product remains in frame */
+  object-position: 75% center;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Content Container constraints */
+.cubicon-hero-content-container {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px;
+  pointer-events: none; /* Let clicks pass through empty areas */
+}
+
+/* Glass Information Panel */
+.cubicon-glass-panel {
+  pointer-events: auto;
+  width: 100%;
+  max-width: 480px; /* Adjusted slightly for Cubicon content */
+  margin-left: 8%; /* Sits toward the left side */
+  
+  /* Semantic glass treatment from portfolio language */
+  background-color: var(--nav-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 48px 40px;
+  
+  /* Restrained shadow for physical presence */
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.08), inset 0 1px 1px var(--glass-highlight);
+  transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+[data-theme="dark"] .cubicon-glass-panel {
+  background-color: rgba(18, 19, 22, 0.65);
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.6), inset 0 1px 1px var(--glass-highlight);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Cubicon Logo Tile */
+.cubicon-logo-tile {
+  width: 64px;
+  height: 64px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.cubicon-logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* Typography */
+.cubicon-glass-title {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px 0;
+  color: var(--text-primary);
+}
+
+.cubicon-glass-tagline {
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0 0 40px 0;
+  color: var(--text-secondary);
+}
+
+/* Metadata Grid */
+.cubicon-glass-metadata {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  border-top: 1px solid var(--border);
+  padding-top: 32px;
+  transition: border-color 0.4s ease;
+}
+
+.cubicon-meta-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cubicon-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cubicon-meta-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.cubicon-meta-value {
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Shorter Laptop Displays (Height-based scaling) */
+@media (max-height: 800px) and (min-width: 1024px) {
+  .cubicon-glass-panel {
+    padding: 32px;
+  }
+  
+  .cubicon-logo-tile {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 20px;
+  }
+  .cubicon-logo-img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .cubicon-glass-tagline {
+    margin-bottom: 24px;
+  }
+  
+  .cubicon-glass-metadata {
+    padding-top: 24px;
+    gap: 24px;
+  }
+  
+  .cubicon-meta-column {
+    gap: 16px;
+  }
+}
+
+/* Tablet Layout */
+@media (max-width: 1023px) {
+  .cubicon-cinematic-bg {
+    object-position: 60% center;
+  }
+
+  .cubicon-hero-content-container {
+    align-items: flex-end; /* Push panel lower to reveal image */
+    padding: 32px 40px;
+  }
+
+  .cubicon-glass-panel {
+    margin-left: 0;
+    max-width: 100%;
+    /* Keep panel slightly compact to not obscure everything */
+    background-color: var(--nav-surface);
+  }
+  
+  [data-theme="dark"] .cubicon-glass-panel {
+    background-color: rgba(18, 19, 22, 0.75); /* Slightly darker for contrast over complex image areas */
+  }
+}
+
+/* Phone Layout */
+@media (max-width: 767px) {
+  .cubicon-hero-cinematic {
+    /* Ensure enough height on small phones */
+    min-height: max(100svh, 700px);
+  }
+
+  .cubicon-cinematic-bg {
+    object-position: 70% center; /* Ensure product is visible */
+  }
+
+  .cubicon-hero-content-container {
+    padding: 24px;
+    align-items: flex-end;
+  }
+
+  .cubicon-glass-panel {
+    padding: 28px 24px;
+    border-radius: 20px;
+    /* Add extra background opacity for legibility on small screens where image is tight */
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+  
+  [data-theme="dark"] .cubicon-glass-panel {
+    background-color: rgba(18, 19, 22, 0.85);
+  }
+
+  .cubicon-logo-tile {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+  }
+  .cubicon-logo-img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .cubicon-glass-metadata {
+    gap: 24px;
+    padding-top: 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .cubicon-glass-tagline {
+    margin-bottom: 32px;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .cubicon-cinematic-bg-wrapper,
+  .cubicon-cinematic-bg,
+  .cubicon-glass-panel,
+  .cubicon-glass-title,
+  .cubicon-glass-tagline,
+  .cubicon-glass-metadata {
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+.cubicon-case-study-body {
+  display: flex;
+  flex-direction: column;
+}

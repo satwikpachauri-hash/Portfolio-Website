@@ -1,0 +1,120 @@
+.yt-projected-section {
+  width: 100%;
+  padding: 60px 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.yt-projected-header {
+  margin-bottom: 24px;
+}
+
+/* Reference A Metrics Grid inside Glass Card */
+.yt-metrics-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.85fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.yt-metrics-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.yt-projected-title {
+  font-size: clamp(2rem, 3.2vw, 2.6rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  margin: 0 0 16px 0;
+}
+
+.yt-projected-lead {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0 0 28px 0;
+}
+
+.yt-metrics-flex {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.yt-metric-stat h3 {
+  font-size: clamp(2.4rem, 3.8vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+  margin: 0 0 8px 0;
+}
+
+.yt-metric-stat p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+  font-weight: 500;
+}
+
+.yt-estimate-note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Reference A Ad Revenue Inner Box */
+.yt-ad-revenue-card {
+  background: var(--card-bg, rgba(23, 62, 73, 0.04));
+  border: 1px solid var(--border);
+  padding: 36px 32px;
+  border-radius: 20px;
+}
+
+[data-theme="dark"] .yt-ad-revenue-card {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.yt-ad-revenue-card h4 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+}
+
+.yt-ad-revenue-card p {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Tablet (max-width: 992px) */
+@media (max-width: 992px) {
+  .yt-metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+/* Mobile (max-width: 600px) */
+@media (max-width: 600px) {
+  .yt-projected-section {
+    padding: 40px 18px;
+  }
+
+  .yt-metrics-flex {
+    gap: 28px;
+  }
+
+  .yt-metric-stat h3 {
+    font-size: 2.2rem;
+  }
+
+  .yt-ad-revenue-card {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+}

@@ -1,1 +1,29 @@
-﻿const fs = require('fs'); let lines = fs.readFileSync('src/pages/case-studies/plex-components/PlexProblemSection.jsx', 'utf8').split('\n'); lines.splice(270, 19, '      <InsightCard ', '        visual={<RadialVisual percentage={58} />}', '        number="58%"', '        text="58% of the workday can go to managing work instead of doing it."', '        citation={"Asana \\u2014 Anatomy of Work"}', '      />', '      <InsightCard ', '        visual={<RulerVisual />}', '        number="4.9 HOURS"', '        text="Better processes could recover 4.9 hours of work time each week."', '        citation={"Asana \\u2014 Anatomy of Work"}', '      />', '      <InsightCard ', '        visual={<ComparisonVisual />}', '        number={"33.9 \\u2192 55.5 DAYS"}', '        text="Planned completion took 33.9 days. Actual completion took 55.5."', '        citation="Buehler, Griffin & Ross, 1994"', '      />'); fs.writeFileSync('src/pages/case-studies/plex-components/PlexProblemSection.jsx', lines.join('\n'));
+﻿const fs = require('fs');
+const file = 'src/components/projects/Projects.jsx';
+let content = fs.readFileSync(file, 'utf8');
+
+content = content.replace(
+  "const destination = project.href || '#pending-netlify-url';",
+  "const destination = project.href;"
+);
+
+content = content.replace(
+  "const isInternal = destination.startsWith('/');",
+  ""
+);
+
+const newReturn = `  if (!destination) {
+    return (
+      <motion.div {...cardProps} style={{ cursor: 'default' }}>
+        {innerContent}
+      </motion.div>
+    );
+  }
+
+  const isInternal = destination.startsWith('/');
+  
+  if (isInternal) {`;
+
+content = content.replace("  if (isInternal) {", newReturn);
+
+fs.writeFileSync(file, content, 'utf8');

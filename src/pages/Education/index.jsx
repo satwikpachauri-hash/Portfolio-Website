@@ -32,7 +32,6 @@ export default function Education() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = 'Education — Satwik Pachauri';
   }, []);
 
   useEffect(() => {

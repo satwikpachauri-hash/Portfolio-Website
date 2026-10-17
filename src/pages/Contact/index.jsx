@@ -62,7 +62,6 @@ export default function Contact() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = 'Contact — Satwik Pachauri';
   }, []);
 
   // Entrance animation (CSS transition + requestAnimationFrame)
@@ -175,8 +174,8 @@ export default function Contact() {
                 role="button"
                 aria-label={
                   isFlipped
-                    ? 'Digital business card back — click or press Enter to flip to front'
-                    : 'Digital business card front — click or press Enter to view contact options'
+                    ? 'Digital business card back: click or press Enter to flip to front'
+                    : 'Digital business card front: click or press Enter to view contact options'
                 }
                 onClick={handleFlip}
                 onKeyDown={handleKeyDown}

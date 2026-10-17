@@ -1,0 +1,256 @@
+/* ==========================================================================
+   CUBICON SECTION 04 · PRODUCT IDEATION
+   From Chaos to Niche — Exact Legacy Presentation & Icon Hover
+   ========================================================================== */
+
+.cubicon-ideation-section {
+  width: 100%;
+  background-color: var(--bg);
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 120px 0;
+}
+
+.ci-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+/* ==========================================================================
+   SECTION HEADER
+   ========================================================================== */
+.ci-header-block {
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.ci-section-title {
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+  line-height: 1.15;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 18px;
+  margin-bottom: 18px;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  text-align: center;
+}
+
+.ci-section-intro {
+  max-width: 720px;
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0 auto;
+  text-wrap: balance;
+}
+
+/* ==========================================================================
+   SIDE-BY-SIDE COMPARISON GRID
+   ========================================================================== */
+.ci-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 3.5vw, 40px);
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+/* Individual Comparison Card: Base Light Theme */
+.ci-card {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(28px, 3.5vw, 40px);
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid rgba(23, 62, 73, 0.12);
+  cursor: default;
+}
+
+/* Explicit Light Theme (when data-theme="light" is present) */
+[data-theme="light"] .ci-card {
+  background: #ffffff;
+  border: 1px solid rgba(23, 62, 73, 0.12);
+}
+
+/* Dark Theme (when data-theme="dark" is present) */
+[data-theme="dark"] .ci-card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Card remains completely stationary on hover */
+.ci-card:hover {
+  /* No card movement */
+}
+
+/* ==========================================================================
+   PRODUCT IDEATION ICONS (EXACT LEGACY CUBICON BEHAVIOUR)
+   ========================================================================== */
+.ci-card-icon {
+  margin-bottom: 16px;
+  width: 32px;
+  height: 32px;
+  display: block;
+  flex-shrink: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ci-icon-danger {
+  color: #ef4444;
+}
+
+.ci-icon-success {
+  color: #10b981;
+}
+
+/* Pop-and-Twist Animation when hovering over the card (no glow) */
+.ci-card:hover .ci-card-icon {
+  transform: perspective(400px) translateZ(20px) rotate(-5deg) scale(1.15);
+}
+
+.ci-card-title {
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 16px 0;
+  letter-spacing: -0.01em;
+}
+
+/* Point List */
+.ci-point-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+}
+
+.ci-point-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(23, 62, 73, 0.03);
+  border: 1px solid rgba(23, 62, 73, 0.08);
+  cursor: default;
+}
+
+[data-theme="light"] .ci-point-item {
+  background: rgba(23, 62, 73, 0.03);
+  border: 1px solid rgba(23, 62, 73, 0.08);
+}
+
+[data-theme="dark"] .ci-point-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Point Icon: Pop-and-Twist on bullet hover (no glow) */
+.ci-point-icon {
+  margin-top: 3px;
+  flex-shrink: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ci-point-item:hover .ci-point-icon {
+  transform: perspective(400px) translateZ(20px) rotate(-5deg) scale(1.15);
+}
+
+/* ==========================================================================
+   RESPONSIVENESS (LAPTOP, TABLET, PHONE)
+   ========================================================================== */
+
+/* Laptop (1024px to 1366px) */
+@media (max-width: 1366px) {
+  .ci-container {
+    gap: 56px;
+  }
+  .ci-comparison-grid {
+    gap: 28px;
+    max-width: 880px;
+  }
+  .ci-card {
+    padding: 28px 24px;
+  }
+}
+
+/* Tablet (768px to 1023px) */
+@media (max-width: 1023px) {
+  .cubicon-ideation-section {
+    padding: 96px 0;
+  }
+  .ci-container {
+    gap: 48px;
+    padding: 0 6vw;
+  }
+  .ci-comparison-grid {
+    gap: 24px;
+  }
+  .ci-card {
+    padding: 24px 20px;
+  }
+  .ci-point-item {
+    font-size: 0.9rem;
+    padding: 10px 12px;
+  }
+}
+
+/* Phone (<= 767px / 390x844 target) */
+@media (max-width: 767px) {
+  .cubicon-ideation-section {
+    padding: 80px 0;
+  }
+  .ci-container {
+    gap: 40px;
+    padding: 0 20px;
+  }
+  .ci-comparison-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 400px;
+  }
+  .ci-card {
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+  .ci-point-item {
+    font-size: 0.9rem;
+    padding: 10px 12px;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .ci-card-icon,
+  .ci-point-icon {
+    transition: none !important;
+  }
+  .ci-card:hover .ci-card-icon,
+  .ci-point-item:hover .ci-point-icon {
+    transform: none !important;
+  }
+}

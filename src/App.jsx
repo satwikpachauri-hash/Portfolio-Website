@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense, lazy } from 'react';
+import React, { useEffect, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis';
 import { useTheme } from './hooks/useTheme';
@@ -14,12 +14,16 @@ const Projects = lazy(() => import('./pages/Projects'));
 const Experience = lazy(() => import('./pages/Experience'));
 const Education = lazy(() => import('./pages/Education'));
 const Contact = lazy(() => import('./pages/Contact'));
+const Explorations = lazy(() => import('./pages/Explorations'));
 const Plex = lazy(() => import('./pages/case-studies/Plex'));
+const Cubicon = lazy(() => import('./pages/case-studies/cubicon/Cubicon'));
+const YouTube = lazy(() => import('./pages/case-studies/youtube/YouTube'));
 
 // Components
 import DynamicIsland from './components/navigation/DynamicIsland/DynamicIsland';
 import ScrollManager from './components/navigation/ScrollManager';
-import GoogleAnalytics from './components/GoogleAnalytics';
+import PageTitleManager from './components/navigation/PageTitleManager';
+import PageTransition from './components/navigation/PageTransition';
 
 function App() {
   useTheme(); // Initialize theme
@@ -64,25 +68,26 @@ function App() {
 
   return (
     <Router>
-      <GoogleAnalytics />
+      <PageTitleManager />
       <ScrollManager />
       <DynamicIsland />
-      <Suspense fallback={null}>
-        <Routes>
+      <Routes>
+        <Route element={<PageTransition />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/explorations" element={<Explorations />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/education" element={<Education />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/projects/plex" element={<Plex />} />
-        </Routes>
-      </Suspense>
+          <Route path="/projects/cubicon" element={<Cubicon />} />
+          <Route path="/projects/youtube-watchlater" element={<YouTube />} />
+          <Route path="/case-studies/youtube-watchlater" element={<YouTube />} />
+        </Route>
+      </Routes>
     </Router>
   );
 }
 
 export default App;
-
-
-

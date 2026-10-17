@@ -1,0 +1,223 @@
+/* CubiconUnderstanding.css */
+
+:root {
+  --iso-top: #E5E7EB;
+  --iso-left: #D1D5DB;
+  --iso-right: #9CA3AF;
+  --iso-accent-top: #2B3A67;
+  --iso-line: rgba(0,0,0,0.12);
+  --iso-edge: rgba(0,0,0,0.06);
+}
+
+[data-theme="dark"] {
+  --iso-top: #4A4A4A;
+  --iso-left: #353535;
+  --iso-right: #252525;
+  --iso-accent-top: #4CC9F0;
+  --iso-line: rgba(255,255,255,0.08);
+  --iso-edge: rgba(255,255,255,0.08);
+}
+
+.cubicon-uds-section {
+  width: 100%;
+  background-color: var(--bg);
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+}
+
+/* ==========================================================================
+   DESKTOP / LAPTOP (Pinned Scrub)
+   ========================================================================== */
+.uds-desktop-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.uds-text-column {
+  flex: 0 0 40%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 5vw 0 10vw;
+  position: relative;
+}
+
+.uds-visual-column {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* The actual text blocks that fade in/out during scrub */
+.uds-story-block {
+  position: absolute;
+  width: 100%;
+  max-width: 480px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+
+.uds-story-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  display: block;
+  text-transform: uppercase;
+}
+
+.uds-story-title {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.1;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.uds-story-body {
+  font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* SVG Canvas */
+.uds-canvas-svg {
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  max-height: 600px;
+  overflow: visible;
+}
+
+/* Isometric Geometry */
+.face-top { 
+  fill: var(--iso-top); 
+  stroke: var(--iso-edge); 
+  stroke-width: 0.75px; 
+  stroke-linejoin: round; 
+  transition: fill 0.4s ease, stroke 0.4s ease; 
+}
+.face-left { 
+  fill: var(--iso-left); 
+  stroke: var(--iso-edge); 
+  stroke-width: 0.75px; 
+  stroke-linejoin: round; 
+  transition: fill 0.4s ease, stroke 0.4s ease; 
+}
+.face-right { 
+  fill: var(--iso-right); 
+  stroke: var(--iso-edge); 
+  stroke-width: 0.75px; 
+  stroke-linejoin: round; 
+  transition: fill 0.4s ease, stroke 0.4s ease; 
+}
+.accent-top { 
+  fill: var(--iso-accent-top); 
+  transition: fill 0.4s ease; 
+}
+.uds-grid-line {
+  stroke: var(--iso-line);
+  stroke-width: 1.5px;
+  stroke-dasharray: 6 8;
+  stroke-linecap: round;
+  transition: stroke 0.4s ease;
+}
+
+/* ==========================================================================
+   TABLET & PHONE (Sticky Storyboard)
+   ========================================================================== */
+.uds-mobile-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+/* Sticky Canvas Background */
+.uds-sticky-container {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+  overflow: hidden;
+  padding-bottom: 20vh; /* Shift it slightly up on mobile */
+}
+
+.uds-mobile-svg {
+  width: 100%;
+  height: 100%;
+  max-width: 450px;
+  max-height: 450px;
+  overflow: visible;
+}
+
+/* Scrolling Text Blocks */
+.uds-scroll-text-blocks {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 0;
+}
+
+.uds-mobile-text-step {
+  height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 5vw 15vh 5vw;
+}
+
+.uds-mobile-text-step:last-child {
+  height: auto;
+  min-height: 80vh;
+  padding: 0 5vw 36px 5vw;
+}
+
+.uds-mobile-text-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.06);
+  opacity: 0.95;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+[data-theme="dark"] .uds-mobile-text-card {
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .uds-mobile-text-step {
+    padding: 0 10vw 10vh 10vw;
+  }
+  .uds-mobile-text-step:last-child {
+    padding: 0 10vw 44px 10vw;
+  }
+}
+
+/* Hide wrappers appropriately */
+@media (max-width: 1023px) {
+  .uds-desktop-wrapper { display: none; }
+}
+@media (min-width: 1024px) {
+  .uds-mobile-wrapper { display: none; }
+}
+
+
+

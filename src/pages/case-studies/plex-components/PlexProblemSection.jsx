@@ -1,4 +1,4 @@
-﻿import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, useReducedMotion } from 'motion/react';
 import { Check } from 'lucide-react';
 import './PlexProblemSection.css';
@@ -298,13 +298,13 @@ const ResearchInsights = () => (
         delay={0.1} visual={<RadialVisual percentage={58} />}
         number="58%"
         text="58% of the workday can go to managing work instead of doing it."
-        citation={"Asana \u2014 Anatomy of Work"}
+        citation="Asana: Anatomy of Work"
       />
       <InsightCard 
         delay={0.3} visual={<RulerVisual />}
         number="4.9 HOURS"
         text="Better processes could recover 4.9 hours of work time each week."
-        citation={"Asana \u2014 Anatomy of Work"}
+        citation="Asana: Anatomy of Work"
       />
       <InsightCard 
         delay={0.5} visual={<ComparisonVisual />}

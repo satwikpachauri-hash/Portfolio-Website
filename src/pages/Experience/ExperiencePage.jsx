@@ -140,7 +140,6 @@ function ExperienceRecord({ record }) {
 export default function ExperiencePage() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = 'Experience — Satwik Pachauri';
   }, []);
 
   return (

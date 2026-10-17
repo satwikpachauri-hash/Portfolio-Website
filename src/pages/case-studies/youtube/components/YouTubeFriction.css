@@ -1,0 +1,216 @@
+.yt-friction-section {
+  width: 100%;
+  padding: 80px 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.yt-friction-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 56px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.yt-friction-heading {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+.yt-friction-lead {
+  font-size: clamp(1rem, 1.2vw, 1.12rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0 auto;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* Reference B Friction Grid */
+.yt-friction-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.yt-friction-card {
+  position: relative;
+  background: var(--card-bg, rgba(23, 62, 73, 0.03));
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: clamp(28px, 3vw, 40px);
+  transition: border-color 0.4s ease, background 0.4s ease, transform 0.3s ease;
+  overflow: hidden;
+  cursor: default;
+}
+
+[data-theme="dark"] .yt-friction-card {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Subtle Accent Line at Bottom */
+.yt-friction-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #ff0000;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.yt-friction-card:hover::after {
+  transform: scaleX(1);
+}
+
+.yt-friction-card:hover {
+  border-color: rgba(255, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .yt-friction-card:hover {
+  border-color: rgba(255, 68, 68, 0.35);
+}
+
+/* Large subtle background number */
+.yt-friction-num {
+  font-size: 4rem;
+  font-weight: 700;
+  color: rgba(255, 0, 0, 0.08);
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  transition: color 0.4s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+[data-theme="dark"] .yt-friction-num {
+  color: rgba(255, 68, 68, 0.08);
+}
+
+.yt-friction-card:hover .yt-friction-num {
+  color: rgba(255, 0, 0, 0.16);
+}
+
+[data-theme="dark"] .yt-friction-card:hover .yt-friction-num {
+  color: rgba(255, 68, 68, 0.16);
+}
+
+.yt-friction-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 0, 0, 0.08);
+  color: #ff3333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 0, 0, 0.15);
+}
+
+[data-theme="light"] .yt-friction-icon-wrap {
+  color: #cc0000;
+  background: rgba(204, 0, 0, 0.06);
+  border-color: rgba(204, 0, 0, 0.15);
+}
+
+.yt-friction-card-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 20px 0;
+  line-height: 1.25;
+}
+
+.yt-friction-bullet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.yt-friction-bullet-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.yt-friction-bullet-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* Tablet (max-width: 992px) */
+@media (max-width: 992px) {
+  .yt-friction-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .yt-friction-card {
+    padding: 26px 22px;
+  }
+}
+
+/* Mobile (max-width: 600px) */
+@media (max-width: 600px) {
+  .yt-friction-section {
+    padding: 50px 18px;
+  }
+
+  .yt-friction-header {
+    margin-bottom: 36px;
+  }
+
+  .yt-friction-heading {
+    font-size: 2rem;
+  }
+
+  .yt-friction-num {
+    font-size: 3.2rem;
+    top: 14px;
+    right: 18px;
+  }
+
+  .yt-friction-card {
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+
+  .yt-friction-card-title {
+    font-size: 1.18rem;
+    margin-bottom: 14px;
+  }
+
+  .yt-friction-bullet-list li {
+    font-size: 0.88rem;
+  }
+}

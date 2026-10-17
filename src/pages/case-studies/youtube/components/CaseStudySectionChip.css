@@ -1,0 +1,42 @@
+.yt-section-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--chip-bg, rgba(255, 0, 0, 0.05));
+  border: 1px solid var(--chip-border, rgba(255, 0, 0, 0.18));
+  color: var(--text-primary);
+  padding: 8px 18px;
+  border-radius: 9999px;
+  margin-bottom: 24px;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  width: fit-content;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="dark"] .yt-section-chip {
+  background-color: rgba(255, 68, 68, 0.08);
+  border-color: rgba(255, 68, 68, 0.22);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.yt-chip-number {
+  font-weight: 700;
+  color: #ff3333;
+}
+
+[data-theme="light"] .yt-chip-number {
+  color: #cc0000;
+}
+
+.yt-chip-divider {
+  opacity: 0.35;
+  font-weight: 400;
+}
+
+.yt-chip-title {
+  font-weight: 600;
+}

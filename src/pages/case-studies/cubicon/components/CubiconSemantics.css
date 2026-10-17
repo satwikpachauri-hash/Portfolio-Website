@@ -1,0 +1,365 @@
+/* ==========================================================================
+   CUBICON SECTION 05 · SEMANTICS ANALYSIS
+   Designing for Meaning — Faithful Presentation & Restrained Annotations
+   ========================================================================== */
+
+.cubicon-semantics-section {
+  width: 100%;
+  background-color: var(--bg);
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 120px 0;
+}
+
+.csm-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+/* ==========================================================================
+   SECTION HEADER
+   ========================================================================== */
+.csm-header-block {
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.csm-section-title {
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+  line-height: 1.15;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 18px;
+  margin-bottom: 18px;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  text-align: center;
+}
+
+.csm-section-intro {
+  max-width: 720px;
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0 auto;
+  text-wrap: balance;
+}
+
+/* ==========================================================================
+   EXAMPLES STACK (ALTERNATING TWO-COLUMN DESKTOP LAYOUT)
+   ========================================================================== */
+.csm-examples-stack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(72px, 8vw, 110px);
+  width: 100%;
+}
+
+.csm-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(48px, 6vw, 88px);
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+/* Alternating Reverse Rows on Desktop */
+.csm-item.csm-reverse .csm-mockup-col {
+  order: 2;
+}
+
+.csm-item.csm-reverse .csm-explanation-col {
+  order: 1;
+}
+
+/* Mockup Column & Frame */
+.csm-mockup-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.csm-mockup-frame {
+  position: relative;
+  width: 100%;
+  max-width: 310px;
+  border-radius: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+
+.csm-mockup-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 28px;
+  box-shadow: none;
+}
+
+/* Restrained Annotation Dot (No continuous glow, no pulsing rings) */
+.csm-annotation-dot {
+  position: absolute;
+  pointer-events: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #a78bfa;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.csm-annotation-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(167, 139, 250, 0.7);
+  transform: translate(-50%, -50%);
+}
+
+[data-theme="light"] .csm-annotation-dot {
+  background: #7c3aed;
+  border-color: #ffffff;
+}
+
+[data-theme="light"] .csm-annotation-dot::after {
+  border-color: rgba(124, 58, 237, 0.5);
+}
+
+/* Explanation Column */
+.csm-explanation-col {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  max-width: 440px;
+}
+
+.csm-header-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.csm-example-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: rgba(23, 62, 73, 0.05);
+  color: var(--text-primary);
+  border: 1px solid rgba(23, 62, 73, 0.1);
+}
+
+[data-theme="dark"] .csm-example-badge {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.csm-example-title {
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+/* Points List & Cards */
+.csm-points-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.csm-point-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(23, 62, 73, 0.12);
+  cursor: default;
+}
+
+[data-theme="light"] .csm-point-card {
+  background: #ffffff;
+  border: 1px solid rgba(23, 62, 73, 0.12);
+}
+
+[data-theme="dark"] .csm-point-card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.csm-point-card:hover {
+  /* Container stays stationary */
+}
+
+.csm-point-body {
+  flex: 1;
+}
+
+.csm-point-label {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Icons and Hover Interaction (Icon-only pop upward, zero glow) */
+.csm-point-icon {
+  margin-top: 2px;
+  flex-shrink: 0;
+  display: inline-block;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.csm-point-card:hover .csm-point-icon {
+  transform: perspective(400px) translateZ(20px) rotate(-5deg) scale(1.15);
+}
+
+.csm-icon-danger {
+  color: #ef4444;
+}
+
+.csm-icon-success {
+  color: #10b981;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (LAPTOP, TABLET, PHONE)
+   ========================================================================== */
+
+/* Laptop (<= 1366px) */
+@media (max-width: 1366px) {
+  .csm-item {
+    gap: 56px;
+    max-width: 900px;
+  }
+  .csm-mockup-frame {
+    max-width: 285px;
+  }
+  .csm-explanation-col {
+    max-width: 420px;
+  }
+}
+
+/* Tablet (<= 990px / 768x1024 target): Deliberate Stack Composition */
+@media (max-width: 990px) {
+  .cubicon-semantics-section {
+    padding: 100px 0;
+  }
+  .csm-container {
+    gap: 64px;
+  }
+  .csm-examples-stack {
+    gap: 72px;
+  }
+  .csm-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    max-width: 440px;
+  }
+  .csm-explanation-col {
+    display: contents;
+  }
+  .csm-header-meta {
+    order: 1;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .csm-example-title {
+    text-align: center;
+  }
+  .csm-mockup-col {
+    order: 2;
+    margin-bottom: 8px;
+  }
+  .csm-mockup-frame {
+    max-width: 290px;
+  }
+  .csm-points-list {
+    order: 3;
+    max-width: 400px;
+  }
+}
+
+/* Phone (<= 767px / 390x844 target): Single Column Flow */
+@media (max-width: 767px) {
+  .cubicon-semantics-section {
+    padding: 80px 0;
+  }
+  .csm-container {
+    padding: 0 20px;
+    gap: 56px;
+  }
+  .csm-examples-stack {
+    gap: 64px;
+  }
+  .csm-item {
+    gap: 20px;
+    max-width: 340px;
+  }
+  .csm-mockup-frame {
+    max-width: 270px;
+  }
+  .csm-example-title {
+    font-size: 1.35rem;
+  }
+  .csm-points-list {
+    max-width: 320px;
+    gap: 10px;
+  }
+  .csm-point-card {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+    gap: 12px;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .csm-point-icon {
+    transition: none !important;
+  }
+  .csm-point-card:hover .csm-point-icon {
+    transform: none !important;
+  }
+}

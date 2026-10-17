@@ -10,7 +10,7 @@ const PROJECTS = [
     name: 'Plex',
     displayName: 'PLEX',
     territory: 'Product Design · Interaction · AI',
-    meta: '2026 — Ongoing',
+    meta: '2026 · Ongoing',
     image: '/assets/projects/plex-hero.webp',
     imageAlt: 'Plex project preview',
     to: '/projects/plex',
@@ -18,15 +18,15 @@ const PROJECTS = [
   },
   {
     id: 'cubicon',
-    num: '02',
-    name: 'Cubicon',
-    displayName: 'CUBICON',
-    territory: 'Interaction Design · Design Systems · Usability',
-    meta: '2026',
-    image: '/assets/projects/cubicon-hero.webp',
-    imageAlt: 'Cubicon project preview',
-    to: 'https://amazing-marshmallow-e2b6ac.netlify.app/',
-    external: true,
+      num: '02',
+      name: 'Cubicon',
+      displayName: 'CUBICON',
+      territory: 'Interaction Design · Design Systems · Usability',
+      meta: '2026',
+      image: '/assets/projects/cubicon-hero.webp',
+      imageAlt: 'Cubicon project preview',
+      to: '/projects/cubicon',
+      external: false,
   },
   {
     id: 'youtube',
@@ -37,8 +37,8 @@ const PROJECTS = [
     meta: '2025',
     image: '/assets/projects/youtube-hero.webp',
     imageAlt: 'YouTube redesign project preview',
-    to: 'https://youtube-case-study.netlify.app/',
-    external: true,
+    to: '/projects/youtube-watchlater',
+    external: false,
   },
 ];
 
@@ -66,6 +66,26 @@ function ProjectRow({ project, isActive, onActivate, onDeactivate }) {
     onMouseEnter: onActivate,
     onFocus: onActivate,
   };
+
+  if (!project.to) {
+    return (
+      <div {...sharedProps} style={{ cursor: 'default' }}>
+        {inner}
+      </div>
+    );
+  }
+
+  if (!project.to) {
+    return (
+      <div
+        className="pj-phone-entry"
+        aria-label={`View ${project.name} project`}
+        style={{ cursor: 'default' }}
+      >
+        {inner}
+      </div>
+    );
+  }
 
   if (project.external) {
     return (
@@ -158,7 +178,6 @@ export default function ProjectsIndex() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = 'Projects — Satwik Pachauri';
   }, []);
 
   // Reset to default when pointer leaves the entire browser region

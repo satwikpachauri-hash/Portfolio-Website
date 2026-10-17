@@ -136,7 +136,7 @@ export default function PlexCollaboration() {
           <div className="collab-side side-design">
             <h3 className="collab-side-title">
               Product Design
-              <span className="collab-author">Satwik — Product Designer</span>
+              <span className="collab-author">Satwik · Product Designer</span>
             </h3>
             <div className="collab-clusters">
               {productDesignGroups.map(group => (
@@ -167,7 +167,7 @@ export default function PlexCollaboration() {
           <div className="collab-side side-engineering">
             <h3 className="collab-side-title">
               AI/ML Engineering
-              <span className="collab-author">Jaspreet — AI/ML Engineer</span>
+              <span className="collab-author">Jaspreet · AI/ML Engineer</span>
             </h3>
             <div className="collab-clusters">
               {engineeringGroups.map(group => (

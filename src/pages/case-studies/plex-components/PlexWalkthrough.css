@@ -1,23 +1,23 @@
 /* ============================================================
    PlexWalkthrough.css
-   Section 08 — Walkthrough
+   Section 08 â€” Walkthrough
    ============================================================ */
 
-/* ── Root section ──────────────────────────────────────────── */
+/* â”€â”€ Root section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .plex-walkthrough {
   width: 100%;
   background-color: var(--bg);
   overflow: hidden; /* prevent any GSAP transform bleed */
 }
 
-/* ── Section header ────────────────────────────────────────── */
+/* â”€â”€ Section header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .wt-section-header {
   padding: 140px 5vw 80px;
   display: flex;
   justify-content: center;
 }
 
-/* ── Shared feature typography ─────────────────────────────── */
+/* â”€â”€ Shared feature typography â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .wt-feature-num {
   font-size: 0.85rem;
   font-weight: 700;
@@ -44,7 +44,7 @@
 }
 
 /* ============================================================
-   BRAIN DUMP — Desktop / Laptop
+   BRAIN DUMP â€” Desktop / Laptop
    ============================================================ */
 .wt-braindum-desktop {
   width: 100%;
@@ -69,7 +69,7 @@
   z-index: 2;
 }
 
-/* Scene container — everything animated goes here */
+/* Scene container â€” everything animated goes here */
 .wt-bd-scene-wrap {
   display: flex;
   justify-content: center;
@@ -84,7 +84,7 @@
   will-change: transform;
 }
 
-/* ── INPUT LAYER ─────────────────────────────────────────── */
+/* â”€â”€ INPUT LAYER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .wt-bd-input-layer {
   position: absolute;
   inset: 0;
@@ -154,7 +154,7 @@
   will-change: opacity, transform;
 }
 
-/* ── CARD LAYER ──────────────────────────────────────────── */
+/* â”€â”€ CARD LAYER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .wt-bd-card-layer {
   position: absolute;
   inset: 0;
@@ -192,7 +192,7 @@
   color: var(--text-secondary);
 }
 
-/* ── DASHBOARD LAYER ─────────────────────────────────────── */
+/* â”€â”€ DASHBOARD LAYER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .wt-bd-dash-wrap {
   position: absolute;
   inset: 0;
@@ -210,7 +210,7 @@
   display: block;
 }
 
-/* Reveal masks — coloured rectangles sitting over the image */
+/* Reveal masks â€” coloured rectangles sitting over the image */
 .wt-bd-mask {
   position: absolute;
   left: 0;
@@ -228,7 +228,7 @@
 .wt-bd-mask--5 { top: 78%;   height: 22%; border-radius: 0 0 24px 24px; }
 
 /* ============================================================
-   BRAIN DUMP — Mobile (tablet / phone)
+   BRAIN DUMP â€” Mobile (tablet / phone)
    ============================================================ */
 .wt-braindum-mobile {
   width: 100%;
@@ -247,6 +247,7 @@
   width: 100%;
   max-width: 480px;
   height: auto;
+  aspect-ratio: 1310 / 2708;
   display: block;
   margin: 0 auto;
   border-radius: 20px;
@@ -254,7 +255,7 @@
 
 /* Stable container for the Brain Dump dashboard mockup.
    Reserves layout space before the image loads and provides
-   the single GSAP transform target — no competing transforms. */
+   the single GSAP transform target â€” no competing transforms. */
 .wt-bd-dash-wrapper {
   width: 100%;
   max-width: 480px;
@@ -265,14 +266,14 @@
   aspect-ratio: 9 / 19.5;
   border-radius: 20px;
   overflow: hidden;
-  /* GPU-composite from the start — prevents mid-animation promotion jitter */
+  /* GPU-composite from the start â€” prevents mid-animation promotion jitter */
   will-change: opacity, transform;
   /* Ensure the element is in the compositor before animation */
   transform: translateZ(0);
 }
 
 .wt-bd-dash-wrapper .wt-mob-img {
-  /* Fill wrapper exactly — no margin shifts inside */
+  /* Fill wrapper exactly â€” no margin shifts inside */
   width: 100%;
   max-width: none;
   height: 100%;
@@ -298,12 +299,12 @@
   will-change: transform;
 }
 
-/* Interpretation box — distinct left-accent feel */
+/* Interpretation box â€” distinct left-accent feel */
 .wt-bd-interp-box {
   border-left: 2px solid var(--accent);
 }
 
-/* Mobile card — supports borderColor accent transition via GSAP */
+/* Mobile card â€” supports borderColor accent transition via GSAP */
 .wt-bd-card--mobile {
   border: 1px solid var(--border);
   transition: border-color 0.3s ease;
@@ -311,7 +312,7 @@
 }
 
 /* ============================================================
-   SIMPLE FEATURE (02–05)
+   SIMPLE FEATURE (02â€“05)
    ============================================================ */
 .wt-simple-feature {
   width: 100%;
@@ -353,6 +354,7 @@
   width: 100%;
   max-width: 480px;
   height: auto;
+  aspect-ratio: 1310 / 2708;
   display: block;
   border-radius: 20px;
   object-fit: contain;
@@ -360,7 +362,7 @@
 }
 
 /* ============================================================
-   PRIVACY — Desktop / Laptop (pinned)
+   PRIVACY â€” Desktop / Laptop (pinned)
    ============================================================ */
 .wt-privacy-desktop {
   width: 100%;
@@ -404,13 +406,14 @@
 .wt-privacy-img {
   width: min(380px, 38vw);
   height: auto;
+  aspect-ratio: 1920 / 3969;
   border-radius: 24px;
   display: block;
   will-change: opacity, transform;
 }
 
 /* ============================================================
-   PRIVACY — Mobile
+   PRIVACY â€” Mobile
    ============================================================ */
 .wt-privacy-mobile {
   width: 100%;
@@ -516,3 +519,4 @@
     transition: none !important;
   }
 }
+

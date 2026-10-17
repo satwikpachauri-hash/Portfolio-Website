@@ -1,0 +1,694 @@
+/* ==========================================================================
+   CUBICON SECTION 07: INDUSTRY INSIGHT
+   Refined Three-Stage Editorial Structure with Scroll-Based Progressive Disclosure
+   ========================================================================== */
+
+.cubicon-industry-insight-section {
+  width: 100%;
+  background-color: var(--bg);
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 120px 0;
+}
+
+.cii-container {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+/* ==========================================================================
+   SECTION HEADER
+   ========================================================================== */
+.cii-header-block {
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.cii-section-title {
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+  line-height: 1.15;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 18px;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  text-align: center;
+}
+
+.cii-section-intro {
+  max-width: 680px;
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0 auto;
+  text-wrap: balance;
+}
+
+/* ==========================================================================
+   THREE-STAGE NARRATIVE WRAPPER
+   Clear Separation Between Stages (Grouping Rule)
+   ========================================================================== */
+.cii-stages-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.cii-stage-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  opacity: 0.5;
+  margin: 8px 0;
+}
+
+/* ==========================================================================
+   STAGE ROW: TWO-COLUMN EDITORIAL COMPOSITION (STAGES 01 & 03)
+   ========================================================================== */
+.cii-stage-row {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 44px;
+  align-items: center;
+  width: 100%;
+}
+
+.cii-stage-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.cii-stage-pill {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  background: rgba(23, 62, 73, 0.08);
+  padding: 3px 10px;
+  border-radius: 6px;
+  margin-bottom: 14px;
+}
+
+[data-theme="dark"] .cii-stage-pill {
+  background: rgba(167, 139, 250, 0.12);
+  color: #a78bfa;
+}
+
+.cii-stage-heading {
+  font-size: clamp(1.35rem, 2vw, 1.7rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 16px 0;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.cii-stage-copy {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin: 0 0 14px 0;
+  text-wrap: pretty;
+}
+
+.cii-stage-copy:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   STAGE VISUAL MOCKUP CARD (SHARED BASE)
+   ========================================================================== */
+.cii-stage-visual {
+  width: 100%;
+}
+
+.cii-mockup-card {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.024);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  transition: border-color 0.25s ease;
+}
+
+[data-theme="light"] .cii-mockup-card {
+  background: #ffffff;
+  border-color: rgba(23, 62, 73, 0.12);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+}
+
+.cii-card-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cii-subtle-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  opacity: 0.85;
+}
+
+.cii-status-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}
+
+.cii-tag-swiggy {
+  background: rgba(252, 128, 25, 0.12);
+  color: #ea580c;
+  border: 1px solid rgba(252, 128, 25, 0.25);
+}
+
+[data-theme="dark"] .cii-tag-swiggy {
+  background: rgba(252, 128, 25, 0.15);
+  color: #fb923c;
+  border-color: rgba(252, 128, 25, 0.3);
+}
+
+.cii-tag-cubicon {
+  background: rgba(34, 197, 94, 0.1);
+  color: #16a34a;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+[data-theme="dark"] .cii-tag-cubicon {
+  background: rgba(34, 197, 94, 0.12);
+  color: #4ade80;
+  border-color: rgba(34, 197, 94, 0.25);
+}
+
+.cii-visual-caption {
+  font-size: 0.74rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  opacity: 0.75;
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   STAGE 01: SWIGGY MOTION DEMONSTRATION
+   ========================================================================== */
+.cii-swiggy-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 10px 0;
+  min-height: 200px;
+  justify-content: space-between;
+}
+
+.cii-swiggy-address-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  z-index: 2;
+}
+
+[data-theme="light"] .cii-swiggy-address-bar {
+  background: #f8fafc;
+  border-color: rgba(23, 62, 73, 0.1);
+}
+
+.cii-swiggy-address-bar.cii-address-focused {
+  border-color: rgba(252, 128, 25, 0.45);
+  background: rgba(252, 128, 25, 0.04);
+}
+
+[data-theme="light"] .cii-swiggy-address-bar.cii-address-focused {
+  border-color: rgba(234, 88, 12, 0.5);
+  background: rgba(254, 243, 199, 0.35);
+}
+
+.cii-address-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(252, 128, 25, 0.1);
+  color: #ea580c;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .cii-address-icon-wrap {
+  background: rgba(252, 128, 25, 0.15);
+  color: #fb923c;
+}
+
+.cii-address-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 0;
+}
+
+.cii-address-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.cii-chevron {
+  opacity: 0.6;
+}
+
+.cii-address-sub {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.3;
+}
+
+.cii-focus-pill {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: #ea580c;
+  color: #ffffff;
+  animation: ciiFadeIn 0.25s ease-out;
+}
+
+[data-theme="dark"] .cii-focus-pill {
+  background: #f97316;
+  color: #0c0d0e;
+}
+
+@keyframes ciiFadeIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Motion Trajectory Field */
+.cii-motion-path-field {
+  position: relative;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 6px 0;
+}
+
+.cii-path-line {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  border-left: 2px dashed rgba(252, 128, 25, 0.25);
+}
+
+[data-theme="light"] .cii-path-line {
+  border-left-color: rgba(234, 88, 12, 0.35);
+}
+
+/* Motion Logo Dot */
+.cii-motion-logo-dot {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  transition: transform 1s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.3s ease;
+}
+
+.cii-logo-dot-core {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ea580c;
+}
+
+[data-theme="dark"] .cii-logo-dot-core {
+  background: #fb923c;
+}
+
+.cii-logo-dot-halo {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: rgba(252, 128, 25, 0.25);
+}
+
+/* Phases mapping */
+.cii-motion-logo-dot.cii-phase-0 {
+  transform: translateY(28px);
+  opacity: 0.9;
+}
+
+.cii-motion-logo-dot.cii-phase-1 {
+  transform: translateY(0px);
+  opacity: 1;
+}
+
+.cii-motion-logo-dot.cii-phase-2,
+.cii-motion-logo-dot.cii-phase-3 {
+  transform: translateY(-28px);
+  opacity: 1;
+}
+
+.cii-launch-zone {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px dashed var(--border);
+  background: rgba(255, 255, 255, 0.015);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-theme="light"] .cii-launch-zone {
+  background: rgba(23, 62, 73, 0.03);
+}
+
+.cii-launch-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   STAGE 02: WHAT I LEARNED (COMPACT INSIGHT PANEL)
+   ========================================================================== */
+.cii-stage-02 {
+  grid-template-columns: 1fr;
+}
+
+.cii-insight-card {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  background: rgba(167, 139, 250, 0.03);
+  border: 1px solid rgba(167, 139, 250, 0.18);
+  border-left: 3px solid #a78bfa;
+  border-radius: 14px;
+  padding: 24px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+}
+
+[data-theme="light"] .cii-insight-card {
+  background: rgba(124, 58, 237, 0.03);
+  border-color: rgba(124, 58, 237, 0.16);
+  border-left-color: #7c3aed;
+}
+
+.cii-insight-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cii-insight-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(167, 139, 250, 0.12);
+  color: #a78bfa;
+  flex-shrink: 0;
+}
+
+[data-theme="light"] .cii-insight-icon-wrap {
+  background: rgba(124, 58, 237, 0.08);
+  color: #7c3aed;
+}
+
+.cii-insight-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cii-insight-meta .cii-stage-pill {
+  margin-bottom: 4px;
+}
+
+.cii-insight-meta .cii-stage-heading {
+  margin-bottom: 0;
+  font-size: 1.15rem;
+}
+
+.cii-insight-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cii-insight-primary {
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.cii-insight-supporting {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ==========================================================================
+   STAGE 03: CUBICON CART-FEEDBACK DEMONSTRATION
+   ========================================================================== */
+.cii-cubicon-demo-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  min-height: 180px;
+  position: relative;
+  padding: 10px 0;
+}
+
+.cii-add-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 10px;
+  background: var(--text-primary);
+  color: var(--bg);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  user-select: none;
+}
+
+.cii-add-action-btn.cii-action-pressed {
+  transform: scale(0.96);
+  opacity: 0.85;
+}
+
+.cii-bag-icon {
+  flex-shrink: 0;
+}
+
+/* Reserved Fixed-Height Feedback Slot to Prevent Layout Shift */
+.cii-snackbar-slot {
+  width: 100%;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.cii-snackbar {
+  width: 100%;
+  max-width: 380px;
+  padding: 12px 16px;
+  background: #14161a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+[data-theme="light"] .cii-snackbar {
+  background: #ffffff;
+  border-color: rgba(23, 62, 73, 0.14);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.cii-snackbar-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.cii-snack-icon {
+  color: #22c55e;
+  flex-shrink: 0;
+}
+
+[data-theme="light"] .cii-snack-icon {
+  color: #16a34a;
+}
+
+.cii-snack-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.cii-snack-primary {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.25;
+}
+
+[data-theme="light"] .cii-snack-primary {
+  color: #111827;
+}
+
+.cii-snack-secondary {
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.35;
+}
+
+[data-theme="light"] .cii-snack-secondary {
+  color: #4b5563;
+}
+
+/* ==========================================================================
+   RESPONSIVE MATRIX
+   ========================================================================== */
+@media (max-width: 900px) {
+  .cii-stage-row {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .cii-stages-wrapper {
+    gap: 40px;
+  }
+
+  .cii-container {
+    gap: 48px;
+  }
+
+  .cii-stage-divider {
+    margin: 4px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .cubicon-industry-insight-section {
+    padding: 80px 0;
+  }
+
+  .cii-container {
+    padding: 0 6vw;
+    gap: 40px;
+  }
+
+  .cii-section-title {
+    font-size: 2rem;
+  }
+
+  .cii-stage-heading {
+    font-size: 1.35rem;
+  }
+
+  .cii-insight-card {
+    padding: 20px 22px;
+  }
+
+  .cii-mockup-card {
+    padding: 18px;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION OVERRIDES
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .cii-motion-logo-dot,
+  .cii-swiggy-address-bar,
+  .cii-add-action-btn,
+  .cii-focus-pill {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .cii-motion-logo-dot {
+    transform: translateY(-28px) !important;
+    opacity: 1 !important;
+  }
+
+  .cii-swiggy-address-bar {
+    border-color: rgba(252, 128, 25, 0.45) !important;
+  }
+
+  .cii-focus-pill {
+    display: inline-block !important;
+  }
+}

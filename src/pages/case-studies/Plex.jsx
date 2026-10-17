@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion, useScroll, useTransform } from 'motion/react';
 import PlexProblemSection from './plex-components/PlexProblemSection';
 import PlexProjectContext from './plex-components/PlexProjectContext';
@@ -12,6 +13,7 @@ import PlexWalkthrough from './plex-components/PlexWalkthrough';
 import PlexArchitecture from './plex-components/PlexArchitecture';
 import PlexCollaboration from './plex-components/PlexCollaboration';
 import PlexReflection from './plex-components/PlexReflection';
+import PlexFooter from './plex-components/PlexFooter';
 import './Plex.css';
 
 export default function Plex() {
@@ -24,6 +26,16 @@ export default function Plex() {
   });
 
   const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
+
+  useEffect(() => {
+    let isMounted = true;
+    document.fonts.ready.then(() => {
+      requestAnimationFrame(() => {
+        if (isMounted) ScrollTrigger.refresh(true);
+      });
+    });
+    return () => { isMounted = false; };
+  }, []);
 
   return (
     <div className="plex-case-study">
@@ -117,7 +129,9 @@ export default function Plex() {
         <PlexArchitecture />
         <PlexCollaboration />
         <PlexReflection />
+        <PlexFooter />
       </div>
     </div>
   );
 }
+
