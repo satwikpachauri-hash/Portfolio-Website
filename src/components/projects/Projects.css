@@ -1,4 +1,4 @@
-﻿.projects-section {
+.projects-section {
   padding: var(--section-spacing) 24px;
   position: relative;
   z-index: 10;
@@ -66,8 +66,6 @@
   color: var(--text);
   transition: transform 0.4s ease-out, box-shadow 0.4s ease-out, border-color 0.4s ease-out;
   position: relative;
-  /* Performance optimization */
-  contain: content;
 }
 
 @media (min-width: 992px) {
@@ -286,6 +284,7 @@ html:not([data-theme="dark"]) .pc-category-pill {
   .pc-cta-icon {
     transition: none !important;
     transform: none !important;
+    opacity: 1 !important;
   }
   .pc-image {
     will-change: auto;

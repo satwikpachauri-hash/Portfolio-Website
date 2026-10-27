@@ -14,7 +14,7 @@ const EDUCATION_DATA = [
     index: "02",
     date: "May 2019 – Mar 2023",
     degree: "SENIOR SECONDARY EDUCATION",
-    institution: "Delhi Public World School",
+    institution: "Delhi World Public School",
     description: "Completed CBSE Senior Secondary education from the Humanities stream. Gained a broad perspective and analytical skills valuable for understanding diverse user behaviors."
   }
 ];

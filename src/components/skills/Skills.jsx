@@ -7,33 +7,45 @@ import framerBlackLogo from '../../assets/logos/framer-Black.svg';
 import framerBlueLogo from '../../assets/logos/framer-icon Blue.svg';
 import antigravityLogo from '../../assets/logos/Google_Antigravity_Logo_2025.svg';
 import vscodeLogo from '../../assets/logos/Visual Studio Code (VS Code).svg';
+import figmaMakeLogo from '../../../App Logos/Figma Make (1).svg';
+import claudeLogo from '../../../App Logos/Figma Make (2).svg';
 import './Skills.css';
 
 const SOFTWARE_SKILLS = [
   'Figma',
+  'Framer',
   'Adobe Photoshop',
   'Adobe Illustrator',
-  'Framer',
-  'Antigravity',
-  'VS Code'
+  'Google Antigravity',
+  'Visual Studio Code',
+  'Figma Make',
+  'Claude AI'
 ];
 
 const DESIGN_SKILLS = [
-  'User Experience Design',
   'Product Design',
-  'UX Research',
+  'UX Design',
   'Interaction Design',
-  'Design Systems',
-  'Information Architecture',
-  'Usability Testing',
-  'Material Design 3',
-  'User-Centered Design',
-  'Product Strategy',
   'UI Design',
+  'UX Research',
+  'User Interviews',
+  'Usability Testing',
+  'Research Synthesis',
+  'Problem Framing',
+  'Product Strategy',
+  'UX Strategy',
+  'Systems Thinking',
+  'Information Architecture',
+  'User Journeys',
   'User Flows',
+  'Feature Planning',
   'Wireframing',
-  'Prototyping',
-  'Problem Solving'
+  'Interactive Prototyping',
+  'Design Systems',
+  'User-Centered Design',
+  'Accessibility',
+  'Motion & Micro-interactions',
+  'Cross-Functional Collaboration'
 ];
 
 const getLogo = (name) => {
@@ -41,9 +53,9 @@ const getLogo = (name) => {
     case 'Figma':
       return <img src={figmaLogo} alt="Figma logo" className="software-logo-img" />;
     case 'Adobe Photoshop':
-      return <img src={photoshopLogo} alt="Photoshop logo" className="software-logo-img" />;
+      return <img src={photoshopLogo} alt="Adobe Photoshop logo" className="software-logo-img" />;
     case 'Adobe Illustrator':
-      return <img src={illustratorLogo} alt="Illustrator logo" className="software-logo-img" />;
+      return <img src={illustratorLogo} alt="Adobe Illustrator logo" className="software-logo-img" />;
     case 'Framer':
       return (
         <>
@@ -51,10 +63,16 @@ const getLogo = (name) => {
           <img src={framerBlueLogo} alt="Framer logo" className="software-logo-img framer-logo-dark" />
         </>
       );
+    case 'Google Antigravity':
     case 'Antigravity':
-      return <img src={antigravityLogo} alt="Antigravity logo" className="software-logo-img antigravity-logo-img" />;
+      return <img src={antigravityLogo} alt="Google Antigravity logo" className="software-logo-img antigravity-logo-img" />;
+    case 'Visual Studio Code':
     case 'VS Code':
-      return <img src={vscodeLogo} alt="VS Code logo" className="software-logo-img" />;
+      return <img src={vscodeLogo} alt="Visual Studio Code logo" className="software-logo-img" />;
+    case 'Figma Make':
+      return <img src={figmaMakeLogo} alt="Figma Make logo" className="software-logo-img" />;
+    case 'Claude AI':
+      return <img src={claudeLogo} alt="Claude AI logo" className="software-logo-img" />;
     default:
       return null;
   }
@@ -64,7 +82,7 @@ const SoftwareRail = ({ items, firstGroupRef }) => {
   return (
     <div className="skill-category">
       <h3 className="skill-label font-display">
-        <span className="skill-parent">SKILLS / </span>SOFTWARE
+        <span className="skill-parent">TOOLS / </span>SOFTWARE
       </h3>
       <div className="skill-rail-container">
         <div className="skill-rail-track dir-right">

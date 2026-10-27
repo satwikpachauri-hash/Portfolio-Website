@@ -1,10 +1,18 @@
 import { useState, useEffect } from 'react';
 
+const VALID_THEMES = ['system', 'light', 'dark'];
+
 export function useTheme() {
   const [theme, setThemeState] = useState(() => {
-    const savedTheme = localStorage.getItem('portfolio-theme');
-    if (savedTheme) return savedTheme;
-    return 'system';
+    try {
+      const savedTheme = localStorage.getItem('portfolio-theme');
+      if (savedTheme && VALID_THEMES.includes(savedTheme)) {
+        return savedTheme;
+      }
+    } catch (e) {
+      // Storage access may fail in restricted environments
+    }
+    return 'light'; // Default to Light Mode for first-time visitors
   });
 
   useEffect(() => {
@@ -13,15 +21,11 @@ export function useTheme() {
     const applyTheme = (currentTheme) => {
       if (currentTheme === 'system') {
         const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (systemPrefersDark) {
-          root.setAttribute('data-theme', 'dark');
-        } else {
-          root.removeAttribute('data-theme');
-        }
+        root.setAttribute('data-theme', systemPrefersDark ? 'dark' : 'light');
       } else if (currentTheme === 'dark') {
         root.setAttribute('data-theme', 'dark');
       } else {
-        root.removeAttribute('data-theme');
+        root.setAttribute('data-theme', 'light');
       }
     };
 
@@ -35,12 +39,38 @@ export function useTheme() {
     };
     
     mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
+
+    // Synchronize across multiple hook instances and tabs
+    const handleSync = (e) => {
+      if (e.detail && VALID_THEMES.includes(e.detail) && e.detail !== theme) {
+        setThemeState(e.detail);
+      }
+    };
+    window.addEventListener('portfolio-theme-change', handleSync);
+
+    const handleStorage = (e) => {
+      if (e.key === 'portfolio-theme' && e.newValue && VALID_THEMES.includes(e.newValue) && e.newValue !== theme) {
+        setThemeState(e.newValue);
+      }
+    };
+    window.addEventListener('storage', handleStorage);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange);
+      window.removeEventListener('portfolio-theme-change', handleSync);
+      window.removeEventListener('storage', handleStorage);
+    };
   }, [theme]);
 
   const setTheme = (newTheme) => {
+    if (!VALID_THEMES.includes(newTheme)) return;
     setThemeState(newTheme);
-    localStorage.setItem('portfolio-theme', newTheme);
+    try {
+      localStorage.setItem('portfolio-theme', newTheme);
+    } catch (e) {
+      // Storage access may fail in restricted environments
+    }
+    window.dispatchEvent(new CustomEvent('portfolio-theme-change', { detail: newTheme }));
   };
 
   return { theme, setTheme };

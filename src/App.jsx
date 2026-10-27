@@ -21,6 +21,8 @@ const YouTube = lazy(() => import('./pages/case-studies/youtube/YouTube'));
 
 // Components
 import DynamicIsland from './components/navigation/DynamicIsland/DynamicIsland';
+import ThemeSwitcher from './components/navigation/ThemeSwitcher/ThemeSwitcher';
+import HomeButton from './components/navigation/HomeButton/HomeButton';
 import ScrollManager from './components/navigation/ScrollManager';
 import PageTitleManager from './components/navigation/PageTitleManager';
 import PageTransition from './components/navigation/PageTransition';
@@ -70,7 +72,9 @@ function App() {
     <Router>
       <PageTitleManager />
       <ScrollManager />
+      <HomeButton />
       <DynamicIsland />
+      <ThemeSwitcher />
       <Routes>
         <Route element={<PageTransition />}>
           <Route path="/" element={<Home />} />

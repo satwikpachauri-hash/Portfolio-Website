@@ -4,7 +4,6 @@ import { ChevronDown } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { navigationLinks } from '../../../data/navigation';
 import { useViewportClasses } from '../../../hooks/useMediaQuery';
-import { useTheme } from '../../../hooks/useTheme';
 import './DynamicIsland.css';
 
 const STATE = {
@@ -25,9 +24,20 @@ export default function DynamicIsland() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [viewport, setViewport] = useState('desktop');
   const containerRef = useRef(null);
-  const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Synchronize nav open state for responsive collision avoidance
+  useEffect(() => {
+    if (navState !== STATE.CLOSED) {
+      document.documentElement.setAttribute('data-nav-open', 'true');
+    } else {
+      document.documentElement.removeAttribute('data-nav-open');
+    }
+    return () => {
+      document.documentElement.removeAttribute('data-nav-open');
+    };
+  }, [navState]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -308,27 +318,6 @@ export default function DynamicIsland() {
                   ))}
                 </ul>
               </nav>
-              
-              <motion.div 
-                className="theme-selector"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { duration: 0.3, delay: 0.45 } }}
-                exit={{ opacity: 0, transition: { duration: 0.1 } }}
-              >
-                <span className="theme-label font-body">Theme:</span>
-                <button 
-                  className={theme === 'system' ? 'active font-body' : 'font-body'} 
-                  onClick={(e) => { e.stopPropagation(); setTheme('system'); }}
-                >System</button>
-                <button 
-                  className={theme === 'light' ? 'active font-body' : 'font-body'} 
-                  onClick={(e) => { e.stopPropagation(); setTheme('light'); }}
-                >Light</button>
-                <button 
-                  className={theme === 'dark' ? 'active font-body' : 'font-body'} 
-                  onClick={(e) => { e.stopPropagation(); setTheme('dark'); }}
-                >Dark</button>
-              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>

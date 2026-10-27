@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useReducedMotion } from 'motion/react';
 import './Projects.css';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -60,15 +60,76 @@ const MotionLink = motion(Link);
 
 const ProjectCard = React.memo(({ project, index }) => {
   const destination = project.href;
-  
-  
+  const shouldReduceMotion = useReducedMotion();
+  const [isVisible, setIsVisible] = useState(() => {
+    if (typeof window !== 'undefined') {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return true;
+    }
+    return false;
+  });
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    if (isVisible) return;
+    const el = cardRef.current;
+    if (!el) return;
+
+    // Immediate check: if already in or above viewport on mount, reveal immediately
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight + 50) {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting || entry.boundingClientRect.top < window.innerHeight) {
+            setIsVisible(true);
+            observer.disconnect();
+            break;
+          }
+        }
+      },
+      { threshold: [0, 0.05, 0.1], rootMargin: '50px 0px 50px 0px' }
+    );
+
+    observer.observe(el);
+
+    // Passive scroll listener for fast jumps or smooth scroll frames
+    const handleScroll = () => {
+      if (cardRef.current) {
+        const r = cardRef.current.getBoundingClientRect();
+        if (r.top < window.innerHeight + 100) {
+          setIsVisible(true);
+          observer.disconnect();
+          window.removeEventListener('scroll', handleScroll);
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Safety fallback: guaranteed visibility after timeout
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    }, 2000);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer);
+    };
+  }, [isVisible]);
+
   const cardProps = {
+    ref: cardRef,
     id: project.id,
     className: "project-card",
-    initial: { opacity: 0, y: 18 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: "-10%" },
-    transition: { duration: 0.5, delay: 0.1, ease: "easeOut" },
+    initial: shouldReduceMotion ? false : { opacity: 0, y: 18 },
+    animate: isVisible ? { opacity: 1, y: 0 } : (shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }),
+    transition: shouldReduceMotion ? { duration: 0 } : { duration: 0.5, delay: 0.1, ease: "easeOut" },
     "aria-label": `View ${project.title} case study`
   };
 
@@ -166,7 +227,7 @@ export default function Projects() {
           className="projects-header"
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-10%" }}
+          viewport={{ once: true, margin: "0px 0px -50px 0px" }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <h2 className="projects-title font-display">PROJECTS</h2>
@@ -185,7 +246,7 @@ export default function Projects() {
           className="projects-footer"
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-10%" }}
+          viewport={{ once: true, margin: "0px 0px -50px 0px" }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
         >
           <span className="projects-closing font-body">
