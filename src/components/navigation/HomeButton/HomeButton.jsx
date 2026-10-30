@@ -32,12 +32,13 @@ export default function HomeButton() {
   };
 
   return (
-    <div className={`home-button-container ${isScrolled ? 'scrolled' : ''}`}>
+    <div className={`home-button-container ${isScrolled ? 'scrolled' : ''}`} data-floating-control="home">
       <Link
         to="/"
         className="home-button"
         onKeyDown={handleKeyDown}
         aria-label="Go to homepage"
+        data-floating-control="home"
       >
         <House className="home-button-icon" size={18} strokeWidth={2.2} aria-hidden="true" />
       </Link>

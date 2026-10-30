@@ -4,41 +4,23 @@ const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('portfolio-theme') || 'light';
+    const saved = localStorage.getItem('portfolio-theme');
+    return saved === 'dark' ? 'dark' : 'light';
   });
 
   useEffect(() => {
     const root = document.documentElement;
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    
-    const applyTheme = (currentTheme) => {
-      let resolvedTheme = currentTheme;
-      if (currentTheme === 'system') {
-        resolvedTheme = mediaQuery.matches ? 'dark' : 'light';
-      }
-      root.setAttribute('data-theme', resolvedTheme);
-      
-      // Smoothly transition colors
-      root.style.transition = 'background-color 0.3s ease, color 0.3s ease';
-      setTimeout(() => {
-        root.style.transition = '';
-      }, 350);
-    };
-
-    applyTheme(theme);
-    localStorage.setItem('portfolio-theme', theme);
-
-    const listener = () => {
-      if (theme === 'system') {
-        applyTheme('system');
-      }
-    };
-    mediaQuery.addEventListener('change', listener);
-    return () => mediaQuery.removeEventListener('change', listener);
+    const resolvedTheme = theme === 'dark' ? 'dark' : 'light';
+    root.setAttribute('data-theme', resolvedTheme);
+    localStorage.setItem('portfolio-theme', resolvedTheme);
   }, [theme]);
 
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );

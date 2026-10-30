@@ -1,44 +1,23 @@
 import { useState, useEffect } from 'react';
 
-const VALID_THEMES = ['system', 'light', 'dark'];
+const VALID_THEMES = ['light', 'dark'];
 
 export function useTheme() {
   const [theme, setThemeState] = useState(() => {
     try {
       const savedTheme = localStorage.getItem('portfolio-theme');
-      if (savedTheme && VALID_THEMES.includes(savedTheme)) {
-        return savedTheme;
+      if (savedTheme === 'dark') {
+        return 'dark';
       }
     } catch (e) {
       // Storage access may fail in restricted environments
     }
-    return 'light'; // Default to Light Mode for first-time visitors
+    return 'light'; // Default to Light Mode for first-time visitors and obsolete 'system' preference
   });
 
   useEffect(() => {
     const root = document.documentElement;
-    
-    const applyTheme = (currentTheme) => {
-      if (currentTheme === 'system') {
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        root.setAttribute('data-theme', systemPrefersDark ? 'dark' : 'light');
-      } else if (currentTheme === 'dark') {
-        root.setAttribute('data-theme', 'dark');
-      } else {
-        root.setAttribute('data-theme', 'light');
-      }
-    };
-
-    applyTheme(theme);
-
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = () => {
-      if (theme === 'system') {
-        applyTheme('system');
-      }
-    };
-    
-    mediaQuery.addEventListener('change', handleChange);
+    root.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
 
     // Synchronize across multiple hook instances and tabs
     const handleSync = (e) => {
@@ -49,29 +28,36 @@ export function useTheme() {
     window.addEventListener('portfolio-theme-change', handleSync);
 
     const handleStorage = (e) => {
-      if (e.key === 'portfolio-theme' && e.newValue && VALID_THEMES.includes(e.newValue) && e.newValue !== theme) {
-        setThemeState(e.newValue);
+      if (e.key === 'portfolio-theme') {
+        const resolved = e.newValue === 'dark' ? 'dark' : 'light';
+        if (resolved !== theme) {
+          setThemeState(resolved);
+        }
       }
     };
     window.addEventListener('storage', handleStorage);
 
     return () => {
-      mediaQuery.removeEventListener('change', handleChange);
       window.removeEventListener('portfolio-theme-change', handleSync);
       window.removeEventListener('storage', handleStorage);
     };
   }, [theme]);
 
   const setTheme = (newTheme) => {
-    if (!VALID_THEMES.includes(newTheme)) return;
-    setThemeState(newTheme);
+    const resolvedTheme = newTheme === 'dark' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', resolvedTheme);
+    setThemeState(resolvedTheme);
     try {
-      localStorage.setItem('portfolio-theme', newTheme);
+      localStorage.setItem('portfolio-theme', resolvedTheme);
     } catch (e) {
       // Storage access may fail in restricted environments
     }
-    window.dispatchEvent(new CustomEvent('portfolio-theme-change', { detail: newTheme }));
+    window.dispatchEvent(new CustomEvent('portfolio-theme-change', { detail: resolvedTheme }));
   };
 
-  return { theme, setTheme };
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
+  return { theme, setTheme, toggleTheme };
 }

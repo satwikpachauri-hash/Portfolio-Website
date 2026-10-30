@@ -38,10 +38,35 @@
   box-shadow: 0 12px 32px rgba(0,0,0,0.6), inset 0 1px 1px var(--glass-highlight);
 }
 
+/* Maintain consistent Liquid Glass translucency for the active/expanded menu across all scroll positions */
+.dynamic-island.is-expanded,
+.dynamic-island.is-active,
+.dynamic-island-wrapper.scrolled .dynamic-island.is-expanded,
+.dynamic-island-wrapper.scrolled .dynamic-island.is-active {
+  background-color: var(--nav-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 16px 40px var(--glass-shadow), inset 0 1px 1px var(--glass-highlight);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .dynamic-island.is-expanded,
+[data-theme="dark"] .dynamic-island.is-active,
+[data-theme="dark"] .dynamic-island-wrapper.scrolled .dynamic-island.is-expanded,
+[data-theme="dark"] .dynamic-island-wrapper.scrolled .dynamic-island.is-active {
+  background-color: var(--nav-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 16px 40px var(--glass-shadow), inset 0 1px 1px var(--glass-highlight);
+  border-color: var(--border);
+}
+
+
 .material-glass {
   /* No heavy frost as requested */
   background: var(--nav-surface);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .di-content-closed {
@@ -194,5 +219,4 @@
   color: var(--accent);
   transform: translateX(4px);
 }
-
 

@@ -65,12 +65,68 @@ export default function DynamicIsland() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Outside click to close
+  // Outside click to close (with protected control zones: Navbar, Theme, Home)
   useEffect(() => {
     const handleOutsideClick = (e) => {
-      if (navState === STATE.OPEN && containerRef.current && !containerRef.current.contains(e.target)) {
-        handleClose();
+      if (navState !== STATE.OPEN) return;
+
+      const target = e.target;
+      const path = typeof e.composedPath === 'function' ? e.composedPath() : [];
+
+      // 1. Central navbar itself
+      if (containerRef.current && (containerRef.current.contains(target) || path.includes(containerRef.current))) {
+        return;
       }
+
+      // 2. Floating Theme toggle
+      const themeContainer = document.querySelector('.theme-switcher-container');
+      const themeTrigger = document.querySelector('.theme-switcher-trigger');
+      if (
+        (themeContainer && (themeContainer.contains(target) || path.includes(themeContainer))) ||
+        (themeTrigger && (themeTrigger.contains(target) || path.includes(themeTrigger)))
+      ) {
+        return;
+      }
+
+      // 3. Floating Home button
+      const homeContainer = document.querySelector('.home-button-container');
+      const homeButton = document.querySelector('.home-button');
+      if (
+        (homeContainer && (homeContainer.contains(target) || path.includes(homeContainer))) ||
+        (homeButton && (homeButton.contains(target) || path.includes(homeButton)))
+      ) {
+        return;
+      }
+
+      // 4. Check composed path or element ancestry for data attribute or classes
+      for (const node of path) {
+        if (node && node.nodeType === Node.ELEMENT_NODE) {
+          if (
+            node.hasAttribute('data-floating-control') ||
+            node.classList?.contains('theme-switcher-trigger') ||
+            node.classList?.contains('theme-switcher-container') ||
+            node.classList?.contains('home-button') ||
+            node.classList?.contains('home-button-container') ||
+            node.classList?.contains('dynamic-island')
+          ) {
+            return;
+          }
+        }
+      }
+
+      if (target && typeof target.closest === 'function') {
+        if (
+          target.closest('[data-floating-control]') ||
+          target.closest('.theme-switcher-container, .theme-switcher-trigger') ||
+          target.closest('.home-button-container, .home-button') ||
+          target.closest('.dynamic-island')
+        ) {
+          return;
+        }
+      }
+
+      // Outside all protected areas: dismiss navbar
+      handleClose();
     };
     
     document.addEventListener('pointerdown', handleOutsideClick);
@@ -218,7 +274,7 @@ export default function DynamicIsland() {
     <div className={`dynamic-island-wrapper ${isScrolled ? 'scrolled' : ''}`}>
       <motion.div
         ref={containerRef}
-        className="dynamic-island material-glass"
+        className={`dynamic-island material-glass ${isCompact ? 'is-active' : ''} ${isMenuVisible ? 'is-expanded' : ''}`}
         animate={{
           width: currentWidth,
           height: currentHeight,
