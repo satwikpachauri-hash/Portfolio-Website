@@ -1,4 +1,4 @@
-﻿/* PlexExistingToolsSection.css */
+/* PlexExistingToolsSection.css */
 
 .plex-existing-tools-wrapper {
   width: 100%;
@@ -470,7 +470,8 @@
 /* Mobile */
 @media (max-width: 767px) {
   .plex-workspace-scale-wrapper {
-    width: 100vw;
+    width: 100%;
+    max-width: 100%;
     height: 100svh;
     max-height: none;
     border-radius: 0;

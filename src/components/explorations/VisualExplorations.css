@@ -57,6 +57,18 @@
   width: 24px; /* Clearly visible gap between 01 and PHOTOGRAPHY */
 }
 
+@media (max-width: 1024px) {
+  .subsection-title {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .subsection-number,
+  .title-spacer {
+    display: none;
+  }
+}
+
 /* --- CONTACT SHEET / DRAG PREVIEW --- */
 .contact-sheet-wrapper {
   display: flex;
@@ -559,14 +571,40 @@
   cursor: not-allowed;
 }
 
-@media (max-width: 767px) {
+@media (min-width: 768px) and (max-width: 1024px) {
+  .photo-viewer-overlay {
+    padding-top: 0;
+  }
   .viewer-top-bar {
-    padding: 16px 20px;
-    height: 60px;
+    height: 96px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
   }
   .viewer-image-container {
+    padding: 12px 24px;
+  }
+  .viewer-image {
+    max-height: min(100%, calc(100dvh - 300px));
+  }
+}
+
+@media (max-width: 767px) {
+  .photo-viewer-overlay {
+    padding-top: 0;
+  }
+  .viewer-top-bar {
     padding: 0 16px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+  }
+  .viewer-image-container {
+    padding: 8px 16px;
     min-height: 140px;
+  }
+  .viewer-image {
+    max-height: min(100%, calc(100dvh - 280px));
   }
   .viewer-bottom-bar {
     padding: 16px 20px 24px 20px;

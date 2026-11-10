@@ -815,7 +815,7 @@ export default function VisualExplorations() {
         <div className="exploration-subsection">
           <div className="subsection-header main-sub">
             <h3 className="subsection-title font-display">
-              01<span className="title-spacer"></span>PHOTOGRAPHY
+              <span className="subsection-number">01</span><span className="title-spacer"></span>PHOTOGRAPHY
             </h3>
           </div>
 
@@ -885,7 +885,7 @@ export default function VisualExplorations() {
         <div className="exploration-subsection graphic-design-section">
           <div className="subsection-header main-sub">
             <h3 className="subsection-title font-display">
-              02<span className="title-spacer"></span>GRAPHIC DESIGN
+              <span className="subsection-number">02</span><span className="title-spacer"></span>GRAPHIC DESIGN
             </h3>
           </div>
 

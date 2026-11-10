@@ -339,8 +339,9 @@
 
   /* Phone: reduced number size, shorter track */
   .iteration-number {
-    font-size: clamp(4.5rem, 18vw, 7rem);
-    min-width: 8ch;
+    font-size: clamp(3.5rem, 16vw, 5.5rem);
+    min-width: 4.5ch;
+    max-width: 100%;
   }
 
   .iteration-stat {
