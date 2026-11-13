@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import './ProjectsPage.css';
 
@@ -18,15 +18,15 @@ const PROJECTS = [
   },
   {
     id: 'cubicon',
-      num: '02',
-      name: 'Cubicon',
-      displayName: 'CUBICON',
-      territory: 'Interaction Design · Design Systems · Usability',
-      meta: '2026',
-      image: '/assets/projects/cubicon-hero.webp',
-      imageAlt: 'Cubicon project preview',
-      to: '/projects/cubicon',
-      external: false,
+    num: '02',
+    name: 'Cubicon',
+    displayName: 'CUBICON',
+    territory: 'Interaction Design · Design Systems · Usability',
+    meta: '2026',
+    image: '/assets/projects/cubicon-hero.webp',
+    imageAlt: 'Cubicon project preview',
+    to: '/projects/cubicon',
+    external: false,
   },
   {
     id: 'youtube',
@@ -64,24 +64,14 @@ function ProjectRow({ project, isActive, onActivate, onDeactivate }) {
     className: `pj-row ${isActive ? 'active' : 'inactive'}`,
     'aria-label': `View ${project.name} project`,
     onMouseEnter: onActivate,
+    onMouseOver: onActivate,
     onFocus: onActivate,
+    draggable: false,
   };
 
   if (!project.to) {
     return (
       <div {...sharedProps} style={{ cursor: 'default' }}>
-        {inner}
-      </div>
-    );
-  }
-
-  if (!project.to) {
-    return (
-      <div
-        className="pj-phone-entry"
-        aria-label={`View ${project.name} project`}
-        style={{ cursor: 'default' }}
-      >
         {inner}
       </div>
     );
@@ -113,7 +103,7 @@ function PreviewImages({ activeId }) {
           src={p.image}
           alt={p.imageAlt}
           className={`pj-preview-img ${activeId === p.id ? 'visible' : ''}`}
-          // Preload by rendering all three; only one is visible
+          draggable={false}
         />
       ))}
     </div>
@@ -132,7 +122,7 @@ function PhoneEntry({ project }) {
       </div>
       <p className="pj-phone-territory">{project.territory}</p>
       <div className="pj-phone-img-frame">
-        <img src={project.image} alt={project.imageAlt} />
+        <img src={project.image} alt={project.imageAlt} draggable={false} />
       </div>
       <div className="pj-phone-meta-row">
         {project.meta ? (
@@ -153,6 +143,7 @@ function PhoneEntry({ project }) {
         rel="noreferrer"
         className="pj-phone-entry"
         aria-label={`View ${project.name} project`}
+        draggable={false}
       >
         {inner}
       </a>
@@ -163,6 +154,7 @@ function PhoneEntry({ project }) {
       to={project.to}
       className="pj-phone-entry"
       aria-label={`View ${project.name} project`}
+      draggable={false}
     >
       {inner}
     </Link>
@@ -176,16 +168,12 @@ export default function ProjectsIndex() {
   const [activeId, setActiveId] = useState(DEFAULT_ID);
   const browserRef = useRef(null);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   // Reset to default when pointer leaves the entire browser region
   const handleBrowserLeave = useCallback(() => {
     setActiveId(DEFAULT_ID);
   }, []);
 
-  const activeProject = PROJECTS.find((p) => p.id === activeId);
+  const activeProject = PROJECTS.find((p) => p.id === activeId) || PROJECTS[0];
 
   return (
     <main className="projects-page">
@@ -220,8 +208,13 @@ export default function ProjectsIndex() {
             ))}
           </div>
 
-          {/* Preview Right */}
-          <div className="pj-preview">
+          {/* Preview Right — Unified clickable link */}
+          <Link
+            to={activeProject.to}
+            className="pj-preview"
+            aria-label={`View ${activeProject.name} project`}
+            draggable={false}
+          >
             <div className="pj-preview-frame">
               <PreviewImages activeId={activeId} />
             </div>
@@ -231,7 +224,7 @@ export default function ProjectsIndex() {
                 <span className="pj-preview-status">{activeProject.meta}</span>
               )}
             </div>
-          </div>
+          </Link>
 
         </div>
 

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { House } from 'lucide-react';
 import './HomeButton.css';
 
 export default function HomeButton() {
   const location = useLocation();
-  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
 
   // Sync scroll position with navbar and appearance switcher
@@ -23,11 +22,11 @@ export default function HomeButton() {
     return null;
   }
 
-  // Keyboard navigation support: Enter triggers Link natively; Spacebar activation handled explicitly
+  // Keyboard navigation support: Enter triggers Link natively; Spacebar activates link directly
   const handleKeyDown = (e) => {
     if (e.key === ' ' || e.key === 'Spacebar') {
       e.preventDefault();
-      navigate('/');
+      e.currentTarget.click();
     }
   };
 
@@ -39,6 +38,7 @@ export default function HomeButton() {
         onKeyDown={handleKeyDown}
         aria-label="Go to homepage"
         data-floating-control="home"
+        draggable={false}
       >
         <House className="home-button-icon" size={18} strokeWidth={2.2} aria-hidden="true" />
       </Link>

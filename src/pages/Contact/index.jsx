@@ -60,10 +60,6 @@ export default function Contact() {
   );
   const tiltFrame = useRef(null);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   // Entrance animation (CSS transition + requestAnimationFrame)
   useEffect(() => {
     if (prefersReduced.current) return;

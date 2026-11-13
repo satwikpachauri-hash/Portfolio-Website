@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import CaseStudySectionChip from './CaseStudySectionChip';
 import './PlexSolutionReveal.css';
 
@@ -89,7 +89,7 @@ export default function PlexSolutionReveal() {
               playsInline
               preload="metadata"
               aria-label="Plex product introduction"
-              onLoadedMetadata={() => ScrollTrigger.refresh()}
+
             />
           )}
         </motion.div>

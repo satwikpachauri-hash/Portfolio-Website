@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React from 'react';
 import YouTubeHero from './components/YouTubeHero';
 import YouTubeProblem from './components/YouTubeProblem';
 import YouTubeProcess from './components/YouTubeProcess';
@@ -13,19 +12,6 @@ import RelatedProjects from '../../../components/projects/RelatedProjects';
 import './YouTube.css';
 
 export default function YouTube() {
-  useEffect(() => {
-    let isMounted = true;
-    if (document.fonts) {
-      document.fonts.ready.then(() => {
-        requestAnimationFrame(() => {
-          if (isMounted) ScrollTrigger.refresh(true);
-        });
-      });
-    }
-    return () => {
-      isMounted = false;
-    };
-  }, []);
 
   return (
     <article className="youtube-case-study">

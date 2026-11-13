@@ -64,8 +64,26 @@
   padding: clamp(24px, 6vw, 48px);
   text-decoration: none;
   color: var(--text);
-  transition: transform 0.4s ease-out, box-shadow 0.4s ease-out, border-color 0.4s ease-out;
+  cursor: pointer;
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
   position: relative;
+}
+
+.project-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* All internal children pass through pointer events to the unified card Link */
+.project-card * {
+  pointer-events: none;
+}
+
+.project-card .pc-image {
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 @media (min-width: 992px) {
@@ -87,6 +105,12 @@
   }
 }
 .project-card:active {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  border-color: var(--text-muted);
+}
+
+.project-card:active .pc-image {
   transform: scale(0.995);
   transition: transform 0.1s ease;
 }

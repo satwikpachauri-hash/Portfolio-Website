@@ -65,11 +65,11 @@ export default function RelatedProjects({ currentProject }) {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 16 },
+    hidden: { opacity: 0, y: 0 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+      transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
     },
   };
 
@@ -96,7 +96,7 @@ export default function RelatedProjects({ currentProject }) {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-10%' }}
+          viewport={{ once: true, margin: '50px 0px 50px 0px' }}
         >
           {recommendedProjects.map((project) => (
             <motion.div key={project.id} variants={itemVariants} className="related-card-wrapper">
@@ -104,6 +104,7 @@ export default function RelatedProjects({ currentProject }) {
                 to={project.route}
                 className="related-project-card"
                 aria-label={`View ${project.title} case study`}
+                draggable={false}
               >
                 {/* 1. Authentic Thumbnail */}
                 <div className="related-card-visual">
@@ -113,6 +114,7 @@ export default function RelatedProjects({ currentProject }) {
                     className="related-card-img"
                     loading="lazy"
                     style={{ objectPosition: project.objectPosition }}
+                    draggable={false}
                   />
                 </div>
 

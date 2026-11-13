@@ -138,10 +138,6 @@ function ExperienceRecord({ record }) {
 }
 
 export default function ExperiencePage() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <main className="exp-page">
       <div className="exp-wrapper">

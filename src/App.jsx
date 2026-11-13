@@ -1,4 +1,4 @@
-import React, { useEffect, lazy } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis';
 import { useTheme } from './hooks/useTheme';
@@ -7,17 +7,17 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Pages (Lazy loaded)
-const Home = lazy(() => import('./pages/Home'));
-const About = lazy(() => import('./pages/About'));
-const Projects = lazy(() => import('./pages/Projects'));
-const Experience = lazy(() => import('./pages/Experience'));
-const Education = lazy(() => import('./pages/Education'));
-const Contact = lazy(() => import('./pages/Contact'));
-const Explorations = lazy(() => import('./pages/Explorations'));
-const Plex = lazy(() => import('./pages/case-studies/Plex'));
-const Cubicon = lazy(() => import('./pages/case-studies/cubicon/Cubicon'));
-const YouTube = lazy(() => import('./pages/case-studies/youtube/YouTube'));
+// Pages
+import Home from './pages/Home';
+import About from './pages/About';
+import Projects from './pages/Projects';
+import Experience from './pages/Experience';
+import Education from './pages/Education';
+import Contact from './pages/Contact';
+import Explorations from './pages/Explorations';
+import Plex from './pages/case-studies/Plex';
+import Cubicon from './pages/case-studies/cubicon/Cubicon';
+import YouTube from './pages/case-studies/youtube/YouTube';
 
 // Components
 import DynamicIsland from './components/navigation/DynamicIsland/DynamicIsland';
@@ -47,6 +47,7 @@ function App() {
       mouseMultiplier: 1,
       smoothTouch: false,
       touchMultiplier: 2,
+      stopInertiaOnNavigate: true,
     });
 
     window.lenis = lenis;
@@ -85,9 +86,13 @@ function App() {
           <Route path="/education" element={<Education />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/projects/plex" element={<Plex />} />
+          <Route path="/case-studies/plex" element={<Plex />} />
           <Route path="/projects/cubicon" element={<Cubicon />} />
+          <Route path="/case-studies/cubicon" element={<Cubicon />} />
           <Route path="/projects/youtube-watchlater" element={<YouTube />} />
           <Route path="/case-studies/youtube-watchlater" element={<YouTube />} />
+          <Route path="/projects/youtube" element={<YouTube />} />
+          <Route path="/case-studies/youtube" element={<YouTube />} />
         </Route>
       </Routes>
     </Router>

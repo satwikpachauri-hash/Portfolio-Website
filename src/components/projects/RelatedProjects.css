@@ -88,6 +88,12 @@
               border-color 0.35s ease,
               box-shadow 0.35s ease;
   position: relative;
+  cursor: pointer;
+}
+
+/* Ensure all child elements pass through clicks directly to card Link */
+.related-project-card * {
+  pointer-events: none;
 }
 
 [data-theme="dark"] .related-project-card {
@@ -110,6 +116,11 @@
 }
 
 .related-project-card:active {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.related-project-card:active .related-card-img {
   transform: scale(0.99);
   transition: transform 0.1s ease;
 }
@@ -138,6 +149,8 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  -webkit-user-drag: none;
+  user-select: none;
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }

@@ -4,7 +4,7 @@
   position: fixed;
   top: 26px;
   left: 32px;
-  z-index: 1000;
+  z-index: 1100;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,18 +37,31 @@
   -webkit-backdrop-filter: blur(12px);
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.18s ease;
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .home-button:hover {
   background-color: var(--nav-hover);
   color: var(--text-primary);
   border-color: var(--nav-border);
-  transform: translateY(-1px);
 }
 
 .home-button:active {
-  transform: translateY(0);
+  background-color: var(--nav-hover);
+  border-color: var(--nav-border);
+}
+
+.home-button:hover .home-button-icon {
+  transform: scale(1.06);
+}
+
+.home-button:active .home-button-icon {
+  transform: scale(0.94);
+}
+
+/* Ensure all child elements pass through pointer events to the Link */
+.home-button * {
+  pointer-events: none;
 }
 
 .home-button:focus-visible {
@@ -86,10 +99,10 @@
     left: 12px;
   }
 
-  /* Subordinate control when navbar is expanded to avoid collision */
+  /* Subordinate control when navbar is expanded to avoid collision while remaining interactive */
   [data-nav-open="true"] .home-button-container {
-    opacity: 0.25;
-    pointer-events: none;
+    opacity: 0.6;
+    pointer-events: auto;
     transition: opacity 0.2s ease;
   }
 }

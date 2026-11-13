@@ -96,10 +96,6 @@ export default function Experience() {
   const earlierRef  = useRef(null);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
     // ── Respect prefers-reduced-motion ──────────────────────────
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
